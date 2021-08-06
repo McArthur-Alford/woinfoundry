@@ -1,0 +1,325 @@
+{
+  "Actor": {
+    "types": [
+      "character",
+      "spacecraft"
+    ],
+    "character": {
+      "biography": "Enter Text...",
+      "initiative": {
+        "value": 0,
+        "mod":0,
+        "skill": ""
+      },
+      "details":{
+        "name":"Alex",
+        "is":"a bountyhunter/mechanic/politician",
+        "with":"grudge/personal life/fondness of blades",
+        "species":"human",
+        "homeworld":"mars",
+        "origin":"Moisture Farmer",
+        "gender":"none",
+        "age":"young",
+        "height":"120cm",
+        "weight":"60kg",
+        "languages":"standard",
+        "size":"medium",
+        "traits":"none",
+        "deity":"none",
+        "carry_increment":0,
+        "shadow":0
+      },
+      "carry": {
+        "carried": 0
+      },
+      "credits": 0,
+      "net_worth": 0,
+      "advancement": {
+        "xp_gain": [{"name":"default","value":0}],
+        "xp_spent": [{"name":"default","value":0}],
+        "xp_total": 0,
+        "grade": 0,
+        "dice_cap": 0
+      },
+      "health": {
+        "value": 0,
+        "min": 0,
+        "max": 0
+      },
+      "luck": {
+        "value": 0,
+        "min": 0,
+        "max": 0
+      },
+      "power": {
+        "value": 0,
+        "min": 0,
+        "max": 0
+      },
+      "soak": {
+        "natural":0,
+        "armor":0,
+        "natural_modifiers":[{"name":"base","bonus":0,"flat":0}],
+        "armor_modifiers":[{"name":"base","bonus":0,"flat":0}]
+      },
+      "defense":{
+        "melee":0,
+        "ranged":0,
+        "mental":0,
+        "vital":0,
+        "melee_modifiers":[{"name":"base","bonus":0,"flat":0}],
+        "ranged_modifiers":[{"name":"base","bonus":0,"flat":0}],
+        "mental_modifiers":[{"name":"base","bonus":0,"flat":0}],
+        "vital_modifiers":[{"name":"base","bonus":0,"flat":0}]
+      },
+      "movement": {
+        "speed":0,
+        "climb":0,
+        "swim":0,
+        "jumpH":0,
+        "jumpV":0,
+        "highG":0,
+        "lowG":0,
+        "zeroG":0
+      },
+      "attributes": {
+        "strength": {
+          "value": 0,
+          "name": "strength",
+          "label": "str",
+          "dice": 0,
+          "modifier": []
+        },
+        "agility": {
+          "value": 0,
+          "name": "agility",
+          "label": "agi",
+          "dice": 0,
+          "modifier": []
+        },
+        "endurance": {
+          "value": 0,
+          "name": "endurance",
+          "label": "end",
+          "dice": 0,
+          "modifier": []
+        },
+        "intuition": {
+          "value": 0,
+          "name": "intuition",
+          "label": "int",
+          "dice": 0,
+          "modifier": []
+        },
+        "logic": {
+          "value": 0,
+          "name": "logic",
+          "label": "log",
+          "dice": 0,
+          "modifier": []
+        },
+        "willpower": {
+          "value": 0,
+          "name": "willpower",
+          "label": "will",
+          "dice": 0,
+          "modifier": []
+        },
+        "charisma": {
+          "value": 0,
+          "name": "charisma",
+          "label": "cha",
+          "dice": 0,
+          "modifier": []
+        },
+        "luck": {
+          "value": 0,
+          "name": "luck",
+          "label": "luc",
+          "dice": 0,
+          "modifier": []
+        },
+        "reputation": {
+          "value": 0,
+          "name": "reputation",
+          "label": "rep",
+          "dice": 0,
+          "modifier": []
+        },
+        "psionics": {
+          "value": 0,
+          "name": "psionics",
+          "label": "psi",
+          "dice": 0,
+          "modifier": []
+        }
+      }
+    },
+    "spacecraft": {
+      "history": "Enter Text...",
+      "details": {
+        "name":"Name",
+        "date":"Entering Service XXXX",
+        "weight":0,
+        "hull":"Class I",
+        "length":0,
+        "width":0,
+        "height":0,
+        "traits":"",
+        "market_value":0
+      },
+      "crew": {
+        "crew":"",
+        "cost":0,
+        "troops":"0",
+        "passengers":"0",
+        "cabins":"(0 standard, 0 luxury)",
+        "luxury":"100% Adequate"
+      },
+      "engine": {
+        "fuel_capacity": 0,
+        "operational_range": 0,
+        "travel_increrment": 0,
+        "speed_trials": ""
+      },
+      "defensive_data": {
+        "superstructure": 0,
+        "CPU": 0,
+        "defense": 0,
+        "e-defense": 0
+      }
+    }
+  },
+  "Item": {
+    "types": [
+      "item",
+      "skill",
+      "exploit",
+      "ship_computer",
+      "ship_sensor",
+      "ship_ftl",
+      "ship_subliminal",
+      "ship_weapon",
+      "ship_facilities",
+      "ship_systems",
+      "ship_hangar",
+      "ship_shield",
+      "ship_armor",
+      "ship_quirk",
+      "language"
+    ],
+    "item": {
+      "inventorysort":0,
+      "description": "Enter Text...",
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "size": "m",
+      "availability":"00",
+      "types":["none","weapon","container","armor"],
+      "type":"none",
+      "skill": "skill",
+      "attribute": "attribute",
+      "equipped": false,
+      "equipped_modifiers": "",
+      "carried": true,
+      "quality": "standard",
+      "contained_in":"",
+      "error":"",
+      "container": {
+        "holds": 0,
+        "adds": 0,
+        "slots": 0
+      },
+      "weapon": {
+        "range": 0,
+        "damagedice": 0,
+        "bonusdamage": 0,
+        "skilldamage": 0,
+        "tradeoff": 0,
+        "damagetype": ["slashing"],
+        "special": "",
+        "attack": 0,
+        "bonus_attack": 0
+      },
+      "armor": {
+        "type": "light",
+        "special": "",
+        "soak": 0,
+        "ineffective": ["none"]
+      }
+    },
+    "skill": {
+      "attribute": "strength",
+      "score": 0,
+      "pool": 0,
+      "gradepool": 0
+    },
+    "exploit": {
+      "name":"name",
+      "description":"description",
+      "modifier":""
+    },
+    "ship_computer": {
+      "quantity":0,
+      "cycles":0,
+      "max_FTL":0,
+      "check":"+0d6"
+    },
+    "ship_sensor": {
+      "quantity":1,
+      "range":0,
+      "check":"+0d6"
+    },
+    "ship_ftl": {
+      "quantity":1,
+      "power":0,
+      "FTL":0,
+      "fuel_efficiency":0
+    },
+    "ship_subliminal": {
+      "quantity":1,
+      "power":0,
+      "speed":0,
+      "fuel_efficiency":0
+    },
+    "ship_weapon": {
+      "facing":"f",
+      "turret":false,
+      "quantity":1,
+      "range":0,
+      "damage":"0d6",
+      "damage_type":[],
+      "attack":"+0d6"
+    },
+    "ship_facilities": {
+      "size":0
+    },
+    "ship_systems": {
+      "quantity":1,
+      "description":""
+    },
+    "ship_hangar": {
+      "quantity":1,
+      "ship_type":""
+    },
+    "ship_shield": {
+      "quantity":1,
+      "power":0,
+      "soak":0
+    },
+    "ship_armor": {
+      "quantity":1,
+      "type":"",
+      "soak":[[0,"ballistic"]]
+    },
+    "ship_quirk": {
+      "quantity":1,
+      "hidden": true,
+      "description":""
+    },
+    "language": {
+      "name":"standard"
+    }
+  }
+}

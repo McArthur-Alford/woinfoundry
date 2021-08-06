@@ -1,0 +1,524 @@
+<form class="{{cssClass}} character-sheet" autocomplete="off">
+
+    <section class="sheet-global">
+        {{!-- Sheet Header --}}
+
+
+        <div class="global-panel sheet-basic">
+            <div class="resource health">
+                <h4> Health: </h4>
+                <input type="text" name="data.health.value" value="{{data.health.value}}" data-dtype="Number" />
+                <input type="text" name="data.health.max" value="{{data.health.max}}" data-dtype="Number" />
+            </div>
+            <div class="resource luck">
+                <h4> Luck: </h4>
+                <input type="text" name="data.luck.value" value="{{data.luck.value}}" data-dtype="Number" />
+                <input type="text" name="data.luck.max" value="{{data.luck.max}}" data-dtype="Number" readonly />
+            </div>
+            <div class="resource maxpool">
+                <h4> Max Pool: </h4>
+                <input type="text" name="data.advancement.dice_cap" value="{{data.advancement.dice_cap}}"
+                    data-dtype="Number" />
+                <input type="text" readonly />
+            </div>
+            <div class="resource power">
+                <h4> Power: </h4>
+                <input type="text" name="data.power.value" value="{{data.power.value}}" data-dtype="Number" />
+                <input type="text" name="data.power.max" value="{{data.power.max}}" data-dtype="Number" />
+            </div>
+        </div>
+
+        <div class="global-panel sheet-attributes">
+            {{#each data.attributes as |attr|}}
+            {{#if attr.label}}
+            <div class="attribute">
+                <h4 class="rollable-general" data-description="{{attr.name}}" data-attribute-dice="{{attr.dice}}"
+                    data-actorId="{{../actor._id}}">{{attr.label}}:</h4>
+                <input data-attribute="{{attr.name}}" type="number" min="0" max="44" step="1"
+                    name="data.attributes.{{attr.name}}.value" value="{{attr.value}}" data-dtype="Number" />
+                <span></span>
+                <label type="text" name="data.attributes.{{attr.name}}.dice">{{attr.dice}}d6</label>
+            </div>
+            {{/if}}
+            {{/each}}
+        </div>
+
+        <div class="global-panel sheet-movement">
+            <ul>
+                <li>
+                    <span>Speed</span>
+                    <input type="number" name="data.movement.speed" value="{{data.movement.speed}}">
+                </li>
+                <li>
+                    <span>Climb</span>
+                    <input type="number" name="data.movement.climb" value="{{data.movement.climb}}">
+                </li>
+                <li>
+                    <span>Swim</span>
+                    <input type="number" name="data.movement.swim" value="{{data.movement.swim}}">
+                </li>
+                <li>
+                    <span>Jump(H)</span>
+                    <input type="number" name="data.movement.jumpH" value="{{data.movement.jumpH}}">
+                </li>
+                <li>
+                    <span>Jump(V)</span>
+                    <input type="number" name="data.movement.jumpV" value="{{data.movement.jumpV}}">
+                </li>
+                <li>
+                    <span>High-G</span>
+                    <input type="number" name="data.movement.highG" value="{{data.movement.highG}}">
+                </li>
+                <li>
+                    <span>Low-G</span>
+                    <input type="number" name="data.movement.lowG" value="{{data.movement.lowG}}">
+                </li>
+                <li>
+                    <span>Zero-G</span>
+                    <input type="number" name="data.movement.zeroG" value="{{data.movement.zeroG}}">
+                </li>
+            </ul>
+            <a class="auto-calculate movement"><i class="fas fa-calculator"></i></a>
+        </div>
+
+        <div class="global-panel sheet-combat">
+            <h3>Defense:</h3>
+            <ul>
+                <li>
+                    <span>Melee:</span>
+                    <input type="number" name="data.defense.melee" value="{{data.defense.melee}}">
+                </li>
+                <li>
+                    <span>Ranged:</span>
+                    <input type="number" name="data.defense.ranged" value="{{data.defense.ranged}}">
+                </li>
+                <li>
+                    <span>Mental:</span>
+                    <input type="number" name="data.defense.mental" value="{{data.defense.mental}}">
+                </li>
+                <li>
+                    <span>Vital:</span>
+                    <input type="number" name="data.defense.vital" value="{{data.defense.vital}}">
+                </li>
+            </ul>
+            <h3>Soak:</h3>
+            <ul>
+                <li>
+                    <span>Natural</span>
+                    <input type="number" name="data.soak.natural" value="{{data.soak.natural}}">
+                </li>
+                <li>
+                    <span>Armor</span>
+                    <input type="number" name="data.soak.armor" value="{{data.soak.armor}}">
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="sheet-circumstantial">
+        {{!-- Sheet Tab Navigation --}}
+        <nav class="sheet-tabs tabs" data-group="primary">
+            <a class="item" data-tab="description">bio</a>
+            <a class="item" data-tab="items">equipment</a>
+            <a class="item" data-tab="skills">skills</a>
+            <a class="item" data-tab="exploits">exploits</a>
+            <a class="item" data-tab="advancement">advancement</a>
+            <a class="item" data-tab="combat">combat</a>
+            <a class="item" data-tab="effects">effects</a>
+        </nav>
+
+
+        {{!-- Sheet Body --}}
+        <section class="sheet-body">
+
+            {{!-- Effects Tab --}}
+            <div class="tab effects" data-group="primary" data-tab="effects">
+                <a class="manage-effect" data-action="add">Add</a>
+                <hr>
+                {{#each actor.effects as |effect|}}
+                <div class="effect-row">
+                    <span>{{effect.label}}</span>
+                    <a class="manage-effect toggled-{{effect.disabled}} fas fa-check" data-action="toggle"
+                        data-id="{{effect._id}}"></a>
+                    <a class="manage-effect fas fa-edit" data-action="edit" data-id="{{effect._id}}"></a>
+                    <a class="manage-effect fas fa-trash" data-action="delete" data-id="{{effect._id}}"></a>
+                </div>
+                {{/each}}
+            </div>
+
+            {{!-- Combat Tab --}}
+            <div class="tab combat" data-group="primary" data-tab="combat">
+                <div class="combat-row" style="display:flex; margin-top: -1px;">
+                    <span class="exploit-row-name">Name:</span>
+                    <span class="combat-range">Range:</span>
+                    <span class="combat-skill">Skill:</span>
+                    <a class="combat-dicepool">Damage:</a>
+                    <span class="combat-damagetype">Type:</span>
+                    <span class="combat-special">Special:</span>
+                </div>
+                <div class="topbar">
+                    <div class="topbar-item">
+                        <span>Initiative Skill:</span>
+                        <input type="text" class="{{data.initiative.error}} initiative-skill" style="display:inline-block;"
+                        type="text" value="{{data.initiative.skill}}" name="data.initiative.skill">
+                    </div>
+                    <div class="topbar-item">
+                        <span>Modifier:</span>
+                        <input type="text" name="data.initiative.mod" value="{{data.initiative.mod}}"
+                            style="display:inline-block">
+                    </div>
+                </div>
+                {{#each actor.items as |item|}}
+                {{#ifeq item.type "item"}}
+                {{#ifeq item.data.type "weapon"}}
+                <div class="combat-row" style="display:flex">
+                    <span class="exploit-row-name">{{item.name}}</span>
+                    <span class="combat-range">{{item.data.weapon.range}}</span>
+                    <span class="combat-skill">
+                        <input class="{{item.data.error}}" style="display:inline-block;" data-itemId="{{item._id}}"
+                            type="text" value="{{item.data.skill}}">
+                        <a class="rollable-attack" data-itemId="{{item._id}}" data-actorId="{{../actor._id}}"
+                            data-description="{{item.name}}" style="display:inline-block">⚄</a>
+                    </span>
+                    <a 
+                    data-description="{{item.data.weapon.damagetype}}" data-skill-dice="{{item.data.weapon.damagedice}}" data-attribute-dice="0" data-actorId="{{../actor._id}}"
+                    data-constant1="{{item.data.weapon.bonusdamage}}" data-constant2="{{item.data.weapon.skilldamage}}"
+                        class="rollable-general combat-dicepool">{{item.data.weapon.bonusdamage}}+{{item.data.weapon.damagedice}}d6+{{item.data.weapon.skilldamage}}
+                        ⚄</a>
+                    <span class="combat-damagetype">{{#each item.data.weapon.damagetype}}{{this}} {{/each}}</span>
+                    <span class="combat-special">{{item.data.weapon.special}}</span>
+
+                </div>
+                {{/ifeq}}
+                {{/ifeq}}
+                {{/each}}
+            </div>
+
+            {{!-- Biography Tab --}}
+            <div class="tab biography" data-group="primary" data-tab="description">
+
+                <section class="profile-fields">
+                    <div style="float:left" class="profile-img-surrounding">
+                        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100"
+                            width="100" />
+                    </div>
+                    <div>
+                        <div class="details">
+                            <span>Name:</span>
+                            <input style="width:300px" type="text" value="{{actor.name}}" name="name">
+                        </div>
+                        <div class="details"> <span>Is a:</span>
+                            <input style="width:300px" type="text" value="{{data.details.is}}" name="data.details.is">
+                        </div>
+                        <div class="details"> <span>With/Who:</span>
+                            <input style="width:300px" type="text" value="{{data.details.with}}"
+                                name="data.details.with">
+                        </div>
+                    </div>
+                </section>
+
+                <br>
+                <h1>Traits:</h1>
+
+                <section class="character-details">
+                    <div class="details"> <span>Species:</span>
+                        <input type="text" value="{{data.details.species}}" name="data.details.species">
+                    </div>
+                    <div class="details"> <span>Gender:</span>
+                        <input type="text" value="{{data.details.gender}}" name="data.details.gender">
+                    </div>
+                    <div class="details"><span>Age:</span>
+                        <input type="text" value="{{data.details.age}}" name="data.details.age">
+                    </div>
+                    <div class="details"> <span>Height:</span>
+                        <input type="text" value="{{data.details.height}}" name="data.details.height">
+                    </div>
+                    <div class="details"> <span>Weight:</span>
+                        <input type="text" value="{{data.details.weight}}" name="data.details.weight">
+                    </div>
+                    <div class="details"> <span>Size:</span>
+                        <input type="text" value="{{data.details.size}}" name="data.details.size">
+                    </div>
+                    <div class="details"> <span>Traits:</span>
+                        <input type="text" value="{{data.details.traits}}" name="data.details.traits">
+                    </div>
+
+
+                    <div class="details"> <span>Homeworld:</span>
+                        <input type="text" value="{{data.details.homeworld}}" name="data.details.homeworld">
+                    </div>
+                    <div class="details"> <span>Origin:</span>
+                        <input type="text" value="{{data.details.origin}}" name="data.details.origin">
+                    </div>
+
+                    <div class="details"> <span>Deity:</span>
+                        <input type="text" value="{{data.details.deity}}" name="data.details.deity">
+                    </div>
+
+
+                    <div class="details"> <span>Carry_Increment:</span>
+                        <input type="text" value="{{data.details.carry_increment}}" name="data.details.carry_increment">
+                    </div>
+
+
+                    <div class="details"> <span>Shadow Track:</span>
+                        <input type="text" value="{{data.details.shadow}}" name="data.details.shadow">
+                    </div>
+                </section>
+
+
+                <br>
+                <h1>Languages:</h1>
+
+                {{#each actor.items as |language|}}
+                {{#ifeq language.type "language"}}
+                <div class="language" data-item-id="{{language._id}}">
+                    {{language.name}}
+                    <a class="fas fa-trash exploit-delete" data-exploitcode="{{language._id}}"></a>
+                </div>
+                {{/ifeq}}
+                {{/each}}
+
+                <br>
+                <br>
+
+                <h1>Description:</h1>
+                {{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
+            </div>
+
+            {{!-- Advancement Tab --}}
+            <div class="tab advancement" data-group="primary" data-tab="advancement">
+                <header class="advancement-header">
+                    <div class="topbar">
+                        <div class="topbar-item">
+                            <span class="advancement-label">Total XP:</span>
+                            <input class="" type="text" readonly value="{{data.advancement.xp_total}}"
+                                name="data.advancement.xp_total" data-dtype="text">
+                        </div>
+                        <div class="topbar-item">
+                            <span class="advancement-label">Grade:</span>
+                            <input class="" type="text" value="{{data.advancement.grade}}" name="data.advancement.grade"
+                                data-dtype="text">
+                        </div>
+                    </div>
+
+                    <!-- <div>
+                        <span class="advancement-label">Dice Cap:</span>
+                        <input class="" type="text" readonly value="{{data.advancement.dice_cap}}"
+                            name="data.advancement.dice_cap" data-dtype="Text">
+                    </div> -->
+                </header>
+
+                <header class="xp_gain-header">
+                    <h2 class="flexrow">XP Gained</h2>
+                    <a class="flexrow advancement-add-gain">add</a>
+                </header>
+                {{#each data.advancement.xp_gain as |row|}}
+                <div class="flexrow xp-row">
+                    <span>Name:</span>
+                    <input value="{{row.name}}" class="advancement-input" data-index="{{@index}}" data-key="gain_name"
+                        type="text">
+                    <span>Gained:</span>
+                    <input value="{{row.value}}" class="advancement-input" data-index="{{@index}}" data-key="gain_xp"
+                        type="number">
+                    <span><a class="advancement-remove-gain fas fa-trash" data-index="{{@index}}"></a></span>
+                </div>
+                {{/each}}
+
+                <header class="xp_spent-header">
+                    <h2 class="flexrow">XP Spent</h2>
+                    <a class="flexrow advancement-add-spend">add</a>
+                </header>
+                {{#each data.advancement.xp_spent as |row|}}
+                <div class="flexrow xp-row neg">
+                    <span>Name:</span>
+                    <input value="{{row.name}}" class="advancement-input" data-index="{{@index}}" data-key="spent_name"
+                        type="text">
+                    <span>Spent:</span>
+                    <input value="{{row.value}}" class="advancement-input" data-index="{{@index}}" data-key="spent_xp"
+                        type="number">
+                    <span><a class="advancement-remove-spend fas fa-trash" data-index="{{@index}}"></a></span>
+                </div>
+                {{/each}}
+            </div>
+
+            {{!-- Equipment Tab --}}
+            <div class="tab items" data-group="primary" data-tab="items">
+                <div class="topbar">
+                    <div class="topbar-item">
+                        <span>Credits:</span>
+                        <input type="number" name="data.credits" value="{{data.credits}}" />
+                    </div>
+                    <div class="topbar-item">
+                        <span>Net Worth:</span>
+                        <input type="number" readonly value={{data.net_worth}}></input>
+                    </div>
+                    <div class="topbar-item">
+                        <a class="item-add">Add New</a>
+                    </div>
+                </div>
+                <div class="carry-increment">
+                    <span class="">{{data.carry.carried}}/{{data.details.carry_increment}} Carried:</span>
+                    <progress class="carry-bar" id="file" value="{{data.carry.carried}}"
+                        max="{{data.details.carry_increment}}"></progress>
+                </div>
+                <div class="container">
+                    <h1>Carried:</h1>
+                    {{#each actor.items as |item|}}
+                    {{#ifeq item.type "item"}}
+                    {{#ifeq item.data.carried true}}
+                    <div draggable="true" data-item-id="{{item._id}}" class="draggable item">
+                        <div data-item-id="{{item._id}}"
+                            class="exploits-row description-show item-row flexrow {{item.data.type}}"
+                            data-item-id="{{item._id}}">
+                            <a data-title="{{item.name}}" data-description="{{item.data.description}}"
+                                class="display-to-chat item-button">⚄</a>
+                            <span class="exploit-row-name">{{item.name}}</span>
+                            <span class="item-row-quantity item-number">Quantity:{{item.data.quantity}}</span>
+                            <span
+                                class="item-row-weight item-number">Weight:{{item.data.weight}}{{#ifeq item.data.weight null}}none{{/ifeq}}</span>
+                            <a class="fas fa-briefcase item-carry item-button item-id disabled-false"
+                                data-item-id="{{item._id}}"></a>
+                            <a class="fas fa-tshirt item-equip item-button item-id disabled-{{item.data.equipped}}"
+                                data-item-id="{{item._id}}"></a>
+                            <a class="fas fa-edit item-open item-button item-id item-edit" data-item-id="{{item._id}}"
+                                data-exploitcode="{{item._id}}"></a>
+                            <a class="fas fa-trash exploit-delete item-button delete" data-exploitcode="{{item._id}}">
+
+                            </a>
+                        </div>
+                        {{#if item.data.open}}
+                        <div data-item-id="{{item._id}}" class="item-description">
+                            {{else}}
+                            <div data-item-id="{{item._id}}" class="item-description" hidden>
+                                {{/if}}
+                                <span class="exploit-row-description">{{{enrichHTML item.data.description}}}</span>
+
+                            </div>
+                        </div>
+                        {{/ifeq}}
+                        {{/ifeq}}
+                        {{/each}}
+                    </div>
+
+                    <div class="container">
+                        <h1>Uncarried:</h1>
+                        {{#each actor.items as |item|}}
+                        {{#ifeq item.type "item"}}
+                        {{#ifeq item.data.carried false}}
+                        <div draggable="true" data-item-id="{{item._id}}" class="draggable item">
+                            <div data-item-id="{{item._id}}"
+                                class="exploits-row description-show item-row flexrow {{item.data.type}}"
+                                data-item-id="{{item._id}}">
+                                <a data-title="{{item.name}}" data-description="{{item.data.description}}"
+                                    class="display-to-chat item-button">⚄</a>
+                                <span class="exploit-row-name">{{item.name}}</span>
+                                <span class="item-row-quantity item-number">Quantity:{{item.data.quantity}}</span>
+                                <span
+                                    class="item-row-weight item-number">Weight:{{item.data.weight}}{{#ifeq item.data.weight null}}none{{/ifeq}}</span>
+                                <a class="fas fa-briefcase item-carry item-button item-id disabled-true"
+                                    data-item-id="{{item._id}}"></a>
+                                <a class="fas fa-tshirt item-button item-id disabled-true"
+                                    data-item-id="{{item._id}}"></a>
+                                <a class="fas fa-edit item-open item-button item-id item-edit"
+                                    data-item-id="{{item._id}}" data-exploitcode="{{item._id}}"></a>
+                                <a class="fas fa-trash exploit-delete item-button delete"
+                                    data-exploitcode="{{item._id}}">
+
+                                </a>
+                            </div>
+                            {{#if item.data.open}}
+                            <div data-item-id="{{item._id}}" class="item-description">
+                                {{else}}
+                                <div data-item-id="{{item._id}}" class="item-description" hidden>
+                                    {{/if}}
+                                    <span class="exploit-row-description">{{{enrichHTML item.data.description}}}</span>
+
+                                </div>
+                            </div>
+                            {{/ifeq}}
+                            {{/ifeq}}
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+
+
+            {{!-- Exploits Tab --}}
+            <div class="tab exploits" data-group="primary" data-tab="exploits">
+                <div class="topbar">
+                    <div class="topbar-item">
+                        <a class="exploit-add">Add New</a>
+                    </div>
+                </div>
+                
+                <div class="container">
+                    {{#each actor.items as |exploit|}}
+                    {{#ifeq exploit.type "exploit"}}
+                    <div draggable="true" data-item-id="{{exploit._id}}" class="draggable item">
+                        <div class="description-show exploits-row flexrow {{exploit.data.style}}"
+                            data-item-id="{{exploit._id}}">
+                            <a data-description="{{exploit.data.description}}" data-title="{{exploit.name}}"
+                                class="display-to-chat item-button">⚄</a>
+                            <span data-item-id="{{exploit._id}}" class="exploit-row-name"
+                                style="flex-grow: 2; flex-shrink:1;">{{exploit.name}}</span>
+                            <a class="fas fa-edit exploit-open item-button item-edit" data-item-id="{{exploit._id}}"
+                                data-exploitcode="{{item._id}}"></a>
+                            <a class="fas fa-trash exploit-delete delete item-button"
+                                data-exploitcode="{{exploit._id}}">
+
+                            </a>
+                        </div>
+                        {{#if exploit.data.open}}
+                        <div data-item-id="{{exploit._id}}" class="item-description">
+                            {{else}}
+                            <div data-item-id="{{exploit._id}}" class="item-description" hidden>
+                                {{/if}}
+                                <span
+                                    class="exploit-row-description">{{{enrichHTML exploit.data.description}}}</span>
+
+                            </div>
+                        </div>
+                        {{/ifeq}}
+                        {{/each}}
+                    </div>
+                </div>
+
+
+                {{!-- Skills Tab --}}
+                <div class="tab skills" data-group="primary" data-tab="skills">
+                    <header class="skills-header flexrow">
+                        <span>Roll</span>
+                        <span class="skill-name">Name</span>
+                        <span class="skill-attribute">Attribute</span>
+                        <span class="skill-score">Rating</span>
+                        <span class="skill-pool">Pool</span>
+                        <a class="skill-create" data-action="create"><i class="fas fa-plus"></i></a>
+                    </header>
+                    {{#each actor.items as |skill|}}
+                    {{#ifeq skill.type "skill"}}
+                    <div draggable="true" class="draggable item skills-row flexrow" data-item-id="{{skill._id}}">
+                        <a class="rollable-general" data-description="{{skill.name}}" data-skill-dice="{{skill.data.pool}}" data-attribute-dice="{{skill.data.gradepool}}" data-actorId="{{../actor._id}}">⚄</a>
+                        <span><input class="skills-value" data-item-id="{{skill._id}}" data-binding="name"
+                                value="{{skill.name}}" type="text" data-dtype="text" /></span>
+                        <span><select class="skills-value" data-item-id="{{skill._id}}"
+                                data-binding="data.attribute" value="{{skill.data.attribute}}" type="number"
+                                data-dtype="Number">
+                                {{#select skill.data.attribute}}
+                                {{#each ../data.attributes as |attr|}}
+                                <option value="{{attr.name}}">{{attr.name}}</option>
+                                {{/each}}
+                                {{/select}}
+                            </select></span>
+                        <span><input class="skills-value skills-num" data-item-id="{{skill._id}}"
+                                data-binding="data.score" value="{{skill.data.score}}" type="number"
+                                data-dtype="Number" /></span>
+                        <a class="rollable-general" data-description="{{skill.name}}" data-skill-dice="{{skill.data.pool}}" data-attribute-dice="{{skill.data.gradepool}}" data-actorId="{{../actor._id}}">{{skill.data.pool}}</a>
+                        <a class="fas fa-trash skill-delete" data-skillcode="{{skill._id}}"></a>
+                    </div>
+                    {{/ifeq}}
+                    {{/each}}
+                </div>
+        </section>
+    </section>
+</form>

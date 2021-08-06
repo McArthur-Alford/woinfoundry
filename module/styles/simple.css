@@ -1,0 +1,324 @@
+
+.woin {
+  /* Sheet Tabs */
+  /* Items List */
+  /* Attributes */
+}
+.woin .window-content {
+  height: 100%;
+  padding: 5px;
+  overflow-y: hidden;
+  background: none;
+}
+.woin .sheet-header {
+  height: 130px;
+  margin-bottom: 10px;
+}
+.woin .sheet-header .profile-fields {
+  width: 100px;
+  flex-grow: 0;
+}
+.woin .sheet-header .profile-fields .profile-img {
+  height: 100px;
+  margin-right: 10px;
+}
+.woin .sheet-header .profile-fields input {
+  width: 100px;
+  margin-bottom: 2px;
+}
+.woin .sheet-global .header-fields {
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.woin .resource {
+  border: 1px groove #00ABDD;
+  width:100px;
+  display: flex;
+  text-align: center;
+  vertical-align: top;
+  margin:2px;
+  padding:2px;
+}
+.woin .resource.health {
+  border-color: orangered;
+}
+.woin .resource.health h4 {
+  border-color: orangered;
+  color: orangered;
+}
+.woin .resource h4 {
+  border-right: #00ABDD 1px dashed;
+  margin: auto 1px;
+  padding-right:4px;
+}
+.woin .resource input {
+  margin: auto 1px;
+}
+.resource.inline {
+  margin-right:10px;
+  width:150px;
+  display: inline-block;
+}
+.woin .attribute-fields {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  width:100%;
+  padding:0px;
+  margin:0 auto;
+}
+.woin .attribute-fields .attribute {
+	list-style-type: none;
+	background-image: url("../Icons/Attribute.svg");
+	background-size: 300px;
+	height: 80px;
+	width: 80px;
+	background-position: center;
+}
+.woin .attribute-fields input {
+	background: transparent;
+	width: 40px;
+	margin: 2px;
+	position: relative;
+	top: 2px;
+  left: 4px;
+  border: none;
+  text-align: center;
+}
+.woin .attribute-fields input[type=number]::-webkit-outer-spin-button,
+.woin .attribute-fields input[type=number]::-webkit-inner-spin-button
+ {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0; 
+}
+.woin .attribute-fields h4 {
+	margin: 1px auto;
+	left: -20px;
+	position: relative;
+  top: -2px;
+  width: 20px;
+}
+.woin .attribute-fields label {
+	margin: 0px auto;
+	top: 21px;
+	position: relative;
+  left: -18px;
+  color: orangered;
+}
+.woin .attribute-hex {
+  position: absolute;
+  border:none;
+  size:0.1;
+}
+.woin .tabs {
+  height: 40px;
+}
+.woin .tabs .item {
+  line-height: 40px;
+  font-weight: bold;
+}
+.woin .tabs .item.active {
+  text-decoration: underline;
+  text-shadow: none;
+}
+.woin .sheet-body {
+  overflow: visible;
+  height:auto;
+}
+.woin .sheet-body .tab {
+  height: 100%;
+  overflow-y: auto;
+}
+.woin .editor,
+.woin .editor-content {
+  height: 100%;
+}
+.woin .items-list {
+  list-style: none;
+  margin: 7px 0;
+  padding: 0;
+  overflow-y: auto;
+}
+.woin .items-list .item {
+  height: 30px;
+  line-height: 24px;
+  padding: 3px 0;
+  border-bottom: 1px solid #BBB;
+}
+.woin .items-list .item img {
+  flex: 0 0 24px;
+  margin-right: 5px;
+}
+.woin .items-list .item-name {
+  margin: 0;
+}
+.woin .items-list .item-controls {
+  flex: 0 0 36px;
+}
+
+/* Skills: */
+.woin .skills-header {
+  padding: 5px;
+  margin: 5px 0;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid #AAA;
+  border-radius: 2px;
+  text-align: center;
+  font-weight: bold;
+}
+.woin .skills-row {
+  padding: 5px;
+  margin: 5px 0;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid #AAA;
+  border-radius: 2px;
+  text-align: center;
+}
+.woin .skills-row .skills-label {
+  width: auto;
+}
+.woin .skills-num {
+  width: 75px;
+}
+
+/* Exploits: */
+.woin .exploits-header {
+  padding: 5px;
+  margin: 5px 0;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid #AAA;
+  border-radius: 2px;
+  text-align: center;
+  font-weight: bold;
+}
+.woin .exploits-row  {
+  padding: 5px;
+  margin: 5px 0;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid #AAA;
+  border-radius: 2px;
+  text-align: center;
+}
+.woin .exploits-row:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.woin .exploits-row:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.woin .exploits-row .exploits-label {
+  width: auto;
+}
+.woin .exploits-num {
+  width: 75px;
+}
+.woin .exploit-row-name {
+  font-weight: bold;
+  align-self: center;
+}
+.woin .exploit-row-description {
+  margin: 0px 0px;
+  text-align: left;
+}
+.woin .exploit-delete {
+  align-self: center;
+}
+.woin .item-description {
+  padding: 5px;
+  margin: 5px;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid #AAA;
+  border-radius: 2px;
+  text-align: center;
+  border-top: none;
+  margin-top: -7px;
+}
+
+.woin.sheet.actor {
+  min-width: 560px;
+  min-height: 420px;
+}
+.woin.sheet.item {
+  min-width: 460px;
+  min-height: 400px;
+}
+.tox.tox-tinymce {
+	height:400px !important;
+}
+
+.character-sheet {
+  display:flex;
+  background-image: url("../Icons/tilinghexagon.svg");
+  background-repeat: repeat;
+  background-size: 100.2px;
+  overflow: hidden;
+  color: darkturquoise;
+  border: #00ABDD solid 2px;
+  border-style: ridge;
+}
+.sheet-global {
+  /* flex-shrink: 100; */
+  /* width:250px; */
+  margin:10px;
+  max-width: 260px;
+  min-width: 260px;
+  display:flex;
+  flex-direction: column;
+  color: darkturquoise;
+  border: #00ABDD solid 2px;
+  background: #0000009c;
+}
+.sheet-circumstantial {
+  width: 100%;
+}
+.character-sheet input {
+  color: white !important;
+}
+.character-sheet .skills-value {
+  color: white !important;
+}
+#sidebar {
+  background-image: url("../Icons/tilinghexagon.svg");
+  background-repeat: repeat;
+  background-size: 100.2px;
+  overflow: hidden;
+}
+.inventory-container {
+  padding: 5px;
+  margin: 5px 0;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid #AAA;
+  border-radius: 2px;
+  text-align: center;
+  border-left: none;
+  border-right: none;
+}
+.sheet.item .window-content {
+  background-image: url("../Icons/tilinghexagon.svg");
+  background-repeat: repeat;
+  background-size: 100.2px;
+  overflow: hidden;
+  color: darkturquoise;
+  border: #00ABDD solid 2px;
+  border-style: ridge;
+}
+.resource input {
+  color: white !important;
+}
+.resource select {
+  color: white !important;
+}
+.mce-content-body {
+  color: white !important;
+}
+.mce-content-body p {
+  color: white !important;
+}
+.charname input {
+  color: white !important;
+}
+.editor {
+  color: white !important;
+}

@@ -1,0 +1,95 @@
+{
+  "name": "woinfoundry",
+  "title": "WOIN Foundry",
+  "description": "An implementation of WOIN NEW for foundry, capable of running other WOIN systems (though without premade compendiums).",
+  "version": "0.4.0",
+  "minimumCoreVersion": "0.8.8",
+  "compatibleCoreVersion": "0.8.8",
+  "templateVersion": 2,
+  "author": "Darth_Apples, Ghostroo",
+  "esmodules": ["module/simple.js"],
+  "styles": ["styles/stylev2.css"],
+  "languages": ["English"],
+  "gridDistance": 5,
+  "gridUnits": "ft",
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": "power",
+  "url": "https://gitlab.com/mcarthur.alford/woinfoundry/",
+  "manifest": "https://gitlab.com/mcarthur.alford/woinfoundry/raw/master/system.json",
+  "download": "https://gitlab.com/mcarthur.alford/woinfoundry/-/archive/master/woinfoundry-master.zip",
+  "license": "LICENSE.txt",
+  "packs": [
+    {
+      "name": "exploits",
+      "label": "Exploits (NEW)",
+      "system": "woinfoundry",
+      "module": "woinfoundry",
+      "path": "packs/exploits.db",
+      "entity": "Item"
+    },
+    {
+      "name": "items",
+      "label": "General Items (NEW)",
+      "system": "woinfoundry",
+      "module": "woinfoundry",
+      "path": "packs/items.db",
+      "entity": "Item"
+    },
+    {
+      "name": "armor",
+      "label": "Armor (NEW)",
+      "system": "woinfoundry",
+      "module": "woinfoundry",
+      "path": "packs/armor.db",
+      "entity": "Item"
+    },
+    {
+      "name": "weapons-ranged-exotic",
+      "label": "Ranged Weapons Exotic (NEW)",
+      "system": "woinfoundry",
+      "module": "woinfoundry",
+      "path": "packs/weapons-ranged-exotic.db",
+      "entity": "Item"
+    },
+    {
+      "name": "weapons-ranged",
+      "label": "Ranged Weapons (NEW)",
+      "system": "woinfoundry",
+      "module": "woinfoundry",
+      "path": "packs/weapons-ranged.db",
+      "entity": "Item"
+    },
+    {
+      "name": "weapons-melee",
+      "label": "Melee Weapons (NEW)",
+      "system": "woinfoundry",
+      "module": "woinfoundry",
+      "path": "packs/weapons-melee.db",
+      "entity": "Item"
+    },
+    {
+      "name": "explosive-ordinance",
+      "label": "Explosive Ordinance (NEW)",
+      "system": "woinfoundry",
+      "module": "woinfoundry",
+      "path": "packs/explosive-ordinance.db",
+      "entity": "Item"
+    },
+    {
+      "name": "melee-weapons-exotic",
+      "label": "Melee Weapons Exotic (NEW)",
+      "system": "woinfoundry",
+      "module": "woinfoundry",
+      "path": "packs/melee-weapons-exotic.db",
+      "entity": "Item"
+    },
+    {
+      "name": "languages-new",
+      "label": "Languages (NEW)",
+      "system": "woinfoundry",
+      "module": "woinfoundry",
+      "path": "packs/languages-new.db",
+      "entity": "Item"
+    }
+  ]
+}

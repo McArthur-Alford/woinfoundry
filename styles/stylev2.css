@@ -1,0 +1,1221 @@
+/* Base Character Sheet Handling: */
+
+:root {
+    --cyan: #00ffff;
+    --invertcyan: #ff0000;
+    --whisper-colour: #ff00d7;
+    --blind-colour: #ff0035;
+    --background-cyan: #1a1f22; 
+    --background-movement:#332100;
+    --background-combat:#350000;
+    --background-basic:#150029;
+    --background-attributes:#002929;
+}
+
+
+.woin .window-content {
+    height: 100%;
+    /*     padding: 5px; */
+    overflow-y: hidden;
+    background: none;
+}
+
+/* ====================================================================== */
+
+/* Styling for Readable Inputs/Tox Editor: */
+
+.resource input {
+    color: white !important;
+}
+.resource select {
+    color: white !important;
+    background: none;
+}
+.resource select option {
+    background: #18282c;
+}
+.woin option {
+    background-color: #191f22;
+}
+.mce-content-body {
+    color: white !important;
+}
+.mce-content-body p {
+    color: white !important;
+}
+.charname input {
+    color: white !important;
+}
+.editor {
+    color: white !important;
+    border: 1px solid var(--cyan);
+    background-color: #1a1f22;
+    padding: 5px;
+    min-height: 300px;
+}
+.tox-edit-area__iframe {
+    background: white !important;
+}
+.tox.tox-tinymce {
+    min-height: 300px;
+}
+
+
+
+
+
+
+
+
+/* ====================================================================== */
+
+/* Sidebar Styling: */
+
+#sidebar {
+    background-image: url("../Icons/tilinghexagon.svg");
+    background-repeat: repeat;
+    background-size: 100.2px;
+    overflow: hidden;
+}
+#sidebar-tabs .item {
+    background-image: url(../Icons/Button.svg);
+    background-position: center;
+    background-size: 120px;
+    text-shadow: 1px 1px red;
+}
+#sidebar-tabs .item.active {
+    background-image: url(../Icons/ButtonActive.svg);
+    border: none;
+    box-shadow: none;
+    text-shadow: none;
+}
+#sidebar-tabs {
+    border-bottom: 1px solid var(--cyan);
+    box-shadow: 0 0 10px var(--cyan);
+}
+#controls .scene-control.active, #controls .control-tool.active, #controls .scene-control:hover, #controls .control-tool:hover {
+    color: #FFF;
+}
+#controls .scene-control, #controls .control-tool {
+    color: white;
+    text-shadow: 1px 1px red;
+}
+
+
+
+
+
+
+
+
+/* ====================================================================== */
+
+/* Chatlog Styling: */
+
+#chat-log .chat-message {
+    color: var(--cyan);
+    background: var(--background-cyan);
+    border: 1px solid var(--cyan);
+}
+
+#chat-log .message-header {
+    color: var(--cyan);
+}
+
+#chat-log .dice-tooltip, #chat-log .dice-formula, #chat-log .dice-total {
+    border: 1px solid var(--cyan);
+}
+
+#chat-log .whisper   {
+    color: var(--whisper-colour);
+}
+
+#chat-log .blind {
+    color: var(--blind-colour);
+}
+
+
+
+
+
+
+
+
+
+/* ====================================================================== */
+
+/* Styling for Item Sheet: */
+
+.sheet.item .window-content {
+    background-image: url("../Icons/tilinghexagon.svg");
+    background-repeat: repeat;
+    background-size: 100.2px;
+    overflow: hidden;
+    color: var(--cyan);;
+    border: #00ABDD solid 2px;
+    border-style: ridge;
+}
+
+
+
+
+
+
+
+/* ====================================================================== */
+
+/* Styling for Sheet Basic Panel: */
+
+.woin.actor .sheet-global .sheet-basic {
+    /* max-width: 130px; */
+    min-width: 130px;
+    background-color: var(--background-basic);
+}
+
+.woin.actor .resource {
+    width: 100px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    vertical-align: top;
+    margin: 2px;
+    padding: 2px;
+    background-position: center 105px;
+    background-size: 100px;
+}
+
+.woin.actor .resource.health {
+    background-image: url(../Icons/health2.svg);
+}
+
+.woin.actor .resource.luck {
+    background-image: url(../Icons/Luck.svg);
+}
+
+.woin.actor .resource.maxpool {
+    background-image: url(../Icons/Maxpool.svg);
+}
+
+.woin.actor .resource.power {
+    background-image: url(../Icons/Power.svg);
+}
+
+.woin.actor .resource.health h4 {
+    color: orangered;
+}
+
+.woin.actor .resource.luck h4 {
+    color: yellow;
+}
+
+.woin.actor .resource h4 {
+    margin: auto 1px;
+    padding-right: 4px;
+    position: relative;
+    left: -20px;
+}
+
+.woin.actor .resource input {
+    margin: auto 1px;
+    width: 40px;
+    border: transparent;
+    top: 6px;
+    left: 4px;
+    position: relative;
+}
+
+.woin.actor .resource input:nth-child(odd) {
+    left: 51px;
+    top: -13px;
+}
+
+.woin.item.resource.inline {
+    margin-right: 10px;
+    width: 150px;
+    display: inline-block;
+}
+
+
+
+
+
+/* ====================================================================== */
+
+/* Styling for Attributes Sidebar Panel: */
+
+.woin .sheet-attributes {
+    min-width: 180px;
+    max-width: 210px;
+    background-color: var(--background-attributes);
+}
+
+.woin .sheet-attributes .attribute {
+    list-style-type: none;
+    background-image: url(../Icons/Attribute.svg);
+    background-size: 300px;
+    height: 80px;
+    width: 80px;
+    background-position: center;
+    margin-right: -35px;
+}
+
+.woin .sheet-attributes input {
+    background: transparent;
+    width: 40px;
+    margin: 2px;
+    position: relative;
+    border: none;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.woin .sheet-global input[type=number]::-webkit-outer-spin-button, .woin .sheet-global input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+    background: none;
+}
+
+.woin .sheet-attributes h4 {
+    margin: 1px auto;
+    left: -20px;
+    position: relative;
+    top: -2px;
+    width: 20px;
+}
+
+.woin .sheet-attributes label {
+    margin: 0px auto;
+    top: 30px;
+    position: relative;
+    left: -40px;
+    color: orangered;
+}
+
+.woin .attribute-hex {
+    position: absolute;
+    border: none;
+    size: 0.1;
+}
+
+.woin .character-sheet .tabs {
+    height: 40px;
+    background: 0000000;
+    border-bottom: 1px solid var(--cyan);
+    /* box-shadow: 0px 0px 10px var(--cyan); */
+    background-color: var(--background-cyan);
+    border-top: none;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.woin .character-sheet .tabs .item {
+    text-align: center;
+    width: fit-content;
+    flex: none;
+    flex-grow: 1;
+}
+
+.woin .character-sheet .tabs a:hover {
+    background-color: var(--invertcyan);
+    color: var(--cyan);
+}
+
+.woin .character-sheet .tabs a.active:hover {
+    background-color: var(--cyan);
+}
+
+.woin .character-sheet .tabs .active {
+    background-color: var(--cyan);
+    color: black !important;
+    border: 1px solid var(--cyan);
+}
+
+/* ====================================================================== */
+
+/* Styling for Movement Sidebar Panel: */
+
+.woin .sheet-movement {
+    min-width: 140px;
+    max-width: 140px;
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    background-color: var(--background-movement);
+}
+
+.woin .sheet-movement ul {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+.woin .sheet-movement li {
+    background-image: url(../Icons/movement/speed.svg);
+    display: inline-block;
+    width: 70px;
+    height: 60px;
+    background-size: 125px;
+    background-position: center;
+    margin: 0px 2px;
+    margin-bottom: 5px;
+    margin-right: -10px;
+    background-position-y: -50px;
+}
+
+.woin .sheet-movement span {
+    position: relative;
+    top: 0px;
+}
+
+.woin .sheet-movement input {
+    top: 7.5px;
+    position: relative;
+    width: 35px;
+    left: 15px;
+    justify-content: center;
+    border: none;
+    height: 30px;
+    font-size: 1.5em;
+}
+
+
+
+
+
+/* ====================================================================== */
+
+/* Styling for Combat Sidebar Panel: */
+
+.woin .sheet-combat {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-width: 140px;
+    background-color: var(--background-combat);
+}
+
+.woin .sheet-combat h3 {
+    margin-bottom: 0px;
+    height: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.woin .sheet-combat ul {
+    padding: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+}
+
+.woin .sheet-combat li {
+    background-image: url(../Icons/Defence.svg);
+    background-position: center;
+    background-size: 125px;
+    display: inline-block;
+    width: 60px;
+    height: 50px;
+    margin-top: 10px;
+}
+
+.woin .sheet-combat input {
+    position: relative;
+    border: none;
+    left: 10px;
+    top: -6px;
+    width: 40px;
+    text-align: center;
+}
+
+.woin .sheet-combat span {
+    position: relative;
+    display: block;
+    top: -10px;
+    width: 70px;
+    left: -5px;
+    text-align: center;
+}
+
+.woin .draggable {
+    cursor: move;
+}
+
+.woin .dragging {
+    opacity: 0.5;
+}
+
+
+
+
+
+/* ====================================================================== */
+
+/* Styling for General Sheet Body Section: */
+
+.woin .sheet-circumstantial {
+    width: 100%;
+    display: flex;
+    height: auto;
+    border: none;
+    flex-direction: column;
+    overflow: hidden;
+    /* margin-left: 5px; */
+}
+
+
+
+
+
+/* ====================================================================== */
+
+/* Biography: */
+
+.woin .biography .character-details {
+    display: grid;
+    grid: "portrait name" "portrait isa";
+}
+
+.woin .biography .profile-fields {
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.woin .biography .profile-img-surrounding {
+    width: 200px;
+    height: 200px;
+    background: #00ffde02;
+    border: 1px solid var(--cyan);
+    /* box-shadow: 0 0 10px inset var(--cyan); */
+    margin-right: 5px;
+}
+
+.woin .biography .profile-img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.woin .biography .details {
+    display: inline-block;
+    margin: 3px 5px;
+    display: flex;
+    min-width: 150px;
+}
+
+.woin .biography .details span {
+    flex: 0 0 110px;
+}
+
+.woin .biography .details input {
+    width: 200px;
+    background: var(--background-cyan);
+    border: 1px solid var(--cyan);
+    border-radius: 0px;
+    /* box-shadow: 0 0 5px inset var(--cyan); */
+}
+
+.woin .biography .language {
+    display: inline-block;
+    background-color: var(--background-cyan);
+    border: 1px solid;
+    /* border-radius: 5px; */
+    padding: 2px 10px;
+}
+
+.woin .biography .language .exploit-delete {
+    width: auto;
+}
+
+
+
+
+
+/* ====================================================================== */
+
+/* Skills: */
+
+.woin .skills-header {
+    padding: 5px;
+    margin: -1px 0px;
+    background: rgb(26 31 34);
+    border: 1px solid var(--cyan);
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+}
+
+.woin .skills-row {
+    padding: 2px 5px;
+    margin: 5px 0;
+    background: rgb(26 31 34);
+    text-align: center;
+    color: var(--cyan);;
+    /* border-radius: 10px; */
+    border: 1px solid var(--cyan);
+    margin-top: 10px;
+    /* box-shadow: 0 0 5px inset var(--cyan); */
+}
+
+.woin .skills-row .skills-label {
+    width: auto;
+}
+
+.woin .skills-num {
+    width: 75px;
+}
+
+.woin .skills-row .skill-delete, .woin .skills-row .rollable, .woin .skills-row .skill-delete, .woin .skills-row .rollable-general, .woin .skills-row .skill-delete, .woin .skills-row .rollable-attack {
+    padding-top: 5px;
+}
+
+
+.woin .skills-row span select, .woin .skills-row span input {
+    border-radius: 0px;
+    border: transparent;
+}
+
+
+
+
+
+
+
+/* ====================================================================== */
+
+/* Advancement Styling: */
+.woin .advancement-header {
+    display: flex;
+}
+.woin .xp_gain-header, .xp_spent-header {
+    display: flex;
+    padding: 5px;
+    margin: 5px 0;
+    margin-top:15px;
+    border: none;
+    text-align: center;
+    font-weight: bold;
+}
+.woin .xp_gain-header {
+    border-bottom: 1px dashed rgba(60, 255, 0, 1);
+}
+.woin .xp_spent-header {
+    border-bottom: 1px dashed rgba(255, 97, 0, 1);
+}
+.woin .advancement-label {
+    flex-grow:1;
+}
+.woin .advancement .flexrow {
+    margin: auto;
+}
+.woin .advancement .flexrow.xp-row {
+    padding: 5px;
+    /* margin: 5px 2.5px; */
+    margin-top:5px;
+    background: #1ea51517;
+    border-left: 1px solid #1ea515;
+    border-radius: 0px;
+    text-align: center;
+}
+.woin .advancement .flexrow.xp-row span {
+    width: 100px;
+    flex-grow: 0;
+    margin: 0px 10px;
+}
+.woin .advancement .flexrow.xp-row.neg {
+    border-color: #a55715;
+    background: #a5561515;
+}
+.woin h2{
+    border-bottom:none;
+}
+
+
+
+
+
+
+
+
+
+/* ====================================================================== */
+
+/* Exploits/Inventory Rows: */
+
+.woin .exploits-header {
+    padding: 5px;
+    margin: 5px 0;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid #AAA;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.woin .exploits-row {
+    padding: 5px;
+    margin: 5px 0;
+    /* border-radius: 10px; */
+    text-align: center;
+    background: #00ffde17;
+    border: 1px solid var(--cyan);
+    /* box-shadow: 0 0 5px inset var(--cyan); */
+}
+
+.woin .exploits-row.psi {
+    border-color: #c000ff;
+    /* box-shadow: 0 0 5px inset #c000ff; */
+}
+
+.woin .exploits-row.uni {
+    border-color: white;
+    /* box-shadow: 0 0 5px inset white; */
+}
+
+.woin .exploits-row:nth-child(odd) {
+    background-color: rgb(26, 31, 34);
+}
+
+.woin .exploits-row:nth-child(even) {
+    background-color: rgb(26, 31, 34);
+}
+
+.woin .exploits-row .exploits-label {
+    width: auto;
+}
+
+.woin .exploits-num {
+    width: 75px;
+}
+
+.woin .exploit-row-name {
+    font-weight: bold;
+    align-self: center;
+    justify-content: flex-end;
+    overflow: hidden;
+    flex-wrap: nowrap;
+}
+
+.woin .exploit-row-description {
+    margin: 0px 0px;
+    text-align: left;
+}
+
+.woin .exploit-delete {
+    align-self: center;
+    width: 50px;
+}
+
+.woin .item-description {
+    padding: 5px;
+    margin: 5px;
+    background: rgba(0, 0, 0, 0.02);
+    /* border: 1px solid #AAA; */
+    /* border-radius: 2px; */
+    text-align: center;
+    border-top: none;
+    margin-top: -7px;
+    background-color: var(--background-cyan)ff;
+    border: 1px solid white;
+    margin-top: -4px;
+}
+
+.woin .item-number {
+    flex: 0 0 80px;
+}
+
+.woin .item-button {
+    flex: 0 0 25px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.woin .item-add {
+    align-self:center;
+}
+
+.woin .tab.items h1, .woin .tab.biography h1 {
+    border-bottom: 1px solid;
+}
+
+.woin .exploit-row-name {
+    flex-grow: 2;
+    flex-shrink: 1;
+    /* color: var(--cyan); */
+}
+
+.woin .combat-range {
+    flex: 0 0 80px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.woin .combat-dicepool {
+    flex: 0 0 80px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.woin .combat-damagetype {
+    flex: 0 0 80px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.woin .combat-row {
+    height: 50px;
+    margin-top: auto;
+    margin-bottom: auto;
+    border-bottom: 1px solid white;
+    display: flex;
+    /* border-radius: 10px; */
+    border: 1px solid var(--cyan);
+    height: 35px;
+    padding: 0px;
+    margin-top: 10px;
+    /* box-shadow: 0 0 5px inset var(--cyan); */
+    padding: 0px 5px;
+    background-color: var(--background-cyan);
+}
+
+.woin .combat-special {
+    flex: 0 0 80px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.woin .combat-roll {
+    flex: 0 0 10px;
+    margin-right: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.woin .combat-skill {
+    flex: 0 0 100px;
+    margin-right: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.woin .combat-skill input {
+    width: 80px;
+}
+
+.woin .carry-increment span {
+    top: 18px;
+    left: 10px;
+    position: relative;
+    color: white;
+}
+
+.woin .carry-increment progress {
+    height: 20px;
+    width: 100%;
+}
+
+.woin .item-number {
+    flex: 0 0 80px;
+}
+
+.woin .item-button {
+    flex: 0 0 25px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.woin .disabled-true {
+    color: grey;
+}
+
+.woin .exploit-row-name {
+    flex-grow: 2;
+    flex-shrink: 1;
+    /* color: var(--cyan); */
+}
+
+.woin .carry-increment span {
+    top: 18px;
+    left: 10px;
+    position: relative;
+    color: white;
+}
+
+.woin .carry-increment progress {
+    height: 20px;
+    width: 100%;
+}
+
+.woin .exploits-row.description-show.weapon {
+    border: 1px solid #ff1f1f;
+    /* box-shadow: 0 0 5px inset #ff1f1f; */
+}
+.woin .exploits-row.description-show.none {
+    border: 1px solid var(--cyan);
+    /* box-shadow: 0 0 5px inset var(--cyan); */
+}
+.woin .exploits-row.description-show.armor {
+    border: 1px solid #ebe5eb;
+    /* box-shadow: 0 0 5px inset #ebe5eb; */
+}
+
+
+
+
+
+
+
+/* ====================================================================== */
+
+/* Active Effect Tab: */
+.woin .effect-row {
+    display: flex;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid var(--cyan);
+    box-shadow: 0 0 5px inset var(--cyan);
+    height: 30px;
+    padding: 5px 0px;
+    justify-content: left;
+}
+
+/* .woin .effect-row .toggled-false {
+    
+} */
+.woin .effect-row .toggled-true {
+    color: #4f736b;
+}
+  
+.woin .effect-row span {
+    flex-grow: 1;
+    text-align: left;
+    justify-self: flex-start;
+    margin-left: 15px;
+    width: 500px;
+}
+  
+.woin .effect-row a {
+    flex-grow: 0.1;
+    margin-right: 8px;
+    margin-left: 8px;
+    padding-top: 3px;
+}
+
+
+
+
+
+
+
+
+/* ====================================================================== */
+
+/* Topbar Items: */
+
+.woin .topbar-item {
+    border: 1px solid var(--cyan);
+    /* border-radius: 0px 0px 5px 5px; */
+    padding: 5px;
+    margin: 0px 5px;
+    margin-top: -1px;
+    width: auto;
+    max-width: 100px;
+    height: fit-content;
+    background-color: var(--background-cyan);
+}
+
+.woin .topbar {
+    display: flex;
+}
+
+.woin .topbar input {
+    background: #00ffde02;
+    border: 1px solid var(--cyan);
+    border-radius: 0px;
+    /* box-shadow: 0 0 5px inset var(--cyan); */
+}
+
+
+
+
+
+
+
+
+
+/* ====================================================================== */
+
+/* Journal Styling: */
+
+.journal-sheet .window-content {
+    background-image: url("../Icons/tilinghexagon.svg");
+    background-repeat: repeat;
+    background-size: 100.2px;
+    color:white;
+}
+.journal-sheet .window-content input, .journal-sheet .window-content button {
+    color: white;
+}
+.journal-sheet form select {
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+/* ====================================================================== */
+
+/* Error Text: */
+
+.error-red {
+    color: red !important;
+}
+
+
+
+
+
+
+
+
+/* ====================================================================== */
+
+/* Roll Button: */
+
+.rollable-general, .rollable-attack {
+    color: var(--cyan);
+    text-shadow: 1px 1px 1px red;
+}
+
+
+
+
+
+
+/* ====================================================================== */
+
+/* Roll Dialogue: */
+
+.roll-dialogue .form-group:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+    width: 120px;
+}
+/* .roll-dialogue .form-group .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+} */
+.roll-dialogue .form-group .tooltip {
+      visibility: hidden;
+      width: 0px;
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      padding: 5px 0;
+      border-radius: 6px;
+      position: absolute;
+      z-index: 1;
+      left: -35%;
+      bottom: 495px;
+      opacity: 0;
+      transition: opacity 0.3s;
+}
+
+
+
+
+
+
+
+/* ====================================================================== */
+
+/* Combat Styling: */
+
+.woin .combat-range {
+    flex: 0 0 80px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.woin .combat-dicepool {
+    flex: 0 0 80px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.woin .combat-damagetype {
+    flex: 0 0 80px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.woin .combat-special {
+    flex: 0 0 80px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.woin .combat-roll {
+    flex: 0 0 10px;
+    margin-right: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.woin .combat-skill {
+    flex: 0 0 100px;
+    margin-right: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.woin .combat-skill input {
+    width: 80px;
+}
+
+
+
+
+
+
+
+/* overall Sheet Layout Styling: */
+
+/* Standard Styling for Sidebar: */
+
+.window-header {
+    border-bottom: 1px solid var(--cyan) !important;
+    background-color: var(--background-cyan);
+}
+
+.woin.sheet.actor {
+    min-width: 600px;
+    min-height: 370px;
+}
+
+.woin .sheet-body {
+    /* overflow: visible; */
+    height: auto;
+    overflow-y: auto;
+    margin-right: 10px;
+}
+
+.woin .sheet-body .tab {
+    /* height: 100%; */
+    overflow-y: auto;
+    width: 99%;
+    padding: 0px 5px 0px 15px;
+}
+
+.character-sheet {
+    display: flex;
+    flex-direction: row;
+    background-image: url("../Icons/tilinghexagon.svg");
+    background-repeat: repeat;
+    background-size: 100.2px;
+    background-color: var(--background-cyan);
+    overflow: hidden;
+    border: var(--cyan) 1px;
+    /* box-shadow: 0 0 6px inset var(--cyan); */
+    border-style: ridge;
+    color: var(--cyan);
+    /* text-shadow: 1px 1px 1px red; */
+}
+
+.woin .character-sheet input {
+    color: white;
+}
+
+.woin .character-sheet .skills-value {
+    color: white !important;
+}
+
+#sidebar {
+    background-image: url("../Icons/tilinghexagon.svg");
+    background-repeat: repeat;
+    background-size: 100.2px;
+    overflow: hidden;
+}
+
+.woin .sheet-global {
+    max-width: 265px;
+    min-width: 265px;
+    display: flex;
+    flex-direction: column;
+    color: var(--cyan);;
+    border-right: 1px solid var(--cyan);
+    background-color: var(--background-cyan);
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.woin .global-panel {
+    display: flex;
+    flex-wrap: wrap;
+    border-left: none;
+    align-content: flex-start;
+    border-right: none;
+    justify-content: center;
+    max-width: 100%;
+}
+
+
+
+
+
+/* Alternate Styling for Vertical Global: */
+
+.vertical-sheet.character-sheet {
+    flex-direction: column;
+}
+
+.vertical-sheet .sheet-global {
+    flex-direction: row;
+    min-width: 100%;
+    min-height: 290px;
+    border-right: none;
+    border-bottom: 1px solid var(--cyan);
+    max-height: 290px;
+    overflow: hidden;
+    height: 290px;
+}
+
+.vertical-sheet .sheet-movement {
+    flex: auto;
+}
+
+ .vertical-sheet .sheet-basic {
+    flex: auto;
+}
+
+ .vertical-sheet .sheet-combat {
+    flex: auto;
+}
+
+ .vertical-sheet .sheet-attributes {
+    flex: auto;
+}

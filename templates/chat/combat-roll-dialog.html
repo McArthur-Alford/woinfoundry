@@ -1,0 +1,147 @@
+<form class="roll-dialogue">
+    <div class="form-group">
+        <label>Base:</label>
+        <input type="text" name="base" value="{{base}}" readonly/>
+    </div>
+    <div class="form-group">
+        <label >Add/Remove d6:</label>
+        <input type="number" name="bonus" value="0"/>
+    </div>
+    <div class="form-group">
+        <label >Add/Remove constant:</label>
+        <input type="number" name="constant" value="0"/>
+    </div>
+    <div class="form-group">
+        <label>Luck:</label>
+        <input type="number" name="luck" min="0" max="{{maxLuck}}" value="0">
+    </div>
+    <div class="form-group">
+        <label>Damage Exchange:</label>
+        <div class="tooltip">Exchange attack dice at a 1:1 ratio for damage dice.</div>
+        <input type="number" name="sacrifice" value="0">
+    </div>
+    <div class="form-group">
+        <label>Exploding:</label>
+        <input type="checkbox" name="explode" value="false">
+    </div>
+    <h1>Benefits</h1>
+    <div class="form-group">
+        <label>Pinned Down For:</label>
+        <div class="tooltip">How many turns has the target been pinned for? 0 If not pinned down.</div>
+        <input type="number" name="pinned" value="0">
+    </div>
+    <div class="form-group">
+        <label>Crossfire Contributors:</label>
+        <div class="tooltip">How many combatants are contributing to crossfire on the target.</div>
+        <input type="number" name="crossfire" value="0">
+    </div>
+    <div class="form-group">
+        <label>Flanking:</label>
+        <div class="tooltip">Is the target being flanked in melee?</div>
+        <input type="checkbox" name="flanking" value="false">
+    </div>
+    <div class="form-group">
+        <label>High Ground:</label>
+        <div class="tooltip">A benefit for being 10" higher than the target at range, or 5" above the target in melee.</div>
+        <input type="checkbox" name="high-ground" value="false">
+    </div>
+    <div class="form-group">
+        <label>Aim/Fient:</label>
+        <input type="checkbox" name="aim-fient" value="false">
+    </div>
+    <div class="form-group">
+        <label>Point Blank:</label>
+        <input type="checkbox" name="point-blank" value="false">
+    </div>
+    <div class="form-group">
+        <label>Target Prone (Melee):</label>
+        <input type="checkbox" name="pronem" value="false">
+    </div>
+    <div class="form-group">
+        <label>Called Shot:</label>
+        <input type="checkbox" name="called" value="false">
+    </div>
+    <div class="form-group">
+        <label>Unaware Target/Sneak Attack (Melee):</label>
+        <input type="checkbox" name="unaware" value="false">
+    </div>
+    <h1>Negative</h1>
+    <div class="form-group">
+        <label>Range Increments:</label>
+        <div class="tooltip">Number of range increments between you and the target.</div>
+        <input type="number" value="1" min="0" name="range-increment">
+    </div>
+    <div class="form-group">
+        <label>Target in Cover:</label>
+        <input type="checkbox" name="cover" value="false">
+    </div>
+    <div class="form-group">
+        <label>Firing Into Melee:</label>
+        <input type="checkbox" name="into-melee" value="false">
+    </div>
+    <div class="form-group">
+        <label>Improvised thrown:</label>
+        <input type="checkbox" name="improvised" value="false">
+    </div>
+    <div class="form-group">
+        <label>Obscured by Smoke/Darkness/Invisible:</label>
+        <input type="checkbox" name="obscured" value="false">
+    </div>
+    <div class="form-group">
+        <label>Target Prone (Ranged):</label>
+        <input type="checkbox" name="proner" value="false">
+    </div>
+    <div class="form-group">
+        <label>Under Suppressive Fire:</label>
+        <input type="checkbox" name="suppressive" value="false">
+    </div>
+    <script>
+            // html.on
+            // const base = html.find('[name="base"')[0].value;
+            // const add  = html.find('[name="bonus"')[0].value;
+            // const constant = html.find('[name="constant"')[0].value;
+            // const luck = html.find('[name="luck"')[0].value || 0;
+            
+            // // NOTE 10" for ranged, 5" for melee
+            // const highground = html.find('[name="high-ground"')[0].checked === true ? 1 : 0
+
+            // const flanking = html.find('[name="flanking"')[0].checked === true ? 1 : 0
+
+            // const aim = html.find('[name="aim-fient"')[0].checked === true ? 1 : 0
+
+            // const cover = html.find('[name="cover"')[0].checked === true ? -2 : 0
+
+            // const rangeincrement = -(html.find('[name="range-increment"')[0].value - 1)
+
+            // // NOTE Sidearms do not suffer this penalty if the target is adjacent.
+            // const intomelee = html.find('[name="into-melee"')[0].checked ? -2 : 0
+
+            // // NOTE Sidearms only
+            // const pointblank = html.find('[name="point-blank"')[0].checked ? 1 : 0
+
+            // const improvised = html.find('[name="improvised"')[0].checked ? -2 : 0
+
+            // const obscured = html.find('[name="obscured"')[0].checked ? -2 : 0
+
+            // const pronem = html.find('[name="pronem')[0].checked ? 2 : 0
+
+            // const proner = html.find('[name="proner')[0].checked ? -1 : 0
+
+            // // NOTE roll against the targets vital defence. Knock the opponent prone, disarm them, push them, disable (giving slowed), as outlined in statblock.
+            // const called = -html.find('[name="called"')[0].checked ? -2 : 0
+
+            // const sacrifice = -html.find('[name="sacrifice"')[0].value
+
+            // const pinned = html.find('[name="pinned"')[0].value
+
+            // const unaware = html.find('[name="unaware"')[0].checked ? 2 : 0
+
+            // const crossfire = html.find('[name="crossfire"')[0].value
+
+            // const supressive = html.find('[name="suppressive"')[0].checked ? -2 : 0
+
+            // const explode = html.find('[name="explode"')[0].checked ? "x6" : ""
+
+            // let formula = (`${1*base+1*add+1*unaware+1*crossfire+1*supressive+1*flanking+1*highground+1*aim+1*cover+1*rangeincrement+1*intomelee+1*pointblank+1*improvised+1*obscured+1*pronem+1*proner+1*called+1*sacrifice+1*pinned}d6${explode} + ${luck}d6x6 + ${constant}`);
+    </script>
+</form>

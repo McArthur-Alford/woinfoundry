@@ -1,0 +1,877 @@
+.woin {
+  /* Sheet Tabs */
+  /* Items List */
+  /* Attributes */
+}
+.woin .window-content {
+  height: 100%;
+  padding: 5px;
+  overflow-y: hidden;
+  background: none;
+}
+.woin.actor .sheet-profile {
+  height: 130px;
+  background-color:#0080001c;
+  border-left: 1px solid #80f36c;
+  border-right: 1px solid #80f36c;
+  margin-left: -5px;
+  margin-bottom: 5px;
+  width: 100%;
+}
+.woin.actor .sheet-profile .profile-fields {
+  width: 100px;
+  flex-grow: 0;
+}
+.woin.actor .sheet-profile .profile-fields .profile-img {
+  height: 100px;
+  margin-right: 10px;
+}
+.woin.actor .sheet-profile .profile-fields input {
+  width: 100px;
+  margin-bottom: 2px;
+}
+.woin.actor .sheet-global .sheet-basic {
+  overflow: show;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  background: #ebe5eb0f;
+  border: 1px solid #ebe5eb;
+  box-shadow: 0 0 5px inset #ebe5eb;
+  margin-left: -5px;
+  margin-bottom: 5px;
+  width: 100%;
+}
+.woin.actor .resource {
+  width:100px;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  vertical-align: top;
+  margin:2px;
+  padding:2px;
+  background-position: center 105px;
+  background-size: 100px;
+  margin-left: 16px;
+}
+.woin.actor .resource.health {
+  background-image: url(../Icons/health2.svg);
+}
+.woin.actor .resource.luck {
+  background-image: url(../Icons/Luck.svg);
+}
+.woin.actor .resource.maxpool {
+  background-image: url(../Icons/Maxpool.svg);
+}
+.woin.actor .resource.power {
+  background-image: url(../Icons/Power.svg);
+}
+.woin.actor .resource.health h4 {
+  color: orangered;
+}
+.woin.actor .resource.luck h4 {
+  color: yellow;
+}
+.woin.actor .resource h4 {
+  margin: auto 1px;
+  padding-right:4px;
+  position: relative;
+  left: -20px;
+}
+.woin.actor .resource input {
+  margin: auto 1px;
+  width: 40px;
+  border: transparent;
+  top: 6px;
+  left: 4px;
+  position: relative;
+}
+.woin.actor .resource input:nth-child(odd) {
+  left: 51px;
+  top: -13px;
+}
+.woin.item.resource.inline {
+  margin-right:10px;
+  width:150px;
+  display: inline-block;
+}
+.woin .sheet-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  width:100%;
+  margin:0 auto;
+  background: #fe00ff0f;
+  border: 1px solid #fe00ff;
+  box-shadow: 0 0 5px inset #fe00ff;
+  margin-left: -5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left:1.2em;
+}
+.woin .sheet-attributes .attribute {
+  list-style-type: none;
+  background-image: url(../Icons/Attribute.svg);
+  background-size: 300px;
+  height: 80px;
+  width: 80px;
+  background-position: center;
+  margin-right: -35px;
+}
+.woin .sheet-attributes input {
+	background: transparent;
+	width: 40px;
+	margin: 2px;
+	position: relative;
+  border: none;
+  text-align: center;
+  font-size: 1.5em;
+}
+.woin .sheet-global input[type=number]::-webkit-outer-spin-button,
+.woin .sheet-global input[type=number]::-webkit-inner-spin-button
+ {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0; 
+}
+input[type=number] {
+  -moz-appearance:textfield;
+  appearance: textfield;
+  background:none;
+}
+.woin .sheet-attributes h4 {
+	margin: 1px auto;
+	left: -20px;
+	position: relative;
+  top: -2px;
+  width: 20px;
+}
+.woin .sheet-attributes label {
+	margin: 0px auto;
+	top: 30px;
+	position: relative;
+  left: -40px;
+  color: orangered;
+}
+.woin .attribute-hex {
+  position: absolute;
+  border:none;
+  size:0.1;
+}
+.woin .character-sheet .tabs {
+  height: 40px;
+  background: 0000000;
+  border-bottom: 1px solid #00ffe3;
+  box-shadow: 0px 0px 10px #00ffe3;
+  border-top: none;
+  margin-bottom: 10px;
+}
+.woin .character-sheet .tabs .item {
+  line-height: 40px;
+  /* font-weight: bold; */
+  background: url("../Icons/tab.svg");
+  color: #15fbd2;
+  text-shadow: 2px 2px #ff000091;
+}
+.woin .tabs .item.active {
+  font-weight: bold;
+  /* text-shadow: none; */
+}
+.woin .sheet-body {
+  /* overflow: visible; */
+  height:auto;
+  overflow-y: auto;
+  margin-right:10px;
+}
+.woin .sheet-body .tab {
+  /* height: 100%; */
+  overflow-y: auto;
+  width:99%;
+  padding-right: 5px;
+}
+.woin .editor,
+.woin .editor-content {
+  height: 100%;
+}
+.woin .items-list {
+  list-style: none;
+  margin: 7px 0;
+  padding: 0;
+  overflow-y: auto;
+}
+.woin .items-list .item {
+  height: 30px;
+  line-height: 24px;
+  padding: 3px 0;
+  border-bottom: 1px solid #BBB;
+}
+.woin .items-list .item img {
+  flex: 0 0 24px;
+  margin-right: 5px;
+}
+.woin .items-list .item-name {
+  margin: 0;
+}
+.woin .items-list .item-controls {
+  flex: 0 0 36px;
+}
+
+/* Skills: */
+.woin .skills-header {
+  padding: 5px;
+  margin: 5px 0;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid #AAA;
+  border-radius: 2px;
+  text-align: center;
+  font-weight: bold;
+}
+.woin .skills-row {
+  padding: 2px 5px;
+  margin: 5px 0;
+  background: rgba(0, 0, 0, 0.02);
+  text-align: center;
+  color: darkturquoise;
+
+  border-radius: 10px;
+  border: 1px solid #00ffe3;
+  margin-top: 10px;
+  box-shadow: 0 0 5px inset #00ffe3;
+}
+.woin .skills-row .skills-label {
+  width: auto;
+}
+.woin .skills-num {
+  width: 75px;
+}
+.woin .skills-row .skill-delete, .woin .skills-row .rollable {
+  padding-top: 5px;
+}
+.woin .skills-row span select, .woin .skills-row span input {
+  border-radius: 0px;
+  border: transparent;
+}
+
+/* Exploits: */
+.woin .exploits-header {
+  padding: 5px;
+  margin: 5px 0;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid #AAA;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+.woin .exploits-row  {
+  padding: 5px;
+  margin: 5px 0;
+  border-radius: 10px;
+  text-align: center;
+  background: #00ffde17;
+  border: 1px solid #00ffe3;
+  box-shadow: 0 0 5px inset #00ffe3;
+}
+.woin .exploits-row.psi {
+  border-color: #c000ff;
+  box-shadow: 0 0 5px inset #c000ff;
+}
+.woin .exploits-row.uni {
+  border-color: white;
+  box-shadow: 0 0 5px inset white;
+}
+.woin .exploits-row:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.woin .exploits-row:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.woin .exploits-row .exploits-label {
+  width: auto;
+}
+.woin .exploits-num {
+  width: 75px;
+}
+.woin .exploit-row-name {
+  font-weight: bold;
+  align-self: center;
+  justify-content:flex-end;
+  overflow: hidden;
+  flex-wrap: nowrap;
+}
+.woin .exploit-row-description {
+  margin: 0px 0px;
+  text-align: left;
+}
+.woin .exploit-delete {
+  align-self: center;
+  width:50px;
+}
+.woin .item-description {
+  padding: 5px;
+  margin: 5px;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid #AAA;
+  border-radius: 2px;
+  text-align: center;
+  border-top: none;
+  margin-top: -7px;
+}
+
+.woin.sheet.actor {
+  min-width: 560px;
+  min-height: 420px;
+}
+.woin.sheet.item {
+  min-width: 460px;
+  min-height: 400px;
+}
+.tox.tox-tinymce {
+	height:400px !important;
+}
+
+.character-sheet {
+  display:flex;
+  background-image: url("../Icons/tilinghexagon.svg");
+  background-repeat: repeat;
+  background-size: 100.2px;
+  overflow: hidden;
+  border: #00ffe3 1px;
+  box-shadow: 0 0 6px inset #00ffe3;
+  border-style: ridge;
+  color: #00ffe3;
+  /* text-shadow: 1px 1px 1px red; */
+}
+.woin .sheet-global {
+  margin:10px;
+  max-width: 260px;
+  min-width: 260px;
+  height:95%;
+  display:flex;
+  flex-direction: column;
+  color: darkturquoise;
+}
+.woin .sheet-circumstantial {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.woin .character-sheet input {
+  color: white ;
+}
+.woin .character-sheet .skills-value {
+  color: white !important;
+}
+#sidebar {
+  background-image: url("../Icons/tilinghexagon.svg");
+  background-repeat: repeat;
+  background-size: 100.2px;
+  overflow: hidden;
+}
+.woin .inventory-container {
+  padding: 5px;
+  margin: 5px 0;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid #AAA;
+  border-radius: 2px;
+  text-align: center;
+  border-left: none;
+  border-right: none;
+}
+.sheet.item .window-content {
+  background-image: url("../Icons/tilinghexagon.svg");
+  background-repeat: repeat;
+  background-size: 100.2px;
+  overflow: hidden;
+  color: darkturquoise;
+  border: #00ABDD solid 2px;
+  border-style: ridge;
+}
+.resource input {
+  color: white !important;
+}
+.resource select {
+  color: white !important;
+  background: none;
+}
+.resource select option {
+  background: #18282c;
+}
+.woin option {
+  background-color: #191f22;
+}
+.mce-content-body {
+  color: white !important;
+}
+.mce-content-body p {
+  color: white !important;
+}
+.charname input {
+  color: white !important;
+}
+.editor {
+  color: white !important;
+}
+.tox-edit-area__iframe {
+  background: white !important;
+}
+.woin .advancement-header {
+  display: flex;
+}
+.woin .xp_gain-header, .xp_spent-header {
+  display: flex;
+  padding: 5px;
+  margin: 5px 0;
+  margin-top:15px;
+  border: none;
+  text-align: center;
+  font-weight: bold;
+}
+.woin .xp_gain-header {
+  border-bottom: 1px dashed rgba(60, 255, 0, 1);
+}
+.woin .xp_spent-header {
+  border-bottom: 1px dashed rgba(255, 97, 0, 1);
+}
+.woin .advancement-label {
+  flex-grow:1;
+}
+.woin .advancement .flexrow {
+  margin: auto;
+}
+.woin .advancement .flexrow.xp-row {
+  padding: 5px;
+  /* margin: 5px 2.5px; */
+  margin-top:5px;
+  background: #1ea51517;
+  border-left: 1px solid #1ea515;
+  border-radius: 0px;
+  text-align: center;
+}
+.woin .advancement .flexrow.xp-row span {
+  width: 100px;
+  flex-grow: 0;
+  margin: 0px 10px;
+}
+.woin .advancement .flexrow.xp-row.neg {
+  border-color: #a55715;
+  background: #a5561515;
+}
+.woin h2{
+  border-bottom:none;
+}
+
+
+/* Calculator For Stats: */
+
+.woin .auto-calculate {
+  width: 100%;
+  margin-left: 5px;
+  padding-top: 100px;
+}
+.woin .auto-calculate i {
+  margin-top: 5px;
+  text-shadow: 2px 2px #ff000091;
+  color: #00ffe3;
+}
+
+
+
+
+/* Sheet Movement Sidebar: */
+
+.woin .sheet-movement {
+  margin-top: 5px;
+  background: #ff910008;
+  border: 1px solid #ff9100;
+  box-shadow: 0 0 5px inset #ff9100;
+  margin-left: -5px;
+  margin-bottom: 5px;
+  width: 100%;
+}
+.woin .sheet-movement ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding:5px;
+  margin-top:-4px;
+}
+.woin .sheet-movement li {
+  background-image: url(../Icons/movement/speed.svg);
+  display: inline-block;
+  width: 70px;
+  height: 60px;
+  background-size: 125px;
+  background-position: center;
+  margin: 0px 2px;
+  margin-bottom: 5px;
+  margin-right: -10px;
+  background-position-y: -50px;
+}
+.woin .sheet-movement span {
+  position:relative;
+  top:0px;
+}
+.woin .sheet-movement input {
+  top: 7.5px;
+  position: relative;
+  width: 35px;
+  left: 15px;
+  justify-content: center;
+  border:none;
+  height: 30px;
+  font-size: 1.5em; 
+}
+
+
+
+
+
+.woin .sheet-combat {
+  background: #ff1f1f0f;
+  border: 1px solid #ff1f1f;
+  box-shadow: 0 0 5px inset #ff1f1f;
+  margin-left: -5px;
+  margin-bottom: 5px;
+  width: 100%;
+}
+.woin .sheet-combat ul {
+  padding: 0px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.woin .sheet-combat li {
+  background-image: url(../Icons/Defence.svg);
+  background-position: center;
+  background-size: 125px;
+  display: inline-block;
+  width: 85px;
+  height: 50px;
+  margin-top: 10px;
+}
+.woin .sheet-combat input {
+  position: relative;
+  border: none;
+  left: 22px;
+  top: -2px;
+  width: 40px;
+  text-align: center;
+}
+.woin .sheet-combat span {
+  position: relative;
+  display: block;
+  top: -10px;
+  width: 85px;
+  text-align: center;
+}
+.woin .draggable {
+  cursor:move;
+}
+.woin .dragging {
+  opacity: 0.5;
+}
+
+
+
+/* Biography: */
+.woin .biography .character-details {
+  display:grid;
+  grid:
+    "portrait name"
+    "portrait isa";
+}
+.woin .biography .profile-fields {
+  margin-top:10px;
+  overflow: hidden;
+}
+.woin .biography .profile-img-surrounding {
+  width:200px;
+  height:200px;
+  background: #00ffde02;
+  border: 1px solid #00ffe3;
+  box-shadow: 0 0 10px inset #00ffe3;
+  margin-right: 5px;
+} 
+.woin .biography .profile-img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.woin .biography .details {
+  display:inline-block;
+  margin:3px 5px;
+  display:flex;
+  min-width: 150px;
+}
+.woin .biography .details span {
+  flex: 0 0 110px;
+}
+.woin .biography .details input {
+  width:200px;
+  background: #00ffde02;
+  border: 1px solid #00ffe3;
+  box-shadow: 0 0 5px inset #00ffe3;
+}
+
+
+
+
+.woin .item-number {
+  flex:0 0 80px;
+}
+.woin .item-button {
+  flex:0 0 25px;
+  margin-top:auto;
+  margin-bottom:auto;
+}
+.woin .exploit-row-name {
+  flex-grow:2;
+  flex-shrink:1;
+  color: #00ffe3;
+  /* text-shadow: 1px 1px 1px red; */
+}
+/* .woin .combat .item-button {
+  float:right;
+} */
+.woin .combat-range {
+  flex: 0 0 80px;
+  margin-top: auto;
+margin-bottom: auto;
+}
+.woin .combat-dicepool {
+  flex:0 0 80px;
+  margin-top: auto;
+margin-bottom: auto;
+}
+.woin .combat-damagetype {
+flex:0 0 80px;margin-top: auto;
+margin-bottom: auto;
+}
+.woin .combat-row {
+  height:50px;margin-top: auto;
+  margin-bottom: auto;
+  border-bottom:1px solid white;
+
+  display: flex;
+  border-radius: 10px;
+  border: 1px solid #00ffe3;
+  height: 35px;
+  padding: 0px;
+  margin-top: 10px;
+  box-shadow: 0 0 5px inset #00ffe3;
+  padding: 0px 5px;
+}
+.woin .combat-special {
+flex: 0 0 80px;margin-top: auto;
+margin-bottom: auto;
+}
+.woin .combat-roll {
+  flex: 0 0 10px; margin-right:10px; margin-top:auto;
+  margin-bottom:auto;
+}
+.woin .combat-skill {
+  flex: 0 0 100px;
+  margin-right:20px;
+  margin-top:auto;
+  margin-bottom:auto;
+}
+.woin .combat-skill input {
+  width:80px;
+}
+.woin .carry-increment span {
+  top: 18px;
+  left: 10px;
+  position: relative;
+  color: white;
+}
+.woin .carry-increment progress {
+  height:20px;
+  width:100%;
+}
+.journal-sheet .window-content {
+  background-image: url("../Icons/tilinghexagon.svg");
+  background-repeat: repeat;
+  background-size: 100.2px;
+  color:white;
+}
+.journal-sheet .window-content input, .journal-sheet .window-content button {
+  color: white;
+}
+.error-red {
+  color: red !important;
+}
+.woin .exploits-row.description-show.weapon {
+  /* border-color:#e12323; */
+  /* background: #ff1f1f0f; */
+    border: 1px solid #ff1f1f;
+    box-shadow: 0 0 5px inset #ff1f1f;
+}
+.woin .exploits-row.description-show.none {
+  /* border-color:#e12323; */
+  /* background: #00ffde17; */
+  border: 1px solid #00ffe3;
+  box-shadow: 0 0 5px inset #00ffe3;
+}
+.woin .exploits-row.description-show.armor {
+  /* border-color:#e12323; */
+  /* background: #ebe5eb0f; */
+  border: 1px solid #ebe5eb;
+  box-shadow: 0 0 5px inset #ebe5eb;
+}
+#chat-log .message {
+  box-shadow: 0 0 5px inset #00ffe3;
+  border: 2px solid #33b1b1;
+  color: #ffffff;
+  background: #000405;
+}
+
+#chat-log .message .message-header {
+  color: #15fbd2;
+  text-shadow: 2px 2px #ff000091;
+}
+
+#chat-log .dice-formula, #chat-log .dice-total {
+  background: #00ffde17;
+  text-shadow: 2px 2px #ff000091;
+  border: 1px solid #00ffe3;
+  box-shadow: 0 0 5px inset #00ffe3;
+}
+
+#chat-log .dice-tooltip {
+  background: #00ffde17;
+  border: 1px solid #ff0099;
+  box-shadow: 0 0 5px inset #ff0099;
+}
+
+#sidebar-tabs .item {
+  background-image: url(../Icons/Button.svg);
+  background-position: center;
+  background-size: 120px;
+  text-shadow: 1px 1px red;
+}
+#sidebar-tabs .item.active {
+  background-image: url(../Icons/ButtonActive.svg);
+  border: none;
+  box-shadow: none;
+  text-shadow: none;
+}
+#sidebar-tabs {
+  border-bottom: 1px solid #00fff7;
+  box-shadow: 0 0 10px #00fff1;
+}
+.rollable {
+  color: #00ffe3;
+  text-shadow: 1px 1px 1px red;
+}
+#chat-log .message.whisper {
+  background: #30001a;
+  box-shadow: 0 0 5px inset #ff0099;
+  border: 2px solid #ff0099;
+}
+#chat-log .message.blind {
+  background: #30001a;
+  box-shadow: 0 0 5px inset #ff0099;
+  border: 2px solid #ff0099;
+}
+#chat-log .message.blind .dice-total,
+#chat-log .message.blind .dice-formula {
+  box-shadow: 0 0 5px inset #ff0099;
+  border: 2px solid #ff0099;
+}
+#controls .scene-control.active, #controls .control-tool.active, #controls .scene-control:hover, #controls .control-tool:hover {
+  color: #FFF;
+  border: 1px solid #00c4ff;
+  border-bottom: 1px solid #00dcff;
+  box-shadow: 0 0 10px #00ffff;
+}
+#controls .scene-control, #controls .control-tool {
+  color: white;
+  text-shadow: 1px 1px red;
+}
+
+/* Active Effect Tab: */
+.woin .effect-row {
+  display: flex;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid #00ffe3;
+  box-shadow: 0 0 5px inset #00ffe3;
+  height: 30px;
+  padding: 5px 0px;
+  justify-content: left;
+}
+
+.woin .effect-row .toggled-false {
+  
+}
+.woin .effect-row .toggled-true {
+  color: #4f736b;
+}
+
+.woin .effect-row span {
+  flex-grow: 1;
+  text-align: left;
+  justify-self: flex-start;
+  margin-left: 15px;
+  width: 500px;
+}
+
+.woin .effect-row a {
+  flex-grow: 0.1;
+  margin-right: 8px;
+  margin-left: 8px;
+  padding-top: 3px;
+}
+
+.roll-dialogue .form-group:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+  width: 120px;
+}
+.roll-dialogue .form-group .tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+.roll-dialogue .form-group .tooltip {
+    visibility: hidden;
+    width: 0px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    left: -35%;
+    bottom: 50px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.window-app .window-content {
+  background-image: url("../Icons/tilinghexagon.svg");
+  background-repeat: repeat;
+  background-size: 100.2px;
+  border: #00ffe3 1px;
+  box-shadow: 0 0 6px inset #00ffe3;
+  border-style: ridge;
+  color: #00ffe3;
+}
+.window-app .window-content .dialog-buttons button {
+  color: white;
+}
+
+.window-app input {
+  color: white;
+}
+
+.woin .disabled-true {
+  color: grey;
+}
+
