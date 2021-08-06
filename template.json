@@ -15,8 +15,8 @@
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power",
   "url": "https://gitlab.com/mcarthur.alford/woinfoundry/",
-  "manifest": "https://gitlab.com/mcarthur.alford/woinfoundry/raw/master/system.json",
-  "download": "https://gitlab.com/mcarthur.alford/woinfoundry/-/archive/master/woinfoundry-master.zip",
+  "manifest": "https://raw.githubusercontent.com/McArthur-Alford/woinfoundry/master/template.json",
+  "download": "https://github.com/McArthur-Alford/woinfoundry/archive/refs/heads/master.zip",
   "license": "LICENSE.txt",
   "packs": [
     {
