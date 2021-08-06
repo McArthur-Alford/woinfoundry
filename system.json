@@ -5,7 +5,6 @@
   "version": "0.3.1b",
   "minimumCoreVersion": "0.8.8",
   "compatibleCoreVersion": "0.8.8",
-  "templateVersion": 2,
   "author": "Darth_Apples, Ghostroo",
   "languages": ["English"],
   "gridDistance": 5,
