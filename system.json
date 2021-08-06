@@ -2,9 +2,9 @@
   "name": "woinfoundry",
   "title": "WOIN Foundry",
   "description": "An implementation of WOIN NEW for foundry, capable of running other WOIN systems (though without premade compendiums).",
-  "version": "0.4.0",
-  "minimumCoreVersion": "0.8.8",
-  "compatibleCoreVersion": "0.8.8",
+  "version": "0.3.1b",
+  "minimumCoreVersion": "0.7.5",
+  "compatibleCoreVersion": "0.7.5",
   "templateVersion": 2,
   "author": "Darth_Apples, Ghostroo",
   "esmodules": ["module/simple.js"],
@@ -14,13 +14,13 @@
   "gridUnits": "ft",
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power",
-  "url": "https://github.com/McArthur-Alford/woinfoundry",
-  "manifest": "https://raw.githubusercontent.com/McArthur-Alford/woinfoundry/master/system.json",
+  "url": "https://gitlab.com/mcarthur.alford/woinfoundry/",
+  "manifest": "https://raw.githubusercontent.com/McArthur-Alford/woinfoundry/master/template.json",
   "download": "https://github.com/McArthur-Alford/woinfoundry/archive/refs/heads/master.zip",
   "license": "LICENSE.txt",
   "packs": [
     {
-      "name": "exploits",
+      "name": "exploits (NEW)",
       "label": "Exploits (NEW)",
       "system": "woinfoundry",
       "module": "woinfoundry",
@@ -28,7 +28,7 @@
       "entity": "Item"
     },
     {
-      "name": "items",
+      "name": "general items (NEW)",
       "label": "General Items (NEW)",
       "system": "woinfoundry",
       "module": "woinfoundry",
@@ -36,7 +36,7 @@
       "entity": "Item"
     },
     {
-      "name": "armor",
+      "name": "armor (NEW)",
       "label": "Armor (NEW)",
       "system": "woinfoundry",
       "module": "woinfoundry",
@@ -44,7 +44,7 @@
       "entity": "Item"
     },
     {
-      "name": "weapons-ranged-exotic",
+      "name": "ranged weapons exotic (NEW)",
       "label": "Ranged Weapons Exotic (NEW)",
       "system": "woinfoundry",
       "module": "woinfoundry",
@@ -52,7 +52,7 @@
       "entity": "Item"
     },
     {
-      "name": "weapons-ranged",
+      "name": "ranged weapons (NEW)",
       "label": "Ranged Weapons (NEW)",
       "system": "woinfoundry",
       "module": "woinfoundry",
@@ -60,7 +60,7 @@
       "entity": "Item"
     },
     {
-      "name": "weapons-melee",
+      "name": "melee weapons (NEW)",
       "label": "Melee Weapons (NEW)",
       "system": "woinfoundry",
       "module": "woinfoundry",
@@ -68,7 +68,7 @@
       "entity": "Item"
     },
     {
-      "name": "explosive-ordinance",
+      "name": "explosive ordinance (NEW)",
       "label": "Explosive Ordinance (NEW)",
       "system": "woinfoundry",
       "module": "woinfoundry",
@@ -76,7 +76,7 @@
       "entity": "Item"
     },
     {
-      "name": "melee-weapons-exotic",
+      "name": "melee weapons exotic (NEW)",
       "label": "Melee Weapons Exotic (NEW)",
       "system": "woinfoundry",
       "module": "woinfoundry",
@@ -84,7 +84,7 @@
       "entity": "Item"
     },
     {
-      "name": "languages-new",
+      "name": "Languages (NEW)",
       "label": "Languages (NEW)",
       "system": "woinfoundry",
       "module": "woinfoundry",
