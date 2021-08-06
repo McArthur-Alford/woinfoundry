@@ -20,7 +20,7 @@
   "license": "LICENSE.txt",
   "packs": [
     {
-      "name": "exploits (NEW)",
+      "name": "exploits",
       "label": "Exploits (NEW)",
       "system": "woinfoundry",
       "module": "woinfoundry",
@@ -28,7 +28,7 @@
       "entity": "Item"
     },
     {
-      "name": "general items (NEW)",
+      "name": "items",
       "label": "General Items (NEW)",
       "system": "woinfoundry",
       "module": "woinfoundry",
@@ -36,7 +36,7 @@
       "entity": "Item"
     },
     {
-      "name": "armor (NEW)",
+      "name": "armor",
       "label": "Armor (NEW)",
       "system": "woinfoundry",
       "module": "woinfoundry",
@@ -44,7 +44,7 @@
       "entity": "Item"
     },
     {
-      "name": "ranged weapons exotic (NEW)",
+      "name": "weapons-ranged-exotic",
       "label": "Ranged Weapons Exotic (NEW)",
       "system": "woinfoundry",
       "module": "woinfoundry",
@@ -52,7 +52,7 @@
       "entity": "Item"
     },
     {
-      "name": "ranged weapons (NEW)",
+      "name": "weapons-ranged",
       "label": "Ranged Weapons (NEW)",
       "system": "woinfoundry",
       "module": "woinfoundry",
@@ -60,7 +60,7 @@
       "entity": "Item"
     },
     {
-      "name": "melee weapons (NEW)",
+      "name": "weapons-melee",
       "label": "Melee Weapons (NEW)",
       "system": "woinfoundry",
       "module": "woinfoundry",
@@ -68,7 +68,7 @@
       "entity": "Item"
     },
     {
-      "name": "explosive ordinance (NEW)",
+      "name": "explosive-ordinance",
       "label": "Explosive Ordinance (NEW)",
       "system": "woinfoundry",
       "module": "woinfoundry",
@@ -76,7 +76,7 @@
       "entity": "Item"
     },
     {
-      "name": "melee weapons exotic (NEW)",
+      "name": "melee-weapons-exotic",
       "label": "Melee Weapons Exotic (NEW)",
       "system": "woinfoundry",
       "module": "woinfoundry",
@@ -84,7 +84,7 @@
       "entity": "Item"
     },
     {
-      "name": "Languages (NEW)",
+      "name": "languages",
       "label": "Languages (NEW)",
       "system": "woinfoundry",
       "module": "woinfoundry",
