@@ -47,7 +47,7 @@ Hooks.once("init", async function () {
   };
 
   // Define custom Entity classes
-  CONFIG.Actor.entityClass = WOINActor;
+  CONFIG.Actor.documentClass = WOINActor;
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);

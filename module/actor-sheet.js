@@ -26,9 +26,18 @@ export class SimpleActorSheet extends ActorSheet {
   }
   /** @override */
   getData() {
-    const data = super.getData();
-    data.dtypes = ["String", "Number", "Boolean"];
-    return data;
+    const baseData = super.getData();
+    // console.log(baseData);
+    let sheetData = {
+      owner: this.isOwner,
+      editable: this.isEditable,
+      actor: baseData,
+      items: baseData.items,
+      data: baseData.data.data,
+    };
+    console.log(sheetData);
+    // data.dtypes = ["String", "Number", "Boolean"];
+    return sheetData;
   }
 
 // ================================================================================
@@ -66,7 +75,7 @@ export class SimpleActorSheet extends ActorSheet {
     // Update Inventory Item
     html.find('.item-edit').click(ev => {
       const li = $(ev.currentTarget);
-      const item = this.actor.getOwnedItem(li[0].dataset.itemId);
+      const item = this.actor.items.get(li[0].dataset.itemId);
       item.sheet.render(item);
     });
 
@@ -138,8 +147,8 @@ export class SimpleActorSheet extends ActorSheet {
     // Adding new Items:
     html.find(".item-add").click(ev=>{
       
-      const item = new Item({name : "new item", type : "item", data : game.system.model.Item.item});
-      this.actor.createOwnedItem(item, {renderSheet: false});
+      const item = {name : "new item", type : "item", data : game.system.model.Item.item};
+      this.actor.createEmbeddedDocuments("Item", [item], {renderSheet: false});
     });
 
     // Flipping Item Equipped State:
@@ -147,7 +156,7 @@ export class SimpleActorSheet extends ActorSheet {
       ev.preventDefault();
 
       const dataset = ev.currentTarget.dataset;
-      const item = this.actor.getOwnedItem(dataset.itemId);
+      const item = this.actor.items.get(dataset.itemId);
 
       let newItem = duplicate(item);
       //console.log(dataset)
@@ -162,7 +171,7 @@ export class SimpleActorSheet extends ActorSheet {
       ev.preventDefault();
 
       const dataset = ev.currentTarget.dataset;
-      const item = this.actor.getOwnedItem(dataset.itemId);
+      const item = this.actor.items.get(dataset.itemId);
 
       let newItem = duplicate(item);
       newItem.data.carried = !newItem.data.carried;
@@ -174,7 +183,7 @@ export class SimpleActorSheet extends ActorSheet {
     // Adding new Exploits:
     html.find(".exploit-add").click(ev=>{
       const item = new Item({name : "new item", type : "exploit", data : game.system.model.Item.exploit});
-      this.actor.createOwnedItem(item, {renderSheet: false});
+      this.actor.createEmbeddedDocuments(item, {renderSheet: false});
     });
 
     //Handling Equipment/Exploit Expansion:
@@ -204,10 +213,10 @@ export class SimpleActorSheet extends ActorSheet {
           target = $(ev.target).parent().next().filter(".item-description");
         }
         target.toggle();
-        let item = duplicate(this.actor.getOwnedItem(target.data().itemId));
+        let item = duplicate(this.actor.items.get(target.data().itemId));
         if (item.data.open == null) item.open = true;
         item.data.open = !item.data.open;
-        this.actor.getOwnedItem(target.data().itemId).update(item);
+        this.actor.items.get(target.data().itemId).update(item);
       } catch (error) {
         
       }
@@ -222,7 +231,7 @@ export class SimpleActorSheet extends ActorSheet {
       ev.preventDefault();
 
       const dataset = ev.currentTarget.dataset;
-      const item = this.actor.getOwnedItem(dataset.itemid);
+      const item = this.actor.items.get(dataset.itemid);
       const input = (ev.currentTarget.value);
 
       let newItem = duplicate(item);
@@ -237,7 +246,7 @@ export class SimpleActorSheet extends ActorSheet {
 
     html.find('.display-to-chat').click(ev => { 
       let chatData = {
-        user: game.user._id,
+        user: game.user.id,
         content: `${$(ev.currentTarget).data("description")}`,
         flavor: `${$(ev.currentTarget).data("title")}`
       };
@@ -363,7 +372,7 @@ export class SimpleActorSheet extends ActorSheet {
 async calculateMovement() {
   let html = await renderTemplate("systems/woinfoundry/templates/chat/confirmation.html");
 
-  //console.log("WOIN | strength obj:",game.actors.get(this.actor._id).data.data.attributes.strength);
+  //console.log("WOIN | strength obj:",game.actors.get(this.actor.id).data.data.attributes.strength);
 
   return new Promise(resolve => {
     new Dialog({
@@ -372,7 +381,7 @@ async calculateMovement() {
     buttons: {
         yes: {
             label: "yes",
-            callback: html => {calc(game.actors.get(this.actor._id))}
+            callback: html => {calc(game.actors.get(this.actor.id))}
         },
         no: {
             label: "no",
@@ -527,7 +536,7 @@ async calculateMovement() {
         pool: 0
       }
 
-      this.actor.createOwnedItem(item);
+      this.actor.createEmbeddedDocuments("Item", [item]);
 
     }
 
@@ -613,11 +622,11 @@ async updateAttributes(event) {
   event.preventDefault();
 
   const target = event.currentTarget.dataset.attribute;
-  //console.log("WOIN | Updating attributes for",this.actor._id,"| modified attribute is",target);
+  //console.log("WOIN | Updating attributes for",this.actor.id,"| modified attribute is",target);
   const input = ($(event.currentTarget)[0].value);
 
   const pool = [0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8]
-  const actor = duplicate(game.actors.get(this.actor._id));
+  const actor = duplicate(game.actors.get(this.actor.id));
 
   let data = actor.data
 
@@ -679,7 +688,7 @@ async updateAttributes(event) {
     //console.log("woo");
 
     const dataset = ev.currentTarget.dataset;
-    const item = this.actor.getOwnedItem(dataset.itemId);
+    const item = this.actor.items.get(dataset.itemId);
     const input = ($(ev.currentTarget)[0].value);
 
     if(!item){
@@ -785,7 +794,7 @@ async updateAttributes(event) {
 
     // Case 2 - Data explicitly provided
     else if (data.data) {
-      let sameActor = data.actorId === actor._id;
+      let sameActor = data.actorId === actor.id;
       if (sameActor && actor.isToken) sameActor = data.tokenId === actor.token.id;
       if (sameActor) return this._onSortItem(event, data.data); // Sort existing items
       else return actor.createEmbeddedEntity("OwnedItem", duplicate(data.data));  // Create a new Item

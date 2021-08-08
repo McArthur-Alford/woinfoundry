@@ -84,6 +84,7 @@ export class WOINActor extends Actor {
                 }
                 if (item.type === "exploit") {
                     let data = item.data;
+                    console.log(data);
                     //console.log(data);
                     // Used to ensure old character sheets remain up to date:
                     if (data.style == null) {
@@ -91,11 +92,13 @@ export class WOINActor extends Actor {
                     }
                     // Checking the modifiers for any specific styling choices:
                     data.style = "";
-                    if (data.modifier.includes("uni_exploit")) {
-                        data.style = "uni";
-                    }
-                    if (data.modifier.includes("psi_exploit")) {
-                        data.style = "psi";
+                    if(data.modifier) {
+                        if (data.modifier.includes("uni_exploit")) {
+                            data.style = "uni";
+                        }
+                        if (data.modifier.includes("psi_exploit")) {
+                            data.style = "psi";
+                        }
                     }
                 }
             });
@@ -227,7 +230,7 @@ export class WOINActor extends Actor {
         if (existing) {
             existing.flags.woin.value -= 1;
             if (existing.flags.woin.value <= 0)
-                return this.deleteEmbeddedEntity("ActiveEffect", existing._id)
+                return this.deleteEmbeddedEntity("ActiveEffect", existing.id)
             else
                 return this.updateEmbeddedEntity("ActiveEffect", existing)
         }

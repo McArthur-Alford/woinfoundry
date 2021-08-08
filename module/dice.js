@@ -2,6 +2,7 @@ export class DiceWOIN {
 
     static async rollGeneral({ attribute_dice = 0, skill_dice = 0, actorId = null, description = null, constant=0 }) {
         let actor = game.actors.find(item => item.id == actorId);
+        console.log(actor);
         let cap = actor.data.data.advancement.dice_cap;
         let dice = Math.max(0,Math.min(cap, Number(skill_dice) + Number(attribute_dice)));
 
