@@ -1,3 +1,5 @@
+# Version 4
+-> Works for foundry 0.8.X with a few bugs still. We did it!
 # Version 0.3.1
 -> Added color settings to config. 
 -> Fixed flavour message on skill rolls.

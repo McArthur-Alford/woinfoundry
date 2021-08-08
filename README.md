@@ -1,14 +1,14 @@
 # WOINFoundry
-WOINFoundry brings the functionality of the WOIN role-playing system to foundryvtt. 
+WOINFoundry adds support for WOIN to Foundry. I made this system for my groups NEW game (so the theming and compendiums support NEW), but this should be able to support OLD, NOW, etc just without compendiums. 
 
-# Level of Support:
-WOIN is a flexible system with many rulesets and supplementary books. The WOINFoundry system currently is limited to NEW rules, though should be usable for other rulesets.
+Contributions for other compendiums would be appreciated.
 
-The system itself is still in development, with sheets now functional for data entry, and plans to implement calculations and automation very soon.
+Currently the system runs stable on foundry 0.7, I haven't tested 0.8 enough.
+0.8 should work, but if you find bugs please report them.
 
 # Pictures!
-![Character Sheet](readme/charsheet.png)
-![Item](readme/Item.png)
+![Character Sheet](readme/charactersheet.png)
+![Character Sheet](readme/overview.png)
 
 # What is WOIN?
 The WOIN rules and information can be found at http://www.woinrpg.com/.
