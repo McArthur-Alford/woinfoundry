@@ -2,7 +2,7 @@
   "name": "woinfoundry",
   "title": "WOIN Foundry",
   "description": "An implementation of WOIN NEW for foundry, capable of running other WOIN systems (though without premade compendiums).",
-  "version": "0.4",
+  "version": "0.4.1",
   "minimumCoreVersion": "0.8.8",
   "compatibleCoreVersion": "0.8.8",
   "author": "Darth_Apples, Ghostroo",
