@@ -20,22 +20,24 @@ export class SimpleItemSheet extends ItemSheet {
   /** @override */
   getData() {
     const data = super.getData();
-    if(data.data.weapon.damagetype[data.data.weapon.damagetype.length-1]){
+    console.log("woo");
+    console.log(data);
+    if(data.data.data.weapon.damagetype[data.data.data.weapon.damagetype.length-1]){
       let item = duplicate(this.item);
       item.data.weapon.damagetype.push(null);
       this.item.update(item);
     }
-    else if(data.data.weapon.damagetype.length>1&&!data.data.weapon.damagetype[data.data.weapon.damagetype.length-1]&&!data.data.weapon.damagetype[data.data.weapon.damagetype.length-2]){
+    else if(data.data.data.weapon.damagetype.length>1&&!data.data.data.weapon.damagetype[data.data.data.weapon.damagetype.length-1]&&!data.data.data.weapon.damagetype[data.data.data.weapon.damagetype.length-2]){
       let item = duplicate(this.item);
       item.data.weapon.damagetype.pop();
       this.item.update(item);
     }
-    if(data.data.armor.ineffective[data.data.armor.ineffective.length-1]){
+    if(data.data.data.armor.ineffective[data.data.data.armor.ineffective.length-1]){
       let item = duplicate(this.item);
       item.data.armor.ineffective.push(null);
       this.item.update(item);
     }
-    else if(data.data.armor.ineffective.length>1&&!data.data.armor.ineffective[data.data.armor.ineffective.length-1]&&!data.data.armor.ineffective[data.data.armor.ineffective.length-2]){
+    else if(data.data.data.armor.ineffective.length>1&&!data.data.data.armor.ineffective[data.data.data.armor.ineffective.length-1]&&!data.data.data.armor.ineffective[data.data.data.armor.ineffective.length-2]){
       let item = duplicate(this.item);
       item.data.armor.ineffective.pop();
       this.item.update(item);

@@ -9,7 +9,7 @@
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">Description</a>
-        <a class="item" data-tab="type">{{data.type}}</a>
+        <a class="item" data-tab="type">{{data.data.type}}</a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -21,8 +21,8 @@
                 <label>type:</label>
 
                 <select name="data.type">
-                    {{#select data.type}}
-                    {{#each data.types as |t|}}
+                    {{#select data.data.type}}
+                    {{#each data.data.types as |t|}}
                     <option value="{{t}}">{{t}}</option>
                     {{/each}}
                     {{/select}}
@@ -31,82 +31,82 @@
             <hr>
             <div class="resource inline">
                 <label>Quantity:</label>
-                <input type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number" />
+                <input type="text" name="data.quantity" value="{{data.data.quantity}}" data-dtype="Number" />
             </div>
             <div class="resource inline">
                 <label>Weight:</label>
-                <input type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number" />
+                <input type="text" name="data.weight" value="{{data.data.weight}}" data-dtype="Number" />
             </div>
             <div class="resource inline">
                 <label>Cost:</label>
-                <input type="text" name="data.cost" value="{{data.cost}}" data-dtype="Number" />
+                <input type="text" name="data.cost" value="{{data.data.cost}}" data-dtype="Number" />
             </div>
             <div class="resource inline">
                 <label>Size:</label>
-                <input type="text" name="data.size" value="{{data.size}}" data-dtype="text" />
+                <input type="text" name="data.size" value="{{data.data.size}}" data-dtype="text" />
             </div>
             <div class="resource inline">
                 <label>Availability:</label>
-                <input type="text" name="data.availability" value="{{data.availability}}" data-dtype="text" />
+                <input type="text" name="data.availability" value="{{data.data.availability}}" data-dtype="text" />
             </div>
             <div class="resource inline">
                 <label>Quality:</label>
-                <input type="text" name="data.quality" value="{{data.quality}}" data-dtype="text" />
+                <input type="text" name="data.quality" value="{{data.data.quality}}" data-dtype="text" />
             </div>
             <hr>
             <div class="resource">
                 <label>skill:</label>
-                <input type="text" name="data.skill" value="{{data.skill}}" data-dtype="text" />
+                <input type="text" name="data.skill" value="{{data.data.skill}}" data-dtype="text" />
                 <label>attribute:</label>
-                <input type="text" name="data.attribute" value="{{data.attribute}}" data-dtype="text" />
+                <input type="text" name="data.attribute" value="{{data.data.attribute}}" data-dtype="text" />
             </div>
             <hr>
             <div class="resource">
                 <label>equipped_modifiers:</label>
-                <input type="text" name="data.equipped_modifiers" value="{{data.equipped_modifiers}}" data-dtype="text" />
+                <input type="text" name="data.equipped_modifiers" value="{{data.data.equipped_modifiers}}" data-dtype="text" />
             </div>
             <hr>
             <label>Description:</label>
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            {{editor content=data.data.description target="data.data.description" button=true owner=owner editable=editable}}
         </div>
 
         {{!-- Combat Tab --}}
         <div class="tab attributes" data-group="primary" data-tab="type">
-            {{#ifeq data.type "none"}}
+            {{#ifeq data.data.type "none"}}
             <label>Nothing to see here. Move along.</label>
             {{/ifeq}}
-            {{#ifeq data.type "container"}}
+            {{#ifeq data.data.type "container"}}
             <div class="resource inline">
                 <label>holds:</label>
-                <input type="text" name="data.container.holds" value="{{data.container.holds}}" data-dtype="Number" />
+                <input type="text" name="data.container.holds" value="{{data.data.container.holds}}" data-dtype="Number" />
             </div>
             <div class="resource inline">
                 <label>adds:</label>
-                <input type="text" name="data.container.adds" value="{{data.container.adds}}" data-dtype="Number" />
+                <input type="text" name="data.container.adds" value="{{data.data.container.adds}}" data-dtype="Number" />
             </div>
             <div class="resource inline">
                 <label>slots:</label>
-                <input type="text" name="data.container.slots" value="{{data.container.slots}}" data-dtype="Number" />
+                <input type="text" name="data.container.slots" value="{{data.data.container.slots}}" data-dtype="Number" />
             </div>
             {{/ifeq}}
-            {{#ifeq data.type "weapon"}}
+            {{#ifeq data.data.type "weapon"}}
             <div class="resource inline">
                 <label>range:</label>
-                <input type="text" name="data.weapon.range" value="{{data.weapon.range}}" data-dtype="Number" />
+                <input type="text" name="data.weapon.range" value="{{data.data.weapon.range}}" data-dtype="Number" />
             </div>
             <div class="resource inline">
                 <label>damage dice:</label>
-                <input type="text" name="data.weapon.damagedice" value="{{data.weapon.damagedice}}" data-dtype="Number" />
+                <input type="text" name="data.weapon.damagedice" value="{{data.data.weapon.damagedice}}" data-dtype="Number" />
             </div>
             <div class="resource inline">
                 <label>bonus damage:</label>
-                <input type="text" name="data.weapon.bonusdamage" value="{{data.weapon.bonusdamage}}" data-dtype="Number" />
+                <input type="text" name="data.weapon.bonusdamage" value="{{data.data.weapon.bonusdamage}}" data-dtype="Number" />
             </div>
             <div class="resource inline">
                 <label>bonus attack:</label>
-                <input type="text" name="data.weapon.bonus_attack" value="{{data.weapon.bonus_attack}}" data-dtype="Number"/>
+                <input type="text" name="data.weapon.bonus_attack" value="{{data.data.weapon.bonus_attack}}" data-dtype="Number"/>
             </div>
-            {{#each data.weapon.damagetype}}
+            {{#each data.data.weapon.damagetype}}
             <div class="resource">
                 <label>damage type:</label>
                 <input class="damage-array" type="text" data-dindex="{{@key}}" value="{{this}}" data-dtype="text" />
@@ -114,23 +114,23 @@
             {{/each}}
             <div class="resource">
                 <label>special:</label>
-                <input type="text" name="data.weapon.special" value="{{data.weapon.special}}" data-dtype="text" />
+                <input type="text" name="data.weapon.special" value="{{data.data.weapon.special}}" data-dtype="text" />
             </div>
             {{/ifeq}}
-            {{#ifeq data.type "armor"}}
+            {{#ifeq data.data.type "armor"}}
             <div class="resource">
                 <label>type:</label>
-                <input type="text" name="data.armor.type" value="{{data.armor.type}}" data-dtype="text" />
+                <input type="text" name="data.armor.type" value="{{data.data.armor.type}}" data-dtype="text" />
             </div>
             <div class="resource">
                 <label>special:</label>
-                <input type="text" name="data.armor.special" value="{{data.armor.special}}" data-dtype="text" />
+                <input type="text" name="data.armor.special" value="{{data.data.armor.special}}" data-dtype="text" />
             </div>
             <div class="resource">
                 <label>soak:</label>
-                <input type="number" name="data.armor.soak" value="{{data.armor.soak}}" data-dtype="Number" />
+                <input type="number" name="data.armor.soak" value="{{data.data.armor.soak}}" data-dtype="Number" />
             </div>
-            {{#each data.armor.ineffective}}
+            {{#each data.data.armor.ineffective}}
             <div class="resource">
                 <label>ineffective:</label>
                 <input class="ineffective-array" type="text" data-dindex="{{@key}}" value="{{this}}" data-dtype="text" />

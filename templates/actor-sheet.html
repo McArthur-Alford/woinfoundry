@@ -32,7 +32,7 @@
             {{#if attr.label}}
             <div class="attribute">
                 <h4 class="rollable-general" data-description="{{attr.name}}" data-attribute-dice="{{attr.dice}}"
-                    data-actorId="{{../actor.id}}">{{attr.label}}:</h4>
+                    data-actorId="{{../actor.actor.id}}">{{attr.label}}:</h4>
                 <input data-attribute="{{attr.name}}" type="number" min="0" max="44" step="1"
                     name="data.attributes.{{attr.name}}.value" value="{{attr.value}}" data-dtype="Number" />
                 <span></span>
@@ -174,13 +174,13 @@
                     <span class="exploit-row-name">{{item.name}}</span>
                     <span class="combat-range">{{item.data.weapon.range}}</span>
                     <span class="combat-skill">
-                        <input class="{{item.data.error}}" style="display:inline-block;" data-itemId="{{item.id}}"
+                        <input class="{{item.data.error}}" style="display:inline-block;" data-itemId="{{item._id}}"
                             type="text" value="{{item.data.skill}}">
-                        <a class="rollable-attack" data-itemId="{{item.id}}" data-actorId="{{../actor.id}}"
+                        <a class="rollable-attack" data-itemId="{{item._id}}" data-actorId="{{../actor.actor.id}}"
                             data-description="{{item.name}}" style="display:inline-block">⚄</a>
                     </span>
                     <a 
-                    data-description="{{item.data.weapon.damagetype}}" data-skill-dice="{{item.data.weapon.damagedice}}" data-attribute-dice="0" data-actorId="{{../actor.id}}"
+                    data-description="{{item.data.weapon.damagetype}}" data-skill-dice="{{item.data.weapon.damagedice}}" data-attribute-dice="0" data-actorId="{{../actor.actor.id}}"
                     data-constant1="{{item.data.weapon.bonusdamage}}" data-constant2="{{item.data.weapon.skilldamage}}"
                         class="rollable-general combat-dicepool">{{item.data.weapon.bonusdamage}}+{{item.data.weapon.damagedice}}d6+{{item.data.weapon.skilldamage}}
                         ⚄</a>
@@ -366,10 +366,10 @@
                     {{#each actor.items as |item|}}
                     {{#ifeq item.type "item"}}
                     {{#ifeq item.data.carried true}}
-                    <div draggable="true" data-item-id="{{item.id}}" class="draggable item">
-                        <div data-item-id="{{item.id}}"
+                    <div draggable="true" data-item-id="{{item._id}}" class="draggable item">
+                        <div data-item-id="{{item._id}}"
                             class="exploits-row description-show item-row flexrow {{item.data.type}}"
-                            data-item-id="{{item.id}}">
+                            data-item-id="{{item._id}}">
                             <a data-title="{{item.name}}" data-description="{{item.data.description}}"
                                 class="display-to-chat item-button">⚄</a>
                             <span class="exploit-row-name">{{item.name}}</span>
@@ -377,19 +377,19 @@
                             <span
                                 class="item-row-weight item-number">Weight:{{item.data.weight}}{{#ifeq item.data.weight null}}none{{/ifeq}}</span>
                             <a class="fas fa-briefcase item-carry item-button item-id disabled-false"
-                                data-item-id="{{item.id}}"></a>
+                                data-item-id="{{item._id}}"></a>
                             <a class="fas fa-tshirt item-equip item-button item-id disabled-{{item.data.equipped}}"
-                                data-item-id="{{item.id}}"></a>
-                            <a class="fas fa-edit item-open item-button item-id item-edit" data-item-id="{{item.id}}"
-                                data-exploitcode="{{item.id}}"></a>
-                            <a class="fas fa-trash exploit-delete item-button delete" data-exploitcode="{{item.id}}">
+                                data-item-id="{{item._id}}"></a>
+                            <a class="fas fa-edit item-open item-button item-id item-edit" data-item-id="{{item._id}}"
+                                data-exploitcode="{{item._id}}"></a>
+                            <a class="fas fa-trash exploit-delete item-button delete" data-exploitcode="{{item._id}}">
 
                             </a>
                         </div>
                         {{#if item.data.open}}
-                        <div data-item-id="{{item.id}}" class="item-description">
+                        <div data-item-id="{{item._id}}" class="item-description">
                             {{else}}
-                            <div data-item-id="{{item.id}}" class="item-description" hidden>
+                            <div data-item-id="{{item._id}}" class="item-description" hidden>
                                 {{/if}}
                                 <span class="exploit-row-description">{{{enrichHTML item.data.description}}}</span>
 
@@ -405,10 +405,10 @@
                         {{#each actor.items as |item|}}
                         {{#ifeq item.type "item"}}
                         {{#ifeq item.data.carried false}}
-                        <div draggable="true" data-item-id="{{item.id}}" class="draggable item">
-                            <div data-item-id="{{item.id}}"
+                        <div draggable="true" data-item-id="{{item._id}}" class="draggable item">
+                            <div data-item-id="{{item._id}}"
                                 class="exploits-row description-show item-row flexrow {{item.data.type}}"
-                                data-item-id="{{item.id}}">
+                                data-item-id="{{item._id}}">
                                 <a data-title="{{item.name}}" data-description="{{item.data.description}}"
                                     class="display-to-chat item-button">⚄</a>
                                 <span class="exploit-row-name">{{item.name}}</span>
@@ -416,20 +416,20 @@
                                 <span
                                     class="item-row-weight item-number">Weight:{{item.data.weight}}{{#ifeq item.data.weight null}}none{{/ifeq}}</span>
                                 <a class="fas fa-briefcase item-carry item-button item-id disabled-true"
-                                    data-item-id="{{item.id}}"></a>
+                                    data-item-id="{{item._id}}"></a>
                                 <a class="fas fa-tshirt item-button item-id disabled-true"
-                                    data-item-id="{{item.id}}"></a>
+                                    data-item-id="{{item._id}}"></a>
                                 <a class="fas fa-edit item-open item-button item-id item-edit"
-                                    data-item-id="{{item.id}}" data-exploitcode="{{item.id}}"></a>
+                                    data-item-id="{{item._id}}" data-exploitcode="{{item._id}}"></a>
                                 <a class="fas fa-trash exploit-delete item-button delete"
-                                    data-exploitcode="{{item.id}}">
+                                    data-exploitcode="{{item._id}}">
 
                                 </a>
                             </div>
                             {{#if item.data.open}}
-                            <div data-item-id="{{item.id}}" class="item-description">
+                            <div data-item-id="{{item._id}}" class="item-description">
                                 {{else}}
-                                <div data-item-id="{{item.id}}" class="item-description" hidden>
+                                <div data-item-id="{{item._id}}" class="item-description" hidden>
                                     {{/if}}
                                     <span class="exploit-row-description">{{{enrichHTML item.data.description}}}</span>
 
@@ -454,24 +454,24 @@
                 <div class="container">
                     {{#each actor.items as |exploit|}}
                     {{#ifeq exploit.type "exploit"}}
-                    <div draggable="true" data-item-id="{{exploit.id}}" class="draggable item">
+                    <div draggable="true" data-item-id="{{exploit._id}}" class="draggable item">
                         <div class="description-show exploits-row flexrow {{exploit.data.style}}"
-                            data-item-id="{{exploit.id}}">
+                            data-item-id="{{exploit._id}}">
                             <a data-description="{{exploit.data.description}}" data-title="{{exploit.name}}"
                                 class="display-to-chat item-button">⚄</a>
-                            <span data-item-id="{{exploit.id}}" class="exploit-row-name"
+                            <span data-item-id="{{exploit._id}}" class="exploit-row-name"
                                 style="flex-grow: 2; flex-shrink:1;">{{exploit.name}}</span>
-                            <a class="fas fa-edit exploit-open item-button item-edit" data-item-id="{{exploit.id}}"
-                                data-exploitcode="{{item.id}}"></a>
+                            <a class="fas fa-edit exploit-open item-button item-edit" data-item-id="{{exploit._id}}"
+                                data-exploitcode="{{item._id}}"></a>
                             <a class="fas fa-trash exploit-delete delete item-button"
-                                data-exploitcode="{{exploit.id}}">
+                                data-exploitcode="{{exploit._id}}">
 
                             </a>
                         </div>
                         {{#if exploit.data.open}}
-                        <div data-item-id="{{exploit.id}}" class="item-description">
+                        <div data-item-id="{{exploit._id}}" class="item-description">
                             {{else}}
-                            <div data-item-id="{{exploit.id}}" class="item-description" hidden>
+                            <div data-item-id="{{exploit._id}}" class="item-description" hidden>
                                 {{/if}}
                                 <span
                                     class="exploit-row-description">{{{enrichHTML exploit.data.description}}}</span>
@@ -486,6 +486,7 @@
 
                 {{!-- Skills Tab --}}
                 <div class="tab skills" data-group="primary" data-tab="skills">
+                    Please note something with 0.8 broke skill updates. They work fine, but if you change an attribute, make sure to force skills to recalculate their pool by changing a value to something else and back, renaming, etc. I'm working on a fix.
                     <header class="skills-header flexrow">
                         <span>Roll</span>
                         <span class="skill-name">Name</span>
@@ -496,11 +497,11 @@
                     </header>
                     {{#each actor.items as |skill|}}
                     {{#ifeq skill.type "skill"}}
-                    <div draggable="true" class="draggable item skills-row flexrow" data-item-id="{{skill.id}}">
-                        <a class="rollable-general" data-description="{{skill.name}}" data-skill-dice="{{skill.data.pool}}" data-attribute-dice="{{skill.data.gradepool}}" data-actorId="{{../actor.id}}">⚄</a>
-                        <span><input class="skills-value" data-item-id="{{skill.id}}" data-binding="name"
+                    <div draggable="true" class="draggable item skills-row flexrow" data-item-id="{{skill._id}}">
+                        <a class="rollable-general" data-description="{{skill.name}}" data-skill-dice="{{skill.data.pool}}" data-attribute-dice="{{skill.data.gradepool}}" data-actorId="{{../actor.actor.id}}">⚄</a>
+                        <span><input class="skills-value" data-item-id="{{skill._id}}" data-binding="name"
                                 value="{{skill.name}}" type="text" data-dtype="text" /></span>
-                        <span><select class="skills-value" data-item-id="{{skill.id}}"
+                        <span><select class="skills-value" data-item-id="{{skill._id}}"
                                 data-binding="data.attribute" value="{{skill.data.attribute}}" type="number"
                                 data-dtype="Number">
                                 {{#select skill.data.attribute}}
@@ -509,11 +510,11 @@
                                 {{/each}}
                                 {{/select}}
                             </select></span>
-                        <span><input class="skills-value skills-num" data-item-id="{{skill.id}}"
+                        <span><input class="skills-value skills-num" data-item-id="{{skill._id}}"
                                 data-binding="data.score" value="{{skill.data.score}}" type="number"
                                 data-dtype="Number" /></span>
-                        <a class="rollable-general" data-description="{{skill.name}}" data-skill-dice="{{skill.data.pool}}" data-attribute-dice="{{skill.data.gradepool}}" data-actorId="{{../actor.id}}">{{skill.data.pool}}</a>
-                        <a class="fas fa-trash skill-delete" data-skillcode="{{skill.id}}"></a>
+                        <a class="rollable-general" data-description="{{skill.name}}" data-skill-dice="{{skill.data.pool}}" data-attribute-dice="{{skill.data.gradepool}}" data-actorId="{{../actor.actor.id}}">{{skill.data.pool}}</a>
+                        <a class="fas fa-trash skill-delete" data-skillcode="{{skill._id}}"></a>
                     </div>
                     {{/ifeq}}
                     {{/each}}

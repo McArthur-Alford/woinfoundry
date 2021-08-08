@@ -84,7 +84,7 @@ export class WOINActor extends Actor {
                 }
                 if (item.type === "exploit") {
                     let data = item.data;
-                    console.log(data);
+                    // console.log(data);
                     //console.log(data);
                     // Used to ensure old character sheets remain up to date:
                     if (data.style == null) {
@@ -158,26 +158,33 @@ export class WOINActor extends Actor {
 
             // Calculating Initiative:
             data.initiative.error = "error-red";
+            data.initiative.value = 0;
             let attdice = (data.attributes[data.initiative.skill]);
             if (attdice) {
                 data.initiative.value = attdice.dice;
                 data.initiative.error = "";
+                console.log(data.initiative.value);
             }
             else {
+                console.log(data.initiative.value);
                 actorData.items.forEach(skill => {
                     if (skill.type === "skill" && skill.name.toLowerCase() === data.initiative.skill.toLowerCase()) {
-                        data.initiative.value = skill.data.pool + skill.data.gradepool;
+                        console.log(skill.data); console.log(skill.data.gradepool);
+                        data.initiative.value = skill.data.data.pool + skill.data.data.gradepool;
                         data.initiative.error = "";
                     }
                 });
             }
+            console.log(data.initiative.value);
             if (data.initiative.value > data.advancement.dice_cap) {
                 data.initiative.value = data.advancement.dice_cap;
             }
             if (data.initiative.value < 0) {
                 data.initiative.value = 0;
             }
+            console.log(data.initiative.value);
             data.initiative.value = parseInt(data.initiative.value) + parseInt(data.initiative.mod);
+            console.log(data.initiative);
 
             // Calculating Credits:
             data.net_worth = data.credits || 0;

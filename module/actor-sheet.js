@@ -130,10 +130,10 @@ export class SimpleActorSheet extends ActorSheet {
     });
 
     // Handling Updates to Attributes:
-    html.find(".attribute input").change(ev => { this.updateAttributes(ev) });
+    html.find(".attribute input").change(ev => { this.updateAttributes(ev); });
 
     // Handling Updates to Skills:
-    html.find(".skills-value").change(ev => { this.updateSkill(ev); });
+    html.find(".skills-value").change(ev => { this.updateSkill(ev);});
     html.find(".skill-create").click(ev => { this.onClickSkillControl(ev, "create"); });
     html.find(".skill-delete").click(ev => { this.onClickSkillControl(ev, "delete"); });
 
@@ -182,8 +182,8 @@ export class SimpleActorSheet extends ActorSheet {
 
     // Adding new Exploits:
     html.find(".exploit-add").click(ev=>{
-      const item = new Item({name : "new item", type : "exploit", data : game.system.model.Item.exploit});
-      this.actor.createEmbeddedDocuments(item, {renderSheet: false});
+      const item = {name : "new item", type : "exploit", data : game.system.model.Item.exploit};
+      this.actor.createEmbeddedDocuments("Item", [item], {renderSheet: false});
     });
 
     //Handling Equipment/Exploit Expansion:
@@ -622,19 +622,23 @@ async updateAttributes(event) {
   event.preventDefault();
 
   const target = event.currentTarget.dataset.attribute;
-  //console.log("WOIN | Updating attributes for",this.actor.id,"| modified attribute is",target);
+  // console.log("WOIN | Updating attributes for",this.actor.id,"| modified attribute is",target);
   const input = ($(event.currentTarget)[0].value);
+  console.log(target, "this is target")
 
   const pool = [0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8]
-  const actor = duplicate(game.actors.get(this.actor.id));
+  const actor = duplicate(this.actor);
+  console.log(actor);
 
-  let data = actor.data
+  let data = actor.data;
+  console.log(data);
 
   // Calculating Attribute DPs:
   for (var key in data.attributes) {
       if (key === target && !isNaN(input)) {
-        data.attributes[key].value = input
+        data.attributes[key].value = parseInt(input);
       }
+      console.log(data.attributes[key].value);
       if (pool[data.attributes[key].value] != null) {
           data.attributes[key].dice = pool[data.attributes[key].value];
       } else {
@@ -774,39 +778,39 @@ async updateAttributes(event) {
 
 
 // ---------------------------------------------------------------------------------
-// The weird little function necessary for Drag&Drop to work in foundry:
-  /** @override */
-  async _onDrop(event) {
-    // Try to extract the data
-    let data;
-    try {
-      data = JSON.parse(event.dataTransfer.getData('text/plain'));
-      if (data.type !== "Item") return;
-    } catch (err) {
-      return false;
-    }
+// // The weird little function necessary for Drag&Drop to work in foundry:
+//   /** @override */
+//   async _onDrop(event) {
+//     // Try to extract the data
+//     let data;
+//     try {
+//       data = JSON.parse(event.dataTransfer.getData('text/plain'));
+//       if (data.type !== "Item") return;
+//     } catch (err) {
+//       return false;
+//     }
 
-    // Case 1 - Import from a Compendium pack
-    const actor = this.actor;
-    if (data.pack) {
-      return actor.importItemFromCollection(data.pack, data.id);
-    }
+//     // Case 1 - Import from a Compendium pack
+//     const actor = this.actor;
+//     if (data.pack) {
+//       return actor.importItemFromCollection(data.pack, data.id);
+//     }
 
-    // Case 2 - Data explicitly provided
-    else if (data.data) {
-      let sameActor = data.actorId === actor.id;
-      if (sameActor && actor.isToken) sameActor = data.tokenId === actor.token.id;
-      if (sameActor) return this._onSortItem(event, data.data); // Sort existing items
-      else return actor.createEmbeddedEntity("OwnedItem", duplicate(data.data));  // Create a new Item
-    }
+//     // Case 2 - Data explicitly provided
+//     else if (data.data) {
+//       let sameActor = data.actorId === actor.id;
+//       if (sameActor && actor.isToken) sameActor = data.tokenId === actor.token.id;
+//       if (sameActor) return this._onSortItem(event, data.data); // Sort existing items
+//       else return actor.createEmbeddedEntity("OwnedItem", duplicate(data.data));  // Create a new Item
+//     }
 
-    // Case 3 - Import from World entity
-    else {
-      let item = game.items.get(data.id);
-      if (!item) return;
-      return actor.createEmbeddedEntity("OwnedItem", duplicate(item.data));
-    }
-  }
+//     // Case 3 - Import from World entity
+//     else {
+//       let item = game.items.get(data.id);
+//       if (!item) return;
+//       return actor.createEmbeddedEntity("OwnedItem", duplicate(item.data));
+//     }
+//   }
 // ================================================================================
 }
 
