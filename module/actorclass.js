@@ -198,55 +198,55 @@ export class WOINActor extends Actor {
         }
     }
 
-    async addCondition(effect) {
-        if (typeof (effect) === "string")
-            effect = duplicate(CONFIG.statusEffects.find(e => e.id == effect))
-        if (!effect)
-            return "No Effect Found"
+    // async addCondition(effect) {
+    //     if (typeof (effect) === "string")
+    //         effect = duplicate(CONFIG.statusEffects.find(e => e.id == effect))
+    //     if (!effect)
+    //         return "No Effect Found"
 
-        if (!effect.id)
-            return "Conditions require an id field"
-
-
-        let existing = this.hasCondition(effect.id)
-
-        if (existing) {
-            existing = duplicate(existing)
-            existing.flags.woin.value = Math.min(2,existing.flags.woin.value+1);
-            return this.updateEmbeddedEntity("ActiveEffect", existing)
-        }
-        else if (!existing) {
-            effect.flags.woin.value = 1;
-            effect["flags.core.statusId"] = effect.id;
-            delete effect.id
-            return this.createEmbeddedEntity("ActiveEffect", effect)
-        }
-    }
-
-    async removeCondition(effect) {
-        if (typeof (effect) === "string")
-            effect = duplicate(CONFIG.statusEffects.find(e => e.id == effect))
-        if (!effect)
-            return "No Effect Found"
-
-        if (!effect.id)
-            return "Conditions require an id field"
-
-        let existing = this.hasCondition(effect.id)
-
-        if (existing) {
-            existing.flags.woin.value -= 1;
-            if (existing.flags.woin.value <= 0)
-                return this.deleteEmbeddedEntity("ActiveEffect", existing.id)
-            else
-                return this.updateEmbeddedEntity("ActiveEffect", existing)
-        }
-    }
+    //     if (!effect.id)
+    //         return "Conditions require an id field"
 
 
-    hasCondition(conditionKey) {
-        let existing = this.data.effects.find(i => getProperty(i, "flags.core.statusId") == conditionKey)
-        return existing
-    }
+    //     let existing = this.hasCondition(effect.id)
+
+    //     if (existing) {
+    //         existing = duplicate(existing)
+    //         existing.flags.woin.value = Math.min(2,existing.flags.woin.value+1);
+    //         return this.updateEmbeddedEntity("ActiveEffect", existing)
+    //     }
+    //     else if (!existing) {
+    //         effect.flags.woin.value = 1;
+    //         effect["flags.core.statusId"] = effect.id;
+    //         delete effect.id
+    //         return this.createEmbeddedDocuments("ActiveEffect", [effect])
+    //     }
+    // }
+
+    // async removeCondition(effect) {
+    //     if (typeof (effect) === "string")
+    //         effect = duplicate(CONFIG.statusEffects.find(e => e.id == effect))
+    //     if (!effect)
+    //         return "No Effect Found"
+
+    //     if (!effect.id)
+    //         return "Conditions require an id field"
+
+    //     let existing = this.hasCondition(effect.id)
+
+    //     if (existing) {
+    //         existing.flags.woin.value -= 1;
+    //         if (existing.flags.woin.value <= 0)
+    //             return this.deleteEmbeddedEntity("ActiveEffect", existing.id)
+    //         else
+    //             return this.updateEmbeddedEntity("ActiveEffect", existing)
+    //     }
+    // }
+
+
+    // hasCondition(conditionKey) {
+    //     let existing = this.data.effects.find(i => getProperty(i, "flags.core.statusId") == conditionKey)
+    //     return existing
+    // }
 
 }

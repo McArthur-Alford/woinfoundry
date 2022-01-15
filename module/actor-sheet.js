@@ -487,7 +487,7 @@ async calculateMovement() {
         const li = $(event.target);
         const exploit = li.data().exploitcode || li.data().skillcode;
   
-        actor.deleteOwnedItem(exploit);
+        actor.deleteEmbeddedDocuments("Item", [exploit]);
       }
 
       return new Promise(resolve => {

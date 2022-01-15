@@ -1,4 +1,7 @@
-# Version 4
+# Version 0.4.3
+-> Supports foundry v9, might be some bugs but it seems to work. Had to regress some of the status effect systems to get it to work.
+
+# Version 0.4
 -> Works for foundry 0.8.X with a few bugs still. We did it!
 # Version 0.3.1
 -> Added color settings to config. 
