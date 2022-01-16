@@ -3,8 +3,7 @@ WOINFoundry adds support for WOIN to Foundry. I made this system for my groups N
 
 Contributions for other compendiums would be appreciated.
 
-Currently the system runs stable on foundry 0.7, I haven't tested 0.8 enough.
-0.8 should work, but if you find bugs please report them.
+Currently the system runs stable on foundry v9, though given the upgrade was recent there may be some bugs (please report them if you run into any).
 
 # Pictures!
 ![Character Sheet](readme/charactersheet.png)
