@@ -6,37 +6,37 @@
         <div class="global-panel sheet-basic">
             <div class="resource health">
                 <h4> Health: </h4>
-                <input type="text" name="data.health.value" value="{{data.health.value}}" data-dtype="Number" />
-                <input type="text" name="data.health.max" value="{{data.health.max}}" data-dtype="Number" />
+                <input type="text" name="system.health.value" value="{{system.health.value}}" data-dtype="Number" />
+                <input type="text" name="system.health.max" value="{{system.health.max}}" data-dtype="Number" />
             </div>
             <div class="resource luck">
                 <h4> Luck: </h4>
-                <input type="text" name="data.luck.value" value="{{data.luck.value}}" data-dtype="Number" />
-                <input type="text" name="data.luck.max" value="{{data.luck.max}}" data-dtype="Number" readonly />
+                <input type="text" name="system.luck.value" value="{{system.luck.value}}" data-dtype="Number" />
+                <input type="text" name="system.luck.max" value="{{system.luck.max}}" data-dtype="Number" readonly />
             </div>
             <div class="resource maxpool">
                 <h4> Max Pool: </h4>
-                <input type="text" name="data.advancement.dice_cap" value="{{data.advancement.dice_cap}}"
+                <input type="text" name="system.advancement.dice_cap" value="{{system.advancement.dice_cap}}"
                     data-dtype="Number" />
                 <input type="text" readonly />
             </div>
             <div class="resource power">
                 <h4> Power: </h4>
-                <input type="text" name="data.power.value" value="{{data.power.value}}" data-dtype="Number" />
-                <input type="text" name="data.power.max" value="{{data.power.max}}" data-dtype="Number" />
+                <input type="text" name="system.power.value" value="{{system.power.value}}" data-dtype="Number" />
+                <input type="text" name="system.power.max" value="{{system.power.max}}" data-dtype="Number" />
             </div>
         </div>
 
         <div class="global-panel sheet-attributes">
-            {{#each data.attributes as |attr|}}
+            {{#each system.attributes as |attr|}}
             {{#if attr.label}}
             <div class="attribute">
                 <h4 class="rollable-general" data-description="{{attr.name}}" data-attribute-dice="{{attr.dice}}"
                     data-actorId="{{../actor.actor.id}}">{{attr.label}}:</h4>
                 <input data-attribute="{{attr.name}}" type="number" min="0" max="44" step="1"
-                    name="data.attributes.{{attr.name}}.value" value="{{attr.value}}" data-dtype="Number" />
+                    name="system.attributes.{{attr.name}}.value" value="{{attr.value}}" data-dtype="Number" />
                 <span></span>
-                <label type="text" name="data.attributes.{{attr.name}}.dice">{{attr.dice}}d6</label>
+                <label type="text" name="system.attributes.{{attr.name}}.dice">{{attr.dice}}d6</label>
             </div>
             {{/if}}
             {{/each}}
@@ -46,35 +46,35 @@
             <ul>
                 <li>
                     <span>Speed</span>
-                    <input type="number" name="data.movement.speed" value="{{data.movement.speed}}">
+                    <input type="number" name="system.movement.speed" value="{{system.movement.speed}}">
                 </li>
                 <li>
                     <span>Climb</span>
-                    <input type="number" name="data.movement.climb" value="{{data.movement.climb}}">
+                    <input type="number" name="system.movement.climb" value="{{system.movement.climb}}">
                 </li>
                 <li>
                     <span>Swim</span>
-                    <input type="number" name="data.movement.swim" value="{{data.movement.swim}}">
+                    <input type="number" name="system.movement.swim" value="{{system.movement.swim}}">
                 </li>
                 <li>
                     <span>Jump(H)</span>
-                    <input type="number" name="data.movement.jumpH" value="{{data.movement.jumpH}}">
+                    <input type="number" name="system.movement.jumpH" value="{{system.movement.jumpH}}">
                 </li>
                 <li>
                     <span>Jump(V)</span>
-                    <input type="number" name="data.movement.jumpV" value="{{data.movement.jumpV}}">
+                    <input type="number" name="system.movement.jumpV" value="{{system.movement.jumpV}}">
                 </li>
                 <li>
                     <span>High-G</span>
-                    <input type="number" name="data.movement.highG" value="{{data.movement.highG}}">
+                    <input type="number" name="system.movement.highG" value="{{system.movement.highG}}">
                 </li>
                 <li>
                     <span>Low-G</span>
-                    <input type="number" name="data.movement.lowG" value="{{data.movement.lowG}}">
+                    <input type="number" name="system.movement.lowG" value="{{system.movement.lowG}}">
                 </li>
                 <li>
                     <span>Zero-G</span>
-                    <input type="number" name="data.movement.zeroG" value="{{data.movement.zeroG}}">
+                    <input type="number" name="system.movement.zeroG" value="{{system.movement.zeroG}}">
                 </li>
             </ul>
             <a class="auto-calculate movement"><i class="fas fa-calculator"></i></a>
@@ -85,30 +85,30 @@
             <ul>
                 <li>
                     <span>Melee:</span>
-                    <input type="number" name="data.defense.melee" value="{{data.defense.melee}}">
+                    <input type="number" name="system.defense.melee" value="{{system.defense.melee}}">
                 </li>
                 <li>
                     <span>Ranged:</span>
-                    <input type="number" name="data.defense.ranged" value="{{data.defense.ranged}}">
+                    <input type="number" name="system.defense.ranged" value="{{system.defense.ranged}}">
                 </li>
                 <li>
                     <span>Mental:</span>
-                    <input type="number" name="data.defense.mental" value="{{data.defense.mental}}">
+                    <input type="number" name="system.defense.mental" value="{{system.defense.mental}}">
                 </li>
                 <li>
                     <span>Vital:</span>
-                    <input type="number" name="data.defense.vital" value="{{data.defense.vital}}">
+                    <input type="number" name="system.defense.vital" value="{{system.defense.vital}}">
                 </li>
             </ul>
             <h3>Soak:</h3>
             <ul>
                 <li>
                     <span>Natural</span>
-                    <input type="number" name="data.soak.natural" value="{{data.soak.natural}}">
+                    <input type="number" name="system.soak.natural" value="{{system.soak.natural}}">
                 </li>
                 <li>
                     <span>Armor</span>
-                    <input type="number" name="data.soak.armor" value="{{data.soak.armor}}">
+                    <input type="number" name="system.soak.armor" value="{{system.soak.armor}}">
                 </li>
             </ul>
         </div>
@@ -158,34 +158,34 @@
                 <div class="topbar">
                     <div class="topbar-item">
                         <span>Initiative Skill:</span>
-                        <input type="text" class="{{data.initiative.error}} initiative-skill" style="display:inline-block;"
-                        type="text" value="{{data.initiative.skill}}" name="data.initiative.skill">
+                        <input type="text" class="{{system.initiative.error}} initiative-skill" style="display:inline-block;"
+                        type="text" value="{{system.initiative.skill}}" name="system.initiative.skill">
                     </div>
                     <div class="topbar-item">
                         <span>Modifier:</span>
-                        <input type="text" name="data.initiative.mod" value="{{data.initiative.mod}}"
+                        <input type="text" name="system.initiative.mod" value="{{system.initiative.mod}}"
                             style="display:inline-block">
                     </div>
                 </div>
                 {{#each actor.items as |item|}}
                 {{#ifeq item.type "item"}}
-                {{#ifeq item.data.type "weapon"}}
+                {{#ifeq item.system.type "weapon"}}
                 <div class="combat-row" style="display:flex">
                     <span class="exploit-row-name">{{item.name}}</span>
-                    <span class="combat-range">{{item.data.weapon.range}}</span>
+                    <span class="combat-range">{{item.system.weapon.range}}</span>
                     <span class="combat-skill">
-                        <input class="{{item.data.error}}" style="display:inline-block;" data-itemId="{{item._id}}"
-                            type="text" value="{{item.data.skill}}">
+                        <input class="{{item.system.error}}" style="display:inline-block;" data-itemId="{{item._id}}"
+                            type="text" value="{{item.system.skill}}">
                         <a class="rollable-attack" data-itemId="{{item._id}}" data-actorId="{{../actor.actor.id}}"
                             data-description="{{item.name}}" style="display:inline-block">⚄</a>
                     </span>
                     <a 
-                    data-description="{{item.data.weapon.damagetype}}" data-skill-dice="{{item.data.weapon.damagedice}}" data-attribute-dice="0" data-actorId="{{../actor.actor.id}}"
-                    data-constant1="{{item.data.weapon.bonusdamage}}" data-constant2="{{item.data.weapon.skilldamage}}"
-                        class="rollable-general combat-dicepool">{{item.data.weapon.bonusdamage}}+{{item.data.weapon.damagedice}}d6+{{item.data.weapon.skilldamage}}
+                    data-description="{{item.system.weapon.damagetype}}" data-skill-dice="{{item.system.weapon.damagedice}}" data-attribute-dice="0" data-actorId="{{../actor.actor.id}}"
+                    data-constant1="{{item.system.weapon.bonusdamage}}" data-constant2="{{item.system.weapon.skilldamage}}"
+                        class="rollable-general combat-dicepool">{{item.system.weapon.bonusdamage}}+{{item.system.weapon.damagedice}}d6+{{item.system.weapon.skilldamage}}
                         ⚄</a>
-                    <span class="combat-damagetype">{{#each item.data.weapon.damagetype}}{{this}} {{/each}}</span>
-                    <span class="combat-special">{{item.data.weapon.special}}</span>
+                    <span class="combat-damagetype">{{#each item.system.weapon.damagetype}}{{this}} {{/each}}</span>
+                    <span class="combat-special">{{item.system.weapon.special}}</span>
 
                 </div>
                 {{/ifeq}}
@@ -198,20 +198,20 @@
 
                 <section class="profile-fields">
                     <div style="float:left" class="profile-img-surrounding">
-                        <img class="profile-img" src="{{actor.data.img}}" data-edit="img" title="{{actor.data.name}}" height="100"
+                        <img class="profile-img" src="{{actor.actor.img}}" data-edit="img" title="{{actor.actor.name}}" height="100"
                             width="100" />
                     </div>
                     <div>
                         <div class="details">
                             <span>Name:</span>
-                            <input style="width:300px" type="text" value="{{actor.data.name}}" name="name">
+                            <input style="width:300px" type="text" value="{{actor.actor.name}}" name="name">
                         </div>
                         <div class="details"> <span>Is a:</span>
-                            <input style="width:300px" type="text" value="{{data.details.is}}" name="data.details.is">
+                            <input style="width:300px" type="text" value="{{system.details.is}}" name="system.details.is">
                         </div>
                         <div class="details"> <span>With/Who:</span>
-                            <input style="width:300px" type="text" value="{{data.details.with}}"
-                                name="data.details.with">
+                            <input style="width:300px" type="text" value="{{system.details.with}}"
+                                name="system.details.with">
                         </div>
                     </div>
                 </section>
@@ -221,47 +221,47 @@
 
                 <section class="character-details">
                     <div class="details"> <span>Species:</span>
-                        <input type="text" value="{{data.details.species}}" name="data.details.species">
+                        <input type="text" value="{{system.details.species}}" name="system.details.species">
                     </div>
                     <div class="details"> <span>Gender:</span>
-                        <input type="text" value="{{data.details.gender}}" name="data.details.gender">
+                        <input type="text" value="{{system.details.gender}}" name="system.details.gender">
                     </div>
                     <div class="details"><span>Age:</span>
-                        <input type="text" value="{{data.details.age}}" name="data.details.age">
+                        <input type="text" value="{{system.details.age}}" name="system.details.age">
                     </div>
                     <div class="details"> <span>Height:</span>
-                        <input type="text" value="{{data.details.height}}" name="data.details.height">
+                        <input type="text" value="{{system.details.height}}" name="system.details.height">
                     </div>
                     <div class="details"> <span>Weight:</span>
-                        <input type="text" value="{{data.details.weight}}" name="data.details.weight">
+                        <input type="text" value="{{system.details.weight}}" name="system.details.weight">
                     </div>
                     <div class="details"> <span>Size:</span>
-                        <input type="text" value="{{data.details.size}}" name="data.details.size">
+                        <input type="text" value="{{system.details.size}}" name="system.details.size">
                     </div>
                     <div class="details"> <span>Traits:</span>
-                        <input type="text" value="{{data.details.traits}}" name="data.details.traits">
+                        <input type="text" value="{{system.details.traits}}" name="system.details.traits">
                     </div>
 
 
                     <div class="details"> <span>Homeworld:</span>
-                        <input type="text" value="{{data.details.homeworld}}" name="data.details.homeworld">
+                        <input type="text" value="{{system.details.homeworld}}" name="system.details.homeworld">
                     </div>
                     <div class="details"> <span>Origin:</span>
-                        <input type="text" value="{{data.details.origin}}" name="data.details.origin">
+                        <input type="text" value="{{system.details.origin}}" name="system.details.origin">
                     </div>
 
                     <div class="details"> <span>Deity:</span>
-                        <input type="text" value="{{data.details.deity}}" name="data.details.deity">
+                        <input type="text" value="{{system.details.deity}}" name="system.details.deity">
                     </div>
 
 
                     <div class="details"> <span>Carry_Increment:</span>
-                        <input type="text" value="{{data.details.carry_increment}}" name="data.details.carry_increment">
+                        <input type="text" value="{{system.details.carry_increment}}" name="system.details.carry_increment">
                     </div>
 
 
                     <div class="details"> <span>Shadow Track:</span>
-                        <input type="text" value="{{data.details.shadow}}" name="data.details.shadow">
+                        <input type="text" value="{{system.details.shadow}}" name="system.details.shadow">
                     </div>
                 </section>
 
@@ -282,7 +282,7 @@
                 <br>
 
                 <h1>Description:</h1>
-                {{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
+                {{editor system.biography target="system.biography" button=true owner=owner editable=editable}}
             </div>
 
             {{!-- Advancement Tab --}}
@@ -290,21 +290,21 @@
                 <header class="advancement-header">
                     <div class="topbar">
                         <div class="topbar-item">
-                            <span class="advancement-label">Total XP:</span>
-                            <input class="" type="text" readonly value="{{data.advancement.xp_total}}"
-                                name="data.advancement.xp_total" data-dtype="text">
+                            <span class="advancement-label">Unspent XP:</span>
+                            <input class="" type="text" readonly value="{{system.advancement.xp_total}}"
+                                name="system.advancement.xp_total" data-dtype="text">
                         </div>
                         <div class="topbar-item">
                             <span class="advancement-label">Grade:</span>
-                            <input class="" type="text" value="{{data.advancement.grade}}" name="data.advancement.grade"
+                            <input class="" type="text" value="{{system.advancement.grade}}" name="system.advancement.grade"
                                 data-dtype="text">
                         </div>
                     </div>
 
                     <!-- <div>
                         <span class="advancement-label">Dice Cap:</span>
-                        <input class="" type="text" readonly value="{{data.advancement.dice_cap}}"
-                            name="data.advancement.dice_cap" data-dtype="Text">
+                        <input class="" type="text" readonly value="{{system.advancement.dice_cap}}"
+                            name="system.advancement.dice_cap" data-dtype="Text">
                     </div> -->
                 </header>
 
@@ -312,7 +312,7 @@
                     <h2 class="flexrow">XP Gained</h2>
                     <a class="flexrow advancement-add-gain">add</a>
                 </header>
-                {{#each data.advancement.xp_gain as |row|}}
+                {{#each system.advancement.xp_gain as |row|}}
                 <div class="flexrow xp-row">
                     <span>Name:</span>
                     <input value="{{row.name}}" class="advancement-input" data-index="{{@index}}" data-key="gain_name"
@@ -328,7 +328,7 @@
                     <h2 class="flexrow">XP Spent</h2>
                     <a class="flexrow advancement-add-spend">add</a>
                 </header>
-                {{#each data.advancement.xp_spent as |row|}}
+                {{#each system.advancement.xp_spent as |row|}}
                 <div class="flexrow xp-row neg">
                     <span>Name:</span>
                     <input value="{{row.name}}" class="advancement-input" data-index="{{@index}}" data-key="spent_name"
@@ -346,39 +346,39 @@
                 <div class="topbar">
                     <div class="topbar-item">
                         <span>Credits:</span>
-                        <input type="number" name="data.credits" value="{{data.credits}}" />
+                        <input type="number" name="system.credits" value="{{system.credits}}" />
                     </div>
                     <div class="topbar-item">
                         <span>Net Worth:</span>
-                        <input type="number" readonly value={{data.net_worth}}></input>
+                        <input type="number" readonly value={{system.net_worth}}></input>
                     </div>
                     <div class="topbar-item">
                         <a class="item-add">Add New</a>
                     </div>
                 </div>
                 <div class="carry-increment">
-                    <span class="">{{data.carry.carried}}/{{data.details.carry_increment}} Carried:</span>
-                    <progress class="carry-bar" id="file" value="{{data.carry.carried}}"
-                        max="{{data.details.carry_increment}}"></progress>
+                    <span class="">{{system.carry.carried}}/{{system.details.carry_increment}} Carried:</span>
+                    <progress class="carry-bar" id="file" value="{{system.carry.carried}}"
+                        max="{{system.details.carry_increment}}"></progress>
                 </div>
                 <div class="container">
                     <h1>Carried:</h1>
                     {{#each actor.items as |item|}}
                     {{#ifeq item.type "item"}}
-                    {{#ifeq item.data.carried true}}
+                    {{#ifeq item.system.carried true}}
                     <div draggable="true" data-item-id="{{item._id}}" class="draggable item">
                         <div data-item-id="{{item._id}}"
-                            class="exploits-row description-show item-row flexrow {{item.data.type}}"
+                            class="exploits-row description-show item-row flexrow {{item.system.type}}"
                             data-item-id="{{item._id}}">
-                            <a data-title="{{item.name}}" data-description="{{item.data.description}}"
+                            <a data-title="{{item.name}}" data-description="{{item.system.description}}"
                                 class="display-to-chat item-button">⚄</a>
                             <span class="exploit-row-name">{{item.name}}</span>
-                            <span class="item-row-quantity item-number">Quantity:{{item.data.quantity}}</span>
+                            <span class="item-row-quantity item-number">Quantity:{{item.system.quantity}}</span>
                             <span
-                                class="item-row-weight item-number">Weight:{{item.data.weight}}{{#ifeq item.data.weight null}}none{{/ifeq}}</span>
+                                class="item-row-weight item-number">Weight:{{item.system.weight}}{{#ifeq item.system.weight null}}none{{/ifeq}}</span>
                             <a class="fas fa-briefcase item-carry item-button item-id disabled-false"
                                 data-item-id="{{item._id}}"></a>
-                            <a class="fas fa-tshirt item-equip item-button item-id disabled-{{item.data.equipped}}"
+                            <a class="fas fa-tshirt item-equip item-button item-id {{#if item.system.equipped}}disabled-false{{else}}disabled-true{{/if}}"
                                 data-item-id="{{item._id}}"></a>
                             <a class="fas fa-edit item-open item-button item-id item-edit" data-item-id="{{item._id}}"
                                 data-exploitcode="{{item._id}}"></a>
@@ -386,12 +386,12 @@
 
                             </a>
                         </div>
-                        {{#if item.data.open}}
+                        {{#if item.system.open}}
                         <div data-item-id="{{item._id}}" class="item-description">
                             {{else}}
                             <div data-item-id="{{item._id}}" class="item-description" hidden>
                                 {{/if}}
-                                <span class="exploit-row-description">{{{enrichHTML item.data.description}}}</span>
+                                <span class="exploit-row-description">{{{enrichHTML item.system.description}}}</span>
 
                             </div>
                         </div>
@@ -404,17 +404,17 @@
                         <h1>Uncarried:</h1>
                         {{#each actor.items as |item|}}
                         {{#ifeq item.type "item"}}
-                        {{#ifeq item.data.carried false}}
+                        {{#ifeq item.system.carried false}}
                         <div draggable="true" data-item-id="{{item._id}}" class="draggable item">
                             <div data-item-id="{{item._id}}"
-                                class="exploits-row description-show item-row flexrow {{item.data.type}}"
+                                class="exploits-row description-show item-row flexrow {{item.system.type}}"
                                 data-item-id="{{item._id}}">
-                                <a data-title="{{item.name}}" data-description="{{item.data.description}}"
+                                <a data-title="{{item.name}}" data-description="{{item.system.description}}"
                                     class="display-to-chat item-button">⚄</a>
                                 <span class="exploit-row-name">{{item.name}}</span>
-                                <span class="item-row-quantity item-number">Quantity:{{item.data.quantity}}</span>
+                                <span class="item-row-quantity item-number">Quantity:{{item.system.quantity}}</span>
                                 <span
-                                    class="item-row-weight item-number">Weight:{{item.data.weight}}{{#ifeq item.data.weight null}}none{{/ifeq}}</span>
+                                    class="item-row-weight item-number">Weight:{{item.system.weight}}{{#ifeq item.system.weight null}}none{{/ifeq}}</span>
                                 <a class="fas fa-briefcase item-carry item-button item-id disabled-true"
                                     data-item-id="{{item._id}}"></a>
                                 <a class="fas fa-tshirt item-button item-id disabled-true"
@@ -426,12 +426,12 @@
 
                                 </a>
                             </div>
-                            {{#if item.data.open}}
+                            {{#if item.system.open}}
                             <div data-item-id="{{item._id}}" class="item-description">
                                 {{else}}
                                 <div data-item-id="{{item._id}}" class="item-description" hidden>
                                     {{/if}}
-                                    <span class="exploit-row-description">{{{enrichHTML item.data.description}}}</span>
+                                    <span class="exploit-row-description">{{{enrichHTML item.system.description}}}</span>
 
                                 </div>
                             </div>
@@ -455,9 +455,9 @@
                     {{#each actor.items as |exploit|}}
                     {{#ifeq exploit.type "exploit"}}
                     <div draggable="true" data-item-id="{{exploit._id}}" class="draggable item">
-                        <div class="description-show exploits-row flexrow {{exploit.data.style}}"
+                        <div class="description-show exploits-row flexrow {{exploit.system.style}}"
                             data-item-id="{{exploit._id}}">
-                            <a data-description="{{exploit.data.description}}" data-title="{{exploit.name}}"
+                            <a data-description="{{exploit.system.description}}" data-title="{{exploit.name}}"
                                 class="display-to-chat item-button">⚄</a>
                             <span data-item-id="{{exploit._id}}" class="exploit-row-name"
                                 style="flex-grow: 2; flex-shrink:1;">{{exploit.name}}</span>
@@ -468,13 +468,13 @@
 
                             </a>
                         </div>
-                        {{#if exploit.data.open}}
+                        {{#if exploit.system.open}}
                         <div data-item-id="{{exploit._id}}" class="item-description">
                             {{else}}
                             <div data-item-id="{{exploit._id}}" class="item-description" hidden>
                                 {{/if}}
                                 <span
-                                    class="exploit-row-description">{{{enrichHTML exploit.data.description}}}</span>
+                                    class="exploit-row-description">{{{enrichHTML exploit.system.description}}}</span>
 
                             </div>
                         </div>
@@ -498,22 +498,22 @@
                     {{#each actor.items as |skill|}}
                     {{#ifeq skill.type "skill"}}
                     <div draggable="true" class="draggable item skills-row flexrow" data-item-id="{{skill._id}}">
-                        <a class="rollable-general" data-description="{{skill.name}}" data-skill-dice="{{skill.data.pool}}" data-attribute-dice="{{skill.data.gradepool}}" data-actorId="{{../actor.actor.id}}">⚄</a>
+                        <a class="rollable-general" data-description="{{skill.name}}" data-skill-dice="{{skill.system.pool}}" data-attribute-dice="{{skill.system.gradepool}}" data-actorId="{{../actor.actor.id}}">⚄</a>
                         <span><input class="skills-value" data-item-id="{{skill._id}}" data-binding="name"
                                 value="{{skill.name}}" type="text" data-dtype="text" /></span>
                         <span><select class="skills-value" data-item-id="{{skill._id}}"
-                                data-binding="data.attribute" value="{{skill.data.attribute}}" type="number"
+                                data-binding="system.attribute" value="{{skill.system.attribute}}" type="number"
                                 data-dtype="Number">
-                                {{#select skill.data.attribute}}
-                                {{#each ../data.attributes as |attr|}}
+                                {{#select skill.system.attribute}}
+                                {{#each ../system.attributes as |attr|}}
                                 <option value="{{attr.name}}">{{attr.name}}</option>
                                 {{/each}}
                                 {{/select}}
                             </select></span>
                         <span><input class="skills-value skills-num" data-item-id="{{skill._id}}"
-                                data-binding="data.score" value="{{skill.data.score}}" type="number"
+                                data-binding="system.score" value="{{skill.system.score}}" type="number"
                                 data-dtype="Number" /></span>
-                        <a class="rollable-general" data-description="{{skill.name}}" data-skill-dice="{{skill.data.pool}}" data-attribute-dice="{{skill.data.gradepool}}" data-actorId="{{../actor.actor.id}}">{{skill.data.pool}}</a>
+                        <a class="rollable-general" data-description="{{skill.name}}" data-skill-dice="{{skill.system.pool}}" data-attribute-dice="{{skill.system.gradepool}}" data-actorId="{{../actor.actor.id}}">{{skill.system.pool}}</a>
                         <a class="fas fa-trash skill-delete" data-skillcode="{{skill._id}}"></a>
                     </div>
                     {{/ifeq}}

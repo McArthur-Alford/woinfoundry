@@ -1,5 +1,5 @@
 export function overrides() {
-    //console.log("WOIN | Overrides Started")
+    //console.log("WOIN | overrides.js overrides Overrides Started")
     // TokenHUD.prototype._onToggleEffect = function (event, { overlay = false } = {}) {
     //     event.preventDefault();
     //     let img = event.currentTarget;
@@ -35,10 +35,10 @@ export function overrides() {
 
     // Token.prototype.drawEffects = async function drawEffects() {
     //     // this.effects.children().forEach(c => c.destroy());
-    //     const tokenEffects = this.data.effects;
+    //     const tokenEffects = this.system.effects;
     //     const actorEffects = this.actor?.temporaryEffects || [];
     //     let overlay = {
-    //         src: this.data.overlayEffect,
+    //         src: this.system.overlayEffect,
     //         tint: null
     //     };
 
@@ -51,14 +51,14 @@ export function overrides() {
 
     //         // Draw actor effects first
     //         for (let f of actorEffects) {
-    //             if (!f.data.icon) continue;
-    //             const tint = f.data.tint ? colorStringToHex(f.data.tint) : null;
+    //             if (!f.system.icon) continue;
+    //             const tint = f.system.tint ? colorStringToHex(f.system.tint) : null;
     //             if (f.getFlag("core", "overlay")) {
-    //                 overlay = { src: f.data.icon, tint };
+    //                 overlay = { src: f.system.icon, tint };
     //                 continue;
     //             }
-    //             console.log(f);
-    //             promises.push(this._drawEffect(f.data.icon, i, bg, w, tint, f.data.flags.woin.value));
+    //             console.log("WOIN | overrides.js overrides f ", f);
+    //             promises.push(this._drawEffect(f.system.icon, i, bg, w, tint, f.system.flags.woin.value));
     //             i++;
     //         }
 
@@ -77,7 +77,7 @@ export function overrides() {
     // Token.prototype._drawEffect = async function (src, i, bg, w, tint, value) {
     //     let tex = await loadTexture(src);
     //     let icon = this.effects.addChild(new PIXI.Sprite(tex));
-    //     console.log(icon);
+    //     console.log("WOIN | overrides.js overrides icon ", icon);
     //     w = w * 2
 
     //     icon.width = icon.height = w;
