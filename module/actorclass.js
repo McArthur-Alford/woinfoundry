@@ -3,8 +3,6 @@ export class WOINActor extends Actor {
         super.prepareData();
         const actorData = this;
         const data = actorData.system;
-        // TODO: Is this const pool unused?
-        const pool = [0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8]
 
         console.log("WOIN | actorclass.js prepareData beginning actorData ", actorData);
         if (actorData.type === "character") {
@@ -18,9 +16,6 @@ export class WOINActor extends Actor {
                 xp -= parseInt(element.value);
             });
             data.advancement.xp_total = xp;
-                        data.advancement.xp_gain.forEach(element => {
-                xp += parseInt(element.value);
-            });
 
             // Calculating Max Pool
             let grade = parseInt(data.advancement.grade);
@@ -45,8 +40,6 @@ export class WOINActor extends Actor {
 
             // Calculating Skills:
             actorData.items.forEach(item => {
-                if (item.type === "skill") {
-                 }
                 if (item.type === "exploit") {
                     let data = item.system;
                     // console.log("WOIN | actorclass.js prepareData data ", data);

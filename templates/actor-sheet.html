@@ -271,9 +271,9 @@
 
                 {{#each actor.items as |language|}}
                 {{#ifeq language.type "language"}}
-                <div class="language" data-item-id="{{language.id}}">
+                <div class="language" data-item-id="{{language._id}}">
                     {{language.name}}
-                    <a class="fas fa-trash exploit-delete" data-exploitcode="{{language.id}}"></a>
+                    <a class="fas fa-trash exploit-delete" data-exploitcode="{{language._id}}"></a>
                 </div>
                 {{/ifeq}}
                 {{/each}}

@@ -28,7 +28,7 @@ export class SimpleActorSheet extends ActorSheet {
     /** @override */
     getData() {
       const baseData = super.getData();
-      // console.log("WOIN | actor-sheet.js getData baseData ", baseData);
+      //console.log("WOIN | actor-sheet.js getData baseData ", baseData);
       let sheetData = {
         owner: this.isOwner,
         editable: this.isEditable,
@@ -391,7 +391,6 @@ async calculateMovement() {
 
   function calc(originalActor) {
     let actor = duplicate(originalActor);
-    //console.log("WOIN | actor-sheet.js calculateMovement calc actor.system.attributes ", actor.system.attributes);
     let data = actor.system;
     let movement = data.movement;
     let attributes = data.attributes;
@@ -401,6 +400,7 @@ async calculateMovement() {
     let zerog = 0;
     let highg = 0;
     let lowg = 0;
+    //console.log("WOIN | actor-sheet.js calculateMovement calc attributes ", attributes);
 
     actor.items.forEach(item => {
       if(item.type == "skill") {
@@ -599,10 +599,10 @@ async updateAttributes(event) {
   event.preventDefault();
 
   const target = event.currentTarget.dataset.attribute;
-  // console.log("WOIN | actor-sheet.js updateAttributes Updating attributes for",this.actor.id,"| modified attribute is",target);
+  //console.log("WOIN | actor-sheet.js updateAttributes Updating attributes for ", this.actor.id, " | modified attribute is", target);
   const input = ($(event.currentTarget)[0].value);
-  console.log("WOIN | actor-sheet.js updateAttributes target ", target);
 
+  // The pool table maps the number of dice in the attribute's dice pool based on the attribute's value.
   const pool = [0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8]
   const actor = duplicate(this.actor);
   console.log("WOIN | actor-sheet.js updateAttributes actor ", actor);
@@ -610,12 +610,12 @@ async updateAttributes(event) {
   let data = actor.system;
   console.log("WOIN | actor-sheet.js updateAttributes data ", data);
 
-  // Calculating Attribute DPs:
+  // Calculating Attribute Dice Pools:
   for (var key in data.attributes) {
       if (key === target && !isNaN(input)) {
         data.attributes[key].value = parseInt(input);
       }
-      console.log("WOIN | actor-sheet.js updateAttributes  data.attributes[key].value ", data.attributes[key].value);
+      //console.log("WOIN | actor-sheet.js updateAttributes  data.attributes[key].value ", data.attributes[key].value);
       if (pool[data.attributes[key].value] != null) {
           data.attributes[key].dice = pool[data.attributes[key].value];
       } else {
@@ -624,23 +624,17 @@ async updateAttributes(event) {
   };
 
   // Calculating Luck:
-  data.luck.max = data.attributes.luck.dice
+  data.luck.max = data.attributes.luck.dice;
   if (data.luck.value > data.luck.max) {
       data.luck.value = data.luck.max;
   }
-  if (data.luck.value < 0) {
-      data.luck.value = 0;
-  }
-  if (!data.luck.value) {
+  if ((data.luck.value < 0) || (!data.luck.value)) {
       data.luck.value = 0;
   }
   if (data.power.value > data.power.max) {
       data.power.value = data.power.max;
   }
-  if (data.power.value < 0) {
-      data.power.value = 0;
-  }
-  if (!data.power.value) {
+  if ((data.power.value < 0) || (!data.power.value)) {
       data.power.value = 0;
   }
 
@@ -669,9 +663,6 @@ async updateAttributes(event) {
     if (item.system[dataset.binding] && item.system[dataset.binding] === input) {
       return;
     }
-    else if (item.system[dataset.binding] && item.system[dataset.binding] === input) {
-      return;
-    };
 
     await item.update({
       [dataset.binding]: input

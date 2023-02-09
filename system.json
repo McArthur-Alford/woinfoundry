@@ -10,10 +10,17 @@
   },
   "authors": [
     {
-      "name": "mcarthur"
+      "name": "mcarthur",
+      "discord": "McArthur#2854"
     },
     {
       "name": "Ghostroo"
+    },
+    {
+      "id": "Sean Lambert",
+      "email": "sum1els@sum1els.com",
+      "url": "https://sum1els.com",
+      "discord": "sum1els#3672"
     }
   ],
   "esmodules": ["module/simple.js"],
