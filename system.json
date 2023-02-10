@@ -2,26 +2,36 @@
   "name": "woinfoundry",
   "title": "WOIN Foundry",
   "description": "An implementation of WOIN NEW for foundry, capable of running other WOIN systems (though without premade compendiums).",
-  "version": "0.4.3",
-  "minimumCoreVersion": "9.242",
-  "compatibleCoreVersion": "9.242",
-  "author": "mcarthur, Ghostroo",
-  "esmodules": ["module/simple.js"],
-  "styles": ["styles/stylev2.css"],
-  "languages": [
+  "version": "0.4.4",
+  "compatibility": {
+    "minimum": "10",
+    "verified": "10",
+    "maximum": "10"
+  },
+  "authors": [
     {
-      "lang": "en",
-      "name": "English",
-      "path": "lang/en.json"
+      "name": "mcarthur",
+      "discord": "McArthur#2854"
+    },
+    {
+      "name": "Ghostroo"
+    },
+    {
+      "name": "Sean Lambert",
+      "email": "sum1els@sum1els.com",
+      "url": "https://sum1els.com",
+      "discord": "sum1els#3672"
     }
   ],
+  "esmodules": ["module/simple.js"],
+  "styles": ["styles/stylev2.css"],
   "gridDistance": 5,
   "gridUnits": "ft",
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power",
   "url": "https://github.com/McArthur-Alford/woinfoundry",
-  "manifest": "https://github.com/McArthur-Alford/woinfoundry/releases/download/0.4.3/system.json",
-  "download": "https://github.com/McArthur-Alford/woinfoundry/releases/download/0.4.3/system.zip",
+  "manifest": "https://github.com/McArthur-Alford/woinfoundry/releases/download/0.4.4/system.json",
+  "download": "https://github.com/McArthur-Alford/woinfoundry/releases/download/0.4.4/system.zip",
   "license": "LICENSE.txt",
   "packs": [
     {
@@ -30,7 +40,7 @@
       "system": "woinfoundry",
       "module": "woinfoundry",
       "path": "packs/exploits.db",
-      "entity": "Item"
+      "type": "Item"
     },
     {
       "name": "items",
@@ -38,7 +48,7 @@
       "system": "woinfoundry",
       "module": "woinfoundry",
       "path": "packs/items.db",
-      "entity": "Item"
+      "type": "Item"
     },
     {
       "name": "armor",
@@ -46,7 +56,7 @@
       "system": "woinfoundry",
       "module": "woinfoundry",
       "path": "packs/armor.db",
-      "entity": "Item"
+      "type": "Item"
     },
     {
       "name": "weapons-ranged-exotic",
@@ -54,7 +64,7 @@
       "system": "woinfoundry",
       "module": "woinfoundry",
       "path": "packs/weapons-ranged-exotic.db",
-      "entity": "Item"
+      "type": "Item"
     },
     {
       "name": "weapons-ranged",
@@ -62,7 +72,7 @@
       "system": "woinfoundry",
       "module": "woinfoundry",
       "path": "packs/weapons-ranged.db",
-      "entity": "Item"
+      "type": "Item"
     },
     {
       "name": "weapons-melee",
@@ -70,7 +80,7 @@
       "system": "woinfoundry",
       "module": "woinfoundry",
       "path": "packs/weapons-melee.db",
-      "entity": "Item"
+      "type": "Item"
     },
     {
       "name": "explosive-ordinance",
@@ -78,7 +88,7 @@
       "system": "woinfoundry",
       "module": "woinfoundry",
       "path": "packs/explosive-ordinance.db",
-      "entity": "Item"
+      "type": "Item"
     },
     {
       "name": "melee-weapons-exotic",
@@ -86,7 +96,7 @@
       "system": "woinfoundry",
       "module": "woinfoundry",
       "path": "packs/melee-weapons-exotic.db",
-      "entity": "Item"
+      "type": "Item"
     },
     {
       "name": "languages",
@@ -94,7 +104,7 @@
       "system": "woinfoundry",
       "module": "woinfoundry",
       "path": "packs/languages-new.db",
-      "entity": "Item"
+      "type": "Item"
     }
   ]
 }

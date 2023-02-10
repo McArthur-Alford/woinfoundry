@@ -1,3 +1,9 @@
+# Version 0.4.4
+-> Supports foundry v10.
+-> Standardization of lazy logging.
+-> Autocalculation of max pool (dice_cap).
+-> Prior bugs still exist.
+
 # Version 0.4.3
 -> Supports foundry v9, might be some bugs but it seems to work. Had to regress some of the status effect systems to get it to work.
 

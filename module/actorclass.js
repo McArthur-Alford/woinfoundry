@@ -1,91 +1,48 @@
 export class WOINActor extends Actor {
     prepareData() {
         super.prepareData();
-        const actorData = this.data;
-        const data = actorData.data;
-        const pool = [0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8]
-        if (actorData.type === "character") {
+        const actorData = this;
+        const data = actorData.system;
 
-            // console.log("__=========New_Iteration===========__")
-            // // Calculating Attribute DPs:
-            // for (var key in data.attributes) {
-            //     console.log("=NewLine=");
-            //     console.log("Key:",key);
-            //     if (pool[data.attributes[key].value] != null) {
-            //         console.log("Value:",data.attributes[key].value);
-            //         console.log("Initial:",data.attributes[key].dice);
-            //         data.attributes[key].dice = pool[data.attributes[key].value];
-            //         console.log("Final:",data.attributes[key].dice);
-            //     } else {
-            //         console.error(`${data.attributes[key].label} out of bounds.`);
-            //         data.attributes[key].dice = 0;
-            //     }
-            // };
+        console.log("WOIN | actorclass.js prepareData beginning actorData ", actorData);
+        if (actorData.type === "character") {
 
             // Calculating Advancement:
             let xp = 0;
-            data.advancement.xp_spent.forEach(element => {
-                xp -= parseInt(element.value);
-            });
             data.advancement.xp_gain.forEach(element => {
                 xp += parseInt(element.value);
             });
+            data.advancement.xp_spent.forEach(element => {
+                xp -= parseInt(element.value);
+            });
             data.advancement.xp_total = xp;
+
+            // Calculating Max Pool
+            let grade = parseInt(data.advancement.grade);
+            console.log("WOIN | actorclass.js prepareData grade ", grade);
+            // Note: To escape this forced calculation, users can set their grade to "_7" or some other string.
+            if ((typeof(grade) === "number") && (!isNaN(grade))) {
+                if (grade < 6) {
+                    data.advancement.dice_cap = 5;
+                } else if (grade < 8) {
+                    data.advancement.dice_cap = 6;
+                } else if (grade < 11) {
+                    data.advancement.dice_cap = 7;
+                } else if (grade < 15) {
+                    data.advancement.dice_cap = 8;
+                } else if (grade < 20) {
+                    data.advancement.dice_cap = 9;
+                } else {
+                    // The table only goes to grade 25 but the math breaks down well before this anyway.
+                    data.advancement.dice_cap = 10;
+                }
+            }
 
             // Calculating Skills:
             actorData.items.forEach(item => {
-                if (item.type === "skill") {
-                    // let data = duplicate(item.data);
-                    // let compare = duplicate(item.data);
-                    // let changed = false;
-                    // if (data.gradepool != actorData.data.attributes[`${data.attribute}`]["dice"]) {
-                    //     data.gradepool = actorData.data.attributes[`${data.attribute}`]["dice"];
-                    //     changed = true;
-                    //     // this.updateOwnedItem(item, { "data.pool": data.pool });
-                    // }
-                    // if (data.score >= pool.length) {
-                    //     data.score = pool.length - 1;
-                    //     data.pool = pool[data.score];
-                    //     data.gradepool = actorData.data.attributes[`${data.attribute}`]["dice"];
-                    //     changed = true;
-                    //     // this.updateOwnedItem(item, { "data.pool": data.pool });
-                    // }
-                    // if (data.score < 0) {
-                    //     data.score = 0;
-                    //     data.pool = pool[data.score];
-                    //     data.gradepool = actorData.data.attributes[`${data.attribute}`]["dice"];
-                    //     changed = true;
-                    //     // this.updateOwnedItem(item, { "data.pool": data.pool });
-                    // }
-                    // if (data.pool != pool[data.score]) {
-                    //     data.pool = pool[data.score];
-                    //     data.gradepool = actorData.data.attributes[`${data.attribute}`]["dice"];
-                    //     changed = true;
-                    //     // this.updateOwnedItem(item, { "data.pool": data.pool });
-                    // }
-                    // if(data.score != compare.score) {
-                    //     changed = true;
-                    // }
-                    // if(data.name != compare.name) {
-                    //     changed = true;
-                    // }
-
-                    // if(changed) {
-                    //     // this.updateOwnedItem(item,data);
-                    // }
-                    // // console.log("---");
-                    // // console.log(data.pool);
-                    // // console.log(compare.pool);
-                    // // console.log(data===compare);
-                    // // if(compare!=data) {
-                    // //     console.log(data);
-                    // //     this.updateOwnedItem(item, { data });
-                    // // }
-                }
                 if (item.type === "exploit") {
-                    let data = item.data;
-                    // console.log(data);
-                    //console.log(data);
+                    let data = item.system;
+                    // console.log("WOIN | actorclass.js prepareData data ", data);
                     // Used to ensure old character sheets remain up to date:
                     if (data.style == null) {
                         data.style = "";
@@ -109,15 +66,15 @@ export class WOINActor extends Actor {
             }
             data.carry.carried = 0;
             actorData.items.forEach(item => {
-                if (item.type === "item" && item.data.carried === true) {
-                    data.carry.carried += item.data.weight * item.data.quantity;
+                if (item.type === "item" && item.system.carried === true) {
+                    data.carry.carried += item.system.weight * item.system.quantity;
                     if (item.type != "skill") {
-                        //console.log(item)
-                        let itemData = item.data;
-                        //console.log(itemData);
+                        //console.log("WOIN | actorclass.js prepareData item ", item)
+                        let itemData = item.system;
+                        //console.log("WOIN | actorclass.js prepareData itemData ", itemData);
                         itemData.weapon.skilldamage = 0;
                         if (itemData.skill) {
-                            //console.log(itemData.skill);
+                            //console.log("WOIN | actorclass.js prepareData itemData.skill ", itemData.skill);
                             let pool;
                             if (typeof itemData.skill === 'string') {
                                 pool = (data.attributes[itemData.skill.toLowerCase()]);
@@ -136,9 +93,9 @@ export class WOINActor extends Actor {
                                 actorData.items.forEach(skill => {
                                     if (skill.type === "skill" && skill.name.toLowerCase() === itemData.skill.toLowerCase()) {
                                         pool = skill;
-                                        let update = skill.data.gradepool + skill.data.pool;
-                                        if (skill.data.pool != itemData.weapon.skilldamage) {
-                                            itemData.weapon.skilldamage = skill.data.pool;
+                                        let update = skill.system.gradepool + skill.system.pool;
+                                        if (skill.system.pool != itemData.weapon.skilldamage) {
+                                            itemData.weapon.skilldamage = skill.system.pool;
                                         }
                                         pool = update;
                                         itemData.error = "";
@@ -147,7 +104,7 @@ export class WOINActor extends Actor {
                             }
                             pool += itemData.weapon.bonus_attack;
 
-                            if (!item.data.weapon.attack || pool != item.data.weapon.attack) {
+                            if (!item.system.weapon.attack || pool != item.system.weapon.attack) {
                                 itemData.weapon.attack = pool;
                                 // this.updateOwnedItem(item, {"data":itemData});
                             }
@@ -163,90 +120,41 @@ export class WOINActor extends Actor {
             if (attdice) {
                 data.initiative.value = attdice.dice;
                 data.initiative.error = "";
-                console.log(data.initiative.value);
+                //console.log("WOIN | actorclass.js prepareData data.initiative.value ", data.initiative.value);
             }
             else {
-                console.log(data.initiative.value);
+                console.log("WOIN | actorclass.js prepareData data.initiative.value ", data.initiative.value);
                 actorData.items.forEach(skill => {
                     if (skill.type === "skill" && skill.name.toLowerCase() === data.initiative.skill.toLowerCase()) {
-                        console.log(skill.data); console.log(skill.data.gradepool);
-                        data.initiative.value = skill.data.data.pool + skill.data.data.gradepool;
+                        //console.log("WOIN | actorclass.js prepareData skill.system ", skill.system);
+                        //console.log("WOIN | actorclass.js prepareData skill.system.gradepool ", skill.system.gradepool);
+                        data.initiative.value = skill.system.pool + skill.system.gradepool;
                         data.initiative.error = "";
                     }
                 });
             }
-            console.log(data.initiative.value);
+            //console.log("WOIN | actorclass.js prepareData data.initiative.value ", data.initiative.value);
             if (data.initiative.value > data.advancement.dice_cap) {
                 data.initiative.value = data.advancement.dice_cap;
             }
             if (data.initiative.value < 0) {
                 data.initiative.value = 0;
             }
-            console.log(data.initiative.value);
+            //console.log("WOIN | actorclass.js prepareData data.initiative.value ", data.initiative.value);
             data.initiative.value = parseInt(data.initiative.value) + parseInt(data.initiative.mod);
-            console.log(data.initiative);
+            //console.log("WOIN | actorclass.js prepareData data.initiative ", data.initiative);
 
             // Calculating Credits:
             data.net_worth = data.credits || 0;
             actorData.items.forEach(item => {
                 if (item.type === "item") {
-                    if (Number.isFinite(item.data.cost) && Number.isFinite(item.data.quantity)) {
-                        data.net_worth += item.data.cost * item.data.quantity;
+                    if (Number.isFinite(item.system.cost) && Number.isFinite(item.system.quantity)) {
+                        data.net_worth += item.system.cost * item.system.quantity;
                     }
                 }
             });
         }
+
+        console.log("WOIN | actorclass.js prepareData ending actorData ", actorData);
     }
-
-    // async addCondition(effect) {
-    //     if (typeof (effect) === "string")
-    //         effect = duplicate(CONFIG.statusEffects.find(e => e.id == effect))
-    //     if (!effect)
-    //         return "No Effect Found"
-
-    //     if (!effect.id)
-    //         return "Conditions require an id field"
-
-
-    //     let existing = this.hasCondition(effect.id)
-
-    //     if (existing) {
-    //         existing = duplicate(existing)
-    //         existing.flags.woin.value = Math.min(2,existing.flags.woin.value+1);
-    //         return this.updateEmbeddedEntity("ActiveEffect", existing)
-    //     }
-    //     else if (!existing) {
-    //         effect.flags.woin.value = 1;
-    //         effect["flags.core.statusId"] = effect.id;
-    //         delete effect.id
-    //         return this.createEmbeddedDocuments("ActiveEffect", [effect])
-    //     }
-    // }
-
-    // async removeCondition(effect) {
-    //     if (typeof (effect) === "string")
-    //         effect = duplicate(CONFIG.statusEffects.find(e => e.id == effect))
-    //     if (!effect)
-    //         return "No Effect Found"
-
-    //     if (!effect.id)
-    //         return "Conditions require an id field"
-
-    //     let existing = this.hasCondition(effect.id)
-
-    //     if (existing) {
-    //         existing.flags.woin.value -= 1;
-    //         if (existing.flags.woin.value <= 0)
-    //             return this.deleteEmbeddedEntity("ActiveEffect", existing.id)
-    //         else
-    //             return this.updateEmbeddedEntity("ActiveEffect", existing)
-    //     }
-    // }
-
-
-    // hasCondition(conditionKey) {
-    //     let existing = this.data.effects.find(i => getProperty(i, "flags.core.statusId") == conditionKey)
-    //     return existing
-    // }
-
 }

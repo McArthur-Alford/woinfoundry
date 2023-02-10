@@ -28,12 +28,12 @@ Handlebars.registerHelper('ifnoteq', function (a, b, options) {
 });
 
 Handlebars.registerHelper('enrichHTML', (html) => {
-  return TextEditor.enrichHTML(html);
+  return TextEditor.enrichHTML(html, {async: false});
 });
 
 
 Hooks.once("init", async function () {
-  console.log(`WOIN | Initialized`);
+  console.log(`WOIN | simple.js Hooks.once Initialized`);
 
 
 

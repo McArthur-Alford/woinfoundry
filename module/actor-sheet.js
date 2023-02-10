@@ -24,22 +24,21 @@ export class SimpleActorSheet extends ActorSheet {
       scrollY: [".sheet-body"]
     });
   }
-  /** @override */
-  getData() {
-    const baseData = super.getData();
-    // console.log(baseData);
-    let sheetData = {
-      owner: this.isOwner,
-      editable: this.isEditable,
-      actor: baseData,
-      items: baseData.items,
-      data: baseData.data.data,
-    };
-    console.log(sheetData);
-    // data.dtypes = ["String", "Number", "Boolean"];
-    return sheetData;
-  }
 
+    /** @override */
+    getData() {
+      const baseData = super.getData();
+      //console.log("WOIN | actor-sheet.js getData baseData ", baseData);
+      let sheetData = {
+        owner: this.isOwner,
+        editable: this.isEditable,
+        actor: baseData,
+        items: baseData.items,
+        system: baseData.actor.system,
+      };
+      console.log("WOIN | actor-sheet.js getData sheetData ", sheetData);
+      return sheetData;
+    }
 // ================================================================================
 
 
@@ -159,11 +158,11 @@ export class SimpleActorSheet extends ActorSheet {
       const item = this.actor.items.get(dataset.itemId);
 
       let newItem = duplicate(item);
-      //console.log(dataset)
-      newItem.data.equipped = !newItem.data.equipped;
-      const data = newItem.data;
+      //console.log("WOIN | actor-sheet.js activateListeners dataset ", dataset);
+      newItem.system.equipped = !newItem.system.equipped;
+      const data = newItem.system;
       item.update({ data });
-      //console.log(newItem)
+      //console.log("WOIN | actor-sheet.js activateListeners newItem ", newItem);
     });
 
     // Flipping Item Carried State:
@@ -174,9 +173,9 @@ export class SimpleActorSheet extends ActorSheet {
       const item = this.actor.items.get(dataset.itemId);
 
       let newItem = duplicate(item);
-      newItem.data.carried = !newItem.data.carried;
-      newItem.data.equipped = false;
-      const data = newItem.data;
+      newItem.system.carried = !newItem.system.carried;
+      newItem.system.equipped = false;
+      const data = newItem.system;
       item.update({ data });
     });
 
@@ -214,8 +213,8 @@ export class SimpleActorSheet extends ActorSheet {
         }
         target.toggle();
         let item = duplicate(this.actor.items.get(target.data().itemId));
-        if (item.data.open == null) item.open = true;
-        item.data.open = !item.data.open;
+        if (item.system.open == null) item.open = true;
+        item.system.open = !item.system.open;
         this.actor.items.get(target.data().itemId).update(item);
       } catch (error) {
         
@@ -235,8 +234,8 @@ export class SimpleActorSheet extends ActorSheet {
       const input = (ev.currentTarget.value);
 
       let newItem = duplicate(item);
-      newItem.data.skill = input;
-      const data = newItem.data;
+      newItem.system.skill = input;
+      const data = newItem.system;
       item.update({ data });
     });
 
@@ -258,6 +257,7 @@ export class SimpleActorSheet extends ActorSheet {
       sortable.addEventListener("dragstart", (e) => this._onDragStart.call(this, e), false);
     });
 
+
     //Handling Updates to Exploits:
 
     //Handling Updates to Advancement:
@@ -266,22 +266,22 @@ export class SimpleActorSheet extends ActorSheet {
     });
     html.find(".advancement-add-gain").click(ev => {
       let actor = duplicate(this.actor);
-      actor.data.advancement.xp_gain.push({ name: "default", value: 0 });
+      actor.system.advancement.xp_gain.push({ name: "default", value: 0 });
       this.actor.update(actor);
     });
     html.find(".advancement-add-spend").click(ev => {
       let actor = duplicate(this.actor);
-      actor.data.advancement.xp_spent.push({ name: "default", value: 0 });
+      actor.system.advancement.xp_spent.push({ name: "default", value: 0 });
       this.actor.update(actor);
     });
     html.find(".advancement-remove-gain").click(ev => {
       let actor = duplicate(this.actor);
-      actor.data.advancement.xp_gain.splice(ev.currentTarget.dataset.index, 1);
+      actor.system.advancement.xp_gain.splice(ev.currentTarget.dataset.index, 1);
       this.actor.update(actor);
     });
     html.find(".advancement-remove-spend").click(ev => {
       let actor = duplicate(this.actor);
-      actor.data.advancement.xp_spent.splice(ev.currentTarget.dataset.index, 1);
+      actor.system.advancement.xp_spent.splice(ev.currentTarget.dataset.index, 1);
       this.actor.update(actor);
     });
 
@@ -307,8 +307,8 @@ export class SimpleActorSheet extends ActorSheet {
       },0);
 
       const formula = li.attributes['data-formula'].value;
-      if(gradecapped>this.actor.data.data.advancement.dice_cap){
-        gradecapped=this.actor.data.data.advancement.dice_cap;
+      if(gradecapped>this.actor.system.advancement.dice_cap){
+        gradecapped=this.actor.system.advancement.dice_cap;
       }
       gradecapped+="d6";
 
@@ -342,20 +342,16 @@ export class SimpleActorSheet extends ActorSheet {
       });
     });
 
-    // let newItem = duplicate(item);
-    // newItem.data.skill = input;
-    // const data = newItem.data;
-    // item.update({ data });
 
     // Updating Items:
     this.actor.items.forEach(item => {
       if(item.type === "item") {
-        //console.log(item);
-        if(typeof item.data.data.carried === 'undefined') {
+        //console.log("WOIN | actor-sheet.js activateListeners item ", item);
+        if(typeof item.system.carried === 'undefined') {
           let newItem = duplicate(item);
-          //console.log(newItem);
-          newItem.data.carried = true;
-          const data = newItem.data;
+          //console.log("WOIN | actor-sheet.js activateListeners newItem ", newItem);
+          newItem.system.carried = true;
+          const data = newItem.system;
           item.update({ data });
         }
       }
@@ -366,13 +362,11 @@ export class SimpleActorSheet extends ActorSheet {
 
 
 
-
-
 // Auto Calculations:
 async calculateMovement() {
   let html = await renderTemplate("systems/woinfoundry/templates/chat/confirmation.html");
 
-  //console.log("WOIN | strength obj:",game.actors.get(this.actor.id).data.data.attributes.strength);
+  //console.log("WOIN | actor-sheet.js calculateMovement strength obj:",game.actors.get(this.actor.id).system.attributes.strength);
 
   return new Promise(resolve => {
     new Dialog({
@@ -397,8 +391,7 @@ async calculateMovement() {
 
   function calc(originalActor) {
     let actor = duplicate(originalActor);
-    //console.log(actor.data.attributes);
-    let data = actor.data;
+    let data = actor.system;
     let movement = data.movement;
     let attributes = data.attributes;
     let running = 0;
@@ -407,37 +400,39 @@ async calculateMovement() {
     let zerog = 0;
     let highg = 0;
     let lowg = 0;
+    //console.log("WOIN | actor-sheet.js calculateMovement calc attributes ", attributes);
 
     actor.items.forEach(item => {
       if(item.type == "skill") {
         switch(item.name.toLowerCase()) {
           case "running":
-            running = item.data.pool;
-            //console.log(running);
+            running = item.system.pool;
+            //console.log("WOIN | actor-sheet.js calculateMovement calc running ", running);
             break;
           case "climbing": 
-            climbing = item.data.pool;
+            climbing = item.system.pool;
             break;
           case "swimming":
-            swimming = item.data.pool;
+            swimming = item.system.pool;
             break;
           case "zero-g":
-            zerog = item.data.pool;
+            zerog = item.system.pool;
             break;
           case "high-g":
-            highg = item.data.pool;
+            highg = item.system.pool;
             break;
           case "low-g":
-            lowg = item.data.pool
+            lowg = item.system.pool
             break;
         }
       }
     });
-    //console.log(actor.items);
+    //console.log("WOIN | actor-sheet.js calculateMovement calc actor.items ", actor.items);
 
     let base_speed = attributes.agility.dice + attributes.strength.dice;
-    //console.log("Base_Speed:",base_speed)
+    //console.log("WOIN | actor-sheet.js calculateMovement calc base_speed ",base_speed);
     movement.speed = base_speed + running;
+
     if(data.details.size&&(data.details.size.includes("small")||data.details.size.includes("tiny"))) {
       movement.speed = Math.max(movement.speed-1,0);
     }
@@ -451,7 +446,7 @@ async calculateMovement() {
     movement.jumpV = attributes.strength.value;
     if(movement.jumpV>movement.jumpH) {movement.jumpV = movement.jumpH;}
 
-    actor.data.movement = movement;
+    actor.system.movement = movement;
     originalActor.update(actor);
 
     // (In Squares) Speed: Strength DP + AGI DP + Running DP
@@ -467,12 +462,6 @@ async calculateMovement() {
     // Vertical = STR ATTR, NOT EXCEED Horizontal 
   }
 }
-
-
-
-
-
-
 
 
 
@@ -549,12 +538,6 @@ async calculateMovement() {
 // ================================================================================
 
 
-
-
-
-
-
-
 async manageEffect(event) {
   event.preventDefault();
 
@@ -563,7 +546,7 @@ async manageEffect(event) {
   const effectId = event.currentTarget.dataset.id;
 
   if(action!="add"&&effectId==null){
-    //console.log("WOIN | Effect was null.");
+    //console.log("WOIN | actor-sheet.js manageEffect Effect was null.");
     return
   }
   
@@ -574,7 +557,7 @@ async manageEffect(event) {
 
   switch (action) {
     case "add":
-      //console.log("WOIN | adding new effect");
+      //console.log("WOIN | actor-sheet.js manageEffect adding new effect");
       ActiveEffect.create({
         label: "New Effect",
         icon: "icons/svg/aura.svg",
@@ -591,28 +574,22 @@ async manageEffect(event) {
       }, game.actors.entries[0]).create();
       break;
     case "edit":
-      //console.log("WOIN | editing existing effect with ID ", effectId);
+      //console.log("WOIN | actor-sheet.js manageEffect editing existing effect with ID ", effectId);
       effect.sheet.render(true);
       break;
     case "delete":
-      //console.log("WOIN | removing existing effect with ID ", effectId);
+      //console.log("WOIN | actor-sheet.js manageEffect removing existing effect with ID ", effectId);
       effect.delete();
       break;
     case "toggle":
-      //console.log("WOIN | toggling existing effect with ID ", effectId);
-      return effect.update({disabled: !effect.data.disabled});
+      //console.log("WOIN | actor-sheet.js manageEffect toggling existing effect with ID ", effectId);
+      return effect.update({disabled: !effect.system.disabled});
       break;
     default:
-      //console.log("WOIN | the specified effect action is not supported. Please use add/edit/delete.")
+      //console.log("WOIN | actor-sheet.js manageEffect the specified effect action is not supported. Please use add/edit/delete.");
       break;
   }
 }
-
-
-
-
-
-
 
 
 // ---------------------------------------------------------------------------------
@@ -622,23 +599,23 @@ async updateAttributes(event) {
   event.preventDefault();
 
   const target = event.currentTarget.dataset.attribute;
-  // console.log("WOIN | Updating attributes for",this.actor.id,"| modified attribute is",target);
+  //console.log("WOIN | actor-sheet.js updateAttributes Updating attributes for ", this.actor.id, " | modified attribute is", target);
   const input = ($(event.currentTarget)[0].value);
-  console.log(target, "this is target")
 
+  // The pool table maps the number of dice in the attribute's dice pool based on the attribute's value.
   const pool = [0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8]
   const actor = duplicate(this.actor);
-  console.log(actor);
+  console.log("WOIN | actor-sheet.js updateAttributes actor ", actor);
 
-  let data = actor.data;
-  console.log(data);
+  let data = actor.system;
+  console.log("WOIN | actor-sheet.js updateAttributes data ", data);
 
-  // Calculating Attribute DPs:
+  // Calculating Attribute Dice Pools:
   for (var key in data.attributes) {
       if (key === target && !isNaN(input)) {
         data.attributes[key].value = parseInt(input);
       }
-      console.log(data.attributes[key].value);
+      //console.log("WOIN | actor-sheet.js updateAttributes  data.attributes[key].value ", data.attributes[key].value);
       if (pool[data.attributes[key].value] != null) {
           data.attributes[key].dice = pool[data.attributes[key].value];
       } else {
@@ -646,40 +623,25 @@ async updateAttributes(event) {
       }
   };
 
-
   // Calculating Luck:
-  data.luck.max = data.attributes.luck.dice
+  data.luck.max = data.attributes.luck.dice;
   if (data.luck.value > data.luck.max) {
       data.luck.value = data.luck.max;
   }
-  if (data.luck.value < 0) {
-      data.luck.value = 0;
-  }
-  if (!data.luck.value) {
+  if ((data.luck.value < 0) || (!data.luck.value)) {
       data.luck.value = 0;
   }
   if (data.power.value > data.power.max) {
       data.power.value = data.power.max;
   }
-  if (data.power.value < 0) {
+  if ((data.power.value < 0) || (!data.power.value)) {
       data.power.value = 0;
   }
-  if (!data.power.value) {
-      data.power.value = 0;
-  }
-
 
   this.actor.update({data});
 }
 
 // ================================================================================
-
-
-
-
-
-
-
 
 
 
@@ -689,7 +651,7 @@ async updateAttributes(event) {
   async updateSkill(ev) {
     ev.preventDefault();
 
-    //console.log("woo");
+    //console.log("WOIN | actor-sheet.js updateSkill woo");
 
     const dataset = ev.currentTarget.dataset;
     const item = this.actor.items.get(dataset.itemId);
@@ -698,46 +660,38 @@ async updateAttributes(event) {
     if(!item){
       return;
     }
-    if (item.data[dataset.binding] && item.data[dataset.binding] === input) {
+    if (item.system[dataset.binding] && item.system[dataset.binding] === input) {
       return;
     }
-    else if (item.data.data[dataset.binding] && item.data.data[dataset.binding] === input) {
-      return;
-    };
 
     await item.update({
       [dataset.binding]: input
     });
 
-    let data = item.data.data;
+    let data = item.system;
     const pool = [0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8]
-    //console.log(data);
-    let actorData = this.actor.data;
-    if (data.gradepool != actorData.data.attributes[`${data.attribute}`]["dice"]) {
-        data.gradepool = actorData.data.attributes[`${data.attribute}`]["dice"];
-        // this.updateOwnedItem(item, { "data.pool": data.pool });
+    //console.log("WOIN | actor-sheet.js updateSkill data ", data);
+    let actorData = this.actor.system;
+    if (data.gradepool != actorData.attributes[`${data.attribute}`]["dice"]) {
+        data.gradepool = actorData.attributes[`${data.attribute}`]["dice"];
     }
+
     if (data.score >= pool.length) {
         data.score = pool.length - 1;
         data.pool = pool[data.score];
-        data.gradepool = actorData.data.attributes[`${data.attribute}`]["dice"];
-        // changed = true;
-        // this.updateOwnedItem(item, { "data.pool": data.pool });
+        data.gradepool = actorData.attributes[`${data.attribute}`]["dice"];
     }
+
     if (data.score < 0) {
         data.score = 0;
         data.pool = pool[data.score];
-        data.gradepool = actorData.data.attributes[`${data.attribute}`]["dice"];
-        // changed = true;
-        // this.updateOwnedItem(item, { "data.pool": data.pool });
-    }
-    if (data.pool != pool[data.score]) {
-        data.pool = pool[data.score];
-        data.gradepool = actorData.data.attributes[`${data.attribute}`]["dice"];
-        // changed = true;
-        // this.updateOwnedItem(item, { "data.pool": data.pool });
+        data.gradepool = actorData.attributes[`${data.attribute}`]["dice"];
     }
 
+    if (data.pool != pool[data.score]) {
+        data.pool = pool[data.score];
+        data.gradepool = actorData.attributes[`${data.attribute}`]["dice"];
+    }
 
     item.update({data});
   }
@@ -748,69 +702,28 @@ async updateAttributes(event) {
     const data = target.dataset;
     const index = data.index;
     const key = data.key;
-    let actor = duplicate(this.actor); //For manipulating actor.data.advancement
+    console.log("WOIN | actor-sheet.js updateAdvancement data ", data);
+
+    let actor = duplicate(this.actor); //For manipulating actor.system.advancement
     switch (key) {
       case "spent_name":
-        actor.data.advancement.xp_spent[index].name = target.value;
+        actor.system.advancement.xp_spent[index].name = target.value;
         break;
       case "spent_xp":
-        actor.data.advancement.xp_spent[index].value = target.value;
+        actor.system.advancement.xp_spent[index].value = target.value;
         break;
       case "gain_name":
-        actor.data.advancement.xp_gain[index].name = target.value;
+        actor.system.advancement.xp_gain[index].name = target.value;
         break;
       case "gain_xp":
-        actor.data.advancement.xp_gain[index].value = target.value;
+        actor.system.advancement.xp_gain[index].value = target.value;
         break;
       default:
         break;
     }
     this.actor.update(actor);
-
   }
 
 // ================================================================================
 
-
-
-
-
-
-
-// ---------------------------------------------------------------------------------
-// // The weird little function necessary for Drag&Drop to work in foundry:
-//   /** @override */
-//   async _onDrop(event) {
-//     // Try to extract the data
-//     let data;
-//     try {
-//       data = JSON.parse(event.dataTransfer.getData('text/plain'));
-//       if (data.type !== "Item") return;
-//     } catch (err) {
-//       return false;
-//     }
-
-//     // Case 1 - Import from a Compendium pack
-//     const actor = this.actor;
-//     if (data.pack) {
-//       return actor.importItemFromCollection(data.pack, data.id);
-//     }
-
-//     // Case 2 - Data explicitly provided
-//     else if (data.data) {
-//       let sameActor = data.actorId === actor.id;
-//       if (sameActor && actor.isToken) sameActor = data.tokenId === actor.token.id;
-//       if (sameActor) return this._onSortItem(event, data.data); // Sort existing items
-//       else return actor.createEmbeddedEntity("OwnedItem", duplicate(data.data));  // Create a new Item
-//     }
-
-//     // Case 3 - Import from World entity
-//     else {
-//       let item = game.items.get(data.id);
-//       if (!item) return;
-//       return actor.createEmbeddedEntity("OwnedItem", duplicate(item.data));
-//     }
-//   }
-// ================================================================================
 }
-
